@@ -71,4 +71,4 @@ export default defineConfig([
   },
 ])
 ```
-# mmd-dev
+# mmddev
