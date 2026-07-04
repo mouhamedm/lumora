@@ -30,7 +30,7 @@ export default function Navbar() {
         <nav className="nav__links">
           {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href} className="nav__link">
-              {link.label}
+              <span>{link.label}</span>
             </a>
           ))}
         </nav>
@@ -45,7 +45,7 @@ export default function Navbar() {
             {lang === 'fr' ? 'EN' : 'FR'}
           </button>
           <a href="#contact" className="nav__cta">
-            Contactez-moi
+            <span>Contactez-moi</span>
           </a>
         </div>
       </div>
