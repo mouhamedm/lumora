@@ -6,8 +6,9 @@
   align-items: center;
   gap: 40px;
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 140px 40px 80px;
+  padding: 140px 48px 80px;
   overflow: hidden;
 }
 

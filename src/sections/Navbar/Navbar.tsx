@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Navbar.css';
 
 const NAV_LINKS = [
+  { label: 'Accueil', href: '#top' },
   { label: 'Expérience', href: '#experience' },
   { label: 'À propos', href: '#about' },
   { label: 'Projets', href: '#projects' },
