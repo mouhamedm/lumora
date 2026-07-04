@@ -271,6 +271,10 @@
 }
 
 /* ─── SCENE (code cards) ───────────────────────────────────────────────────── */
+.hero__right {
+  transform: translateY(-40px);
+}
+
 .hero__scene {
   position: relative;
   height: 480px;
@@ -320,24 +324,123 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.code-card--back {
-  top: 0px;
-  left: 10px;
-  transform: rotateY(-10deg) rotateX(5deg) translateZ(-60px) scale(0.9);
-  opacity: 0.55;
+.code-card--main {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  z-index: 1;
 }
 
-.code-card--mid {
-  top: 100px;
-  left: 80px;
-  transform: rotateY(-5deg) rotateX(2deg) translateZ(0px);
-  opacity: 0.85;
+.hero__float-card {
+  position: absolute;
+  background: rgba(23, 23, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.code-card--front {
-  top: 220px;
-  left: 20px;
-  transform: rotateY(3deg) rotateX(-3deg) translateZ(60px) scale(1.06);
+.hero__float-card--exp {
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+}
+
+.hero__float-card--proj {
+  bottom: 60px;
+  left: -20px;
+  z-index: 3;
+}
+
+.hero__float-card--focus {
+  top: 45%;
+  right: -30px;
+  margin-top: -10px;
+  z-index: 3;
+}
+
+.float-card__title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.float-card__value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-top: 4px;
+}
+
+.float-card__sub {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.float-card__chart,
+.float-card__icon {
+  margin-top: 12px;
+  opacity: 0.9;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.float-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.float-card__list li::before {
+  content: '•';
+  color: var(--text-muted);
+  margin-right: 8px;
+}
+
+.hero__symbol {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 16px rgba(76, 141, 255, 0.6);
+}
+
+.hero__symbol--code {
+  bottom: 40%;
+  right: 10%;
+  z-index: 4;
+}
+
+.hero__manifesto {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 40px;
+}
+
+.hero__manifesto .highlight {
+  color: var(--accent);
+  font-weight: 500;
 }
 
 /* Card header bar */

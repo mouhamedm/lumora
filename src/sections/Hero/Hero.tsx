@@ -173,53 +173,72 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── RIGHT : 3-D code cards ── */}
-      <div className="hero__scene" ref={sceneRef}>
-        <div className="code-card code-card--back" ref={(el) => { cardRefs.current[0] = el; }}>
-          <div className="code-card__bar">
-            <span className="dot dot--red" />
-            <span className="dot dot--yellow" />
-            <span className="dot dot--green" />
-            <span className="code-card__title">vizhair.ts</span>
+      {/* ── RIGHT : Illustration & Manifesto ── */}
+      <div className="hero__right">
+        <div className="hero__scene" ref={sceneRef}>
+          {/* Main IDE */}
+          <div className="code-card code-card--main" ref={(el) => { cardRefs.current[0] = el; }}>
+            <div className="code-card__bar">
+              <span className="dot dot--red" />
+              <span className="dot dot--yellow" />
+              <span className="dot dot--green" />
+            </div>
+            <pre className="code-card__body">
+              <span className="tok-keyword">const</span> <span className="tok-fn">Developer</span> = () =&gt; {'{'}
+              {'\n  '}
+              <span className="tok-keyword">const</span> [passion, setPassion] = <span className="tok-fn">useState</span>(<span className="tok-keyword">true</span>);
+              {'\n  '}
+              <span className="tok-keyword">return</span> (
+              {'\n    '}&lt;<span className="tok-fn">div</span> <span className="tok-string">className</span>=<span className="tok-string">"code"</span>&gt;
+              {'\n      {'} passion &amp;&amp; &lt;<span className="tok-fn">BuildIdeas</span> /&gt; {'}'}
+              {'\n      '}&lt;<span className="tok-fn">CreateImpact</span> /&gt;
+              {'\n    '}&lt;/<span className="tok-fn">div</span>&gt;
+              {'\n  '});
+              {'\n'};
+            </pre>
           </div>
-          <pre className="code-card__body">
-            <span className="tok-keyword">const</span> <span className="tok-fn">tryOn</span> ={' '}
-            <span className="tok-keyword">async</span> (photo) =&gt; {'{'}
-            {'\n  '}
-            <span className="tok-keyword">return</span> lightx.<span className="tok-fn">generate</span>(photo);
-            {'\n'}
-            {'}'};
-          </pre>
+
+          {/* Card: Expérience */}
+          <div className="hero__float-card hero__float-card--exp" ref={(el) => { cardRefs.current[1] = el; }}>
+            <span className="float-card__title">Expérience</span>
+            <div className="float-card__value">3+</div>
+            <span className="float-card__sub">années</span>
+            <div className="float-card__chart">
+              <svg viewBox="0 0 50 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M0 15 Q 10 10 15 15 T 30 10 T 40 5 L 50 0" stroke="var(--accent)"/>
+              </svg>
+            </div>
+          </div>
+
+          {/* Card: Projets */}
+          <div className="hero__float-card hero__float-card--proj" ref={(el) => { cardRefs.current[2] = el; }}>
+            <span className="float-card__title">Projets</span>
+            <div className="float-card__value">10+</div>
+            <span className="float-card__sub">réalisés</span>
+            <div className="float-card__icon">
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5">
+                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+               </svg>
+            </div>
+          </div>
+
+          {/* Card: Focus */}
+          <div className="hero__float-card hero__float-card--focus" ref={(el) => { cardRefs.current[3] = el; }}>
+            <span className="float-card__title">Focus</span>
+            <ul className="float-card__list">
+              <li>UI / UX</li>
+              <li>Performance</li>
+              <li>Accessibilité</li>
+            </ul>
+          </div>
+          
+          {/* Floating symbols */}
+          <div className="hero__symbol hero__symbol--code">&lt;/&gt;</div>
         </div>
 
-        <div className="code-card code-card--mid" ref={(el) => { cardRefs.current[1] = el; }}>
-          <div className="code-card__bar">
-            <span className="dot dot--red" />
-            <span className="dot dot--yellow" />
-            <span className="dot dot--green" />
-            <span className="code-card__title">hero.animation.ts</span>
-          </div>
-          <pre className="code-card__body">
-            gsap.<span className="tok-fn">to</span>(<span className="tok-string">'.hero'</span>, {'{'}
-            {'\n  '}opacity: <span className="tok-number">1</span>,{'\n  '}y: <span className="tok-number">0</span>,
-            {'\n  '}ease: <span className="tok-string">'power3.out'</span>,{'\n'}
-            {'}'});
-          </pre>
-        </div>
-
-        <div className="code-card code-card--front" ref={(el) => { cardRefs.current[2] = el; }}>
-          <div className="code-card__bar">
-            <span className="dot dot--red" />
-            <span className="dot dot--yellow" />
-            <span className="dot dot--green" />
-            <span className="code-card__title">terminal</span>
-          </div>
-          <pre className="code-card__body">
-            <span className="tok-comment">$ npm run build</span>
-            {'\n'}
-            <span className="tok-success">✓ compiled in 842ms</span>
-          </pre>
-        </div>
+        <p className="hero__manifesto">
+          Je transforme des idées en expériences digitales <span className="highlight">modernes</span> et <span className="highlight">performantes</span>.
+        </p>
       </div>
 
       {/* Scroll Indicator */}
