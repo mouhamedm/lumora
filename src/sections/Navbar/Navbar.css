@@ -1,0 +1,119 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 0;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+}
+
+.nav--scrolled {
+  padding: 14px 0;
+  background-color: rgba(11, 11, 12, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nav__logo-dot {
+  color: var(--accent);
+}
+
+.nav__links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav__link {
+  position: relative;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav__link:hover {
+  color: var(--text-primary);
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav__lang {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.nav__lang:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.nav__cta {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bg-base);
+  background-color: var(--accent);
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.nav__cta:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 860px) {
+  .nav__links {
+    display: none;
+  }
+  .nav__inner {
+    padding: 0 24px;
+  }
+}
