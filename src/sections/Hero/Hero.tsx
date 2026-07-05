@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import './Hero.css';
 
-const TECH_TAGS = ['React', 'TypeScript', 'Tailwind', 'Node.js', 'Flutter', 'Figma'];
-
 export default function Hero() {
   const sceneRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -113,12 +111,9 @@ export default function Hero() {
 
         <p className="hero__role">Développeur frontend</p>
 
-        {/* Tech stack badges */}
-        <div className="hero__tags">
-          {TECH_TAGS.map((tag) => (
-            <span key={tag} className="hero__tag">{tag}</span>
-          ))}
-        </div>
+        <p className="hero__manifesto">
+          Je transforme des idées en expériences digitales <span className="highlight">modernes</span> et <span className="highlight">performantes</span>.
+        </p>
 
         {/* Socials */}
         <div className="hero__socials">
@@ -235,10 +230,6 @@ export default function Hero() {
           {/* Floating symbols */}
           <div className="hero__symbol hero__symbol--code">&lt;/&gt;</div>
         </div>
-
-        <p className="hero__manifesto">
-          Je transforme des idées en expériences digitales <span className="highlight">modernes</span> et <span className="highlight">performantes</span>.
-        </p>
       </div>
 
       {/* Scroll Indicator */}
