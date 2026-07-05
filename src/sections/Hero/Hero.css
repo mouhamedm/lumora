@@ -124,7 +124,7 @@
 /* Name headline */
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(42px, 5.5vw, 72px);
+  font-size: clamp(46px, 5.5vw, 72px);
   line-height: 1;
   font-weight: 700;
   margin: 0 0 8px;
@@ -551,6 +551,10 @@
   .hero__float-card {
     transform: scale(0.85);
   }
+
+  .hero__scroll-indicator {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -558,8 +562,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 100px 24px 60px;
+    padding: 120px 24px 60px;
     min-height: 100vh;
+    gap: 40px;
   }
 
   .hero__content {
@@ -569,27 +574,22 @@
   }
 
   .hero__right {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    opacity: 0.2;
-    pointer-events: none;
+    position: relative;
+    width: 100%;
+    height: 340px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    overflow: hidden;
+    align-items: center;
   }
 
   .hero__scene {
-    height: 100%;
     width: 100%;
+    height: 100%;
+    transform: scale(0.85);
+    transform-origin: center center;
   }
 
   .code-card {
     width: 260px;
-  }
-  
-  .hero__float-card {
-    transform: scale(0.9);
   }
 }

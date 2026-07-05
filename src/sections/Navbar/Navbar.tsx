@@ -44,7 +44,7 @@ export default function Navbar() {
           >
             {lang === 'fr' ? 'EN' : 'FR'}
           </button>
-          <a href="#contact" className="nav__cta">
+          <a href="https://wa.me/2250719076206" className="nav__cta" target="_blank" rel="noopener noreferrer">
             <span>Contactez-moi</span>
           </a>
         </div>
