@@ -70,25 +70,27 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         duration: 0.8,
         ease: 'power4.in'
       });
+      
+      // On fait disparaître le "trait" (la barre bleue de progression) 
+      // juste avant que le rideau noir ne se lève pour qu'elle ne reste pas coincée en haut.
+      tl.to('.preloader__bar-container', {
+        opacity: 0,
+        duration: 0.4
+      }, '<');
 
       // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // FIX IPHONE BUG: 
-      // 1. yPercent: -200 l'envoie DEUX FOIS plus haut que l'écran (impossible de voir le bout).
-      // 2. L'ease 'power3.in' fait accélérer l'écran vers le haut. Avant, le 'inOut' le faisait ralentir
-      // à la fin, ce qui laissait l'écran traîner pendant presqu'une seconde.
+      // SOLUTION FINALE : On anime la "height" (hauteur) jusqu'à 0 !
+      // Ça oblige physiquement l'écran noir à se rapetisser vers le haut, 
+      // contournant totalement les bugs d'affichage de Safari avec les "transform" Y.
       tl.to(containerRef.current, {
-        yPercent: -200,
-        duration: 1.0, // Un peu plus rapide
+        height: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+        duration: 1.0, 
         ease: 'power3.in', 
         borderBottomRightRadius: '50% 10%', 
         borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
-
-      // 7. Sécurité absolue pour Safari : on force l'opacité à 0 juste avant que le composant se démonte
-      tl.to(containerRef.current, {
-        opacity: 0,
-        duration: 0.2
-      }, '-=0.2');
 
     }, containerRef);
 
