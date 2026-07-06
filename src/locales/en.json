@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Home",
+    "skills": "Skills",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "cta": "Contact me"
+  },
+  "hero": {
+    "name1": "MOUHAMED",
+    "name2": "MOURTADA",
+    "name3": "DICKO",
+    "role": "Frontend Developer",
+    "manifesto_start": "I transform ideas into ",
+    "manifesto_modern": "modern",
+    "manifesto_and": " and ",
+    "manifesto_perf": "performant",
+    "manifesto_end": " digital experiences.",
+    "download_cv": "Download my CV",
+    "view_projects": "View my projects",
+    "exp_title": "Experience",
+    "exp_sub": "years",
+    "proj_title": "Projects",
+    "proj_sub": "completed",
+    "focus_title": "Focus",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title_start": "Who is behind ",
+    "title_highlight": "the code",
+    "title_end": " ?",
+    "p1": "I am a developer passionate about creating exceptional user interfaces. My goal is to merge aesthetic design with cutting-edge technical performance.",
+    "p2": "With a strong background in modern web development, I build scalable and interactive applications that provide a memorable user experience.",
+    "p3": "Always keeping up with technology, I love pushing the boundaries of what is possible on the web, using the latest animations and architectures.",
+    "cta": "Let's discuss your project"
+  },
+  "skills": {
+    "eyebrow": "Expertise",
+    "title_start": "My ",
+    "title_highlight": "Skills",
+    "subtitle": "Technologies and tools I work with every day to bring your projects to life.",
+    "tools_title": "Tools & Environment"
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "title_start": "Recent ",
+    "title_highlight": "Projects",
+    "subtitle": "A selection of my recent work. Each project has been designed to provide the best possible user experience.",
+    "view_site": "View site",
+    "p1_title": "IDConsult",
+    "p1_desc": "Modern showcase site for a consulting agency, featuring an ISO certification catalog and an interactive, animated quote request system.",
+    "p2_title": "ImmoAppart",
+    "p2_desc": "Elegant web platform dedicated to high-end real estate rentals.",
+    "p3_title": "Prestige-Dining",
+    "p3_desc": "An immersive and refined web experience designed for a gourmet establishment, highlighting culinary art through subtle animations.",
+    "p4_title": "MokaNoir",
+    "p4_desc": "Modern online store for an artisanal coffee roaster, offering a seamless coffee selection experience and a dynamic interactive cart.",
+    "p5_title": "EmpireGym",
+    "p5_desc": "Explosive and ultra-dynamic website for a fitness center, integrating parallax effects and performance-driven interactions."
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title_start": "What they ",
+    "title_highlight": "say",
+    "subtitle": "Feedback from clients satisfied with my work.",
+    "t1_name": "Mr. Traoré",
+    "t1_role": "Founder, ID CONSULT",
+    "t1_text": "An exceptional collaboration. Mouhamed understood our vision and delivered a digital showcase that perfectly reflects our firm's expertise. Highly recommended!",
+    "t2_name": "Ms. Michelle",
+    "t2_role": "Restaurant Manager",
+    "t2_text": "The web experience he created for our establishment is as refined as our cuisine. The interface is seamless, and reservations have significantly increased.",
+    "t3_name": "Kouamé Konan",
+    "t3_role": "Product Manager",
+    "t3_text": "A true driving force. Mouhamed's attention to detail and technical mastery brought our project to life well beyond our initial expectations."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title_start": "Ready to create something ",
+    "title_highlight": "incredible",
+    "title_end": " ?",
+    "email_label": "Email me",
+    "whatsapp_label": "Or text me",
+    "location_label": "Location",
+    "location_val": "Ivory Coast - Abidjan",
+    "form_email": "Your Email",
+    "form_message": "How can I help you?",
+    "btn_loading": "Sending...",
+    "btn_submit": "Send message",
+    "msg_success": "Thank you! Your message has been sent successfully.",
+    "msg_error": "Oops! An error occurred. Please try again."
+  },
+  "footer": {
+    "status": "Available for new opportunities",
+    "rights": "All rights reserved."
+  }
+}

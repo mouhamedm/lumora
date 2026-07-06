@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "skills": "Compétences",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact",
+    "cta": "Contactez-moi"
+  },
+  "hero": {
+    "name1": "MOUHAMED",
+    "name2": "MOURTADA",
+    "name3": "DICKO",
+    "role": "Développeur frontend",
+    "manifesto_start": "Je transforme des idées en expériences digitales ",
+    "manifesto_modern": "modernes",
+    "manifesto_and": " et ",
+    "manifesto_perf": "performantes",
+    "manifesto_end": ".",
+    "download_cv": "Télécharger mon CV",
+    "view_projects": "Voir mes projets",
+    "exp_title": "Expérience",
+    "exp_sub": "années",
+    "proj_title": "Projets",
+    "proj_sub": "réalisés",
+    "focus_title": "Focus",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "À Propos",
+    "title_start": "Qui se cache derrière ",
+    "title_highlight": "le code",
+    "title_end": " ?",
+    "p1": "Je suis un développeur passionné par la création d'interfaces utilisateur exceptionnelles. Mon objectif est de fusionner le design esthétique avec des performances techniques de pointe.",
+    "p2": "Avec une solide expérience en développement web moderne, je construis des applications évolutives et interactives qui offrent une expérience utilisateur mémorable.",
+    "p3": "Toujours en veille technologique, j'aime repousser les limites de ce qui est possible sur le web, en utilisant les dernières animations et architectures.",
+    "cta": "Discutons de votre projet"
+  },
+  "skills": {
+    "eyebrow": "Expertise",
+    "title_start": "Mes ",
+    "title_highlight": "Compétences",
+    "subtitle": "Technologies et outils avec lesquels je travaille au quotidien pour donner vie à vos projets.",
+    "tools_title": "Outils & Environnement"
+  },
+  "projects": {
+    "eyebrow": "Projets",
+    "title_start": "Projets ",
+    "title_highlight": "Récents",
+    "subtitle": "Une sélection de mes travaux récents. Chacun a été pensé pour offrir la meilleure expérience utilisateur possible.",
+    "view_site": "Voir le site",
+    "p1_title": "IDConsult",
+    "p1_desc": "Site vitrine moderne pour une agence de conseil, intégrant un catalogue de certifications ISO et un système interactif et animé de demande de devis.",
+    "p2_title": "ImmoAppart",
+    "p2_desc": "Plateforme web élégante dédiée à la location immobilière haut de gamme.",
+    "p3_title": "Prestige-Dining",
+    "p3_desc": "Une expérience web immersive et raffinée conçue pour un établissement gastronomique, mettant en valeur l'art culinaire à travers des animations subtiles.",
+    "p4_title": "MokaNoir",
+    "p4_desc": "Boutique en ligne moderne pour un torréfacteur artisanal, offrant une expérience fluide de sélection de café et un panier dynamique interactif.",
+    "p5_title": "EmpireGym",
+    "p5_desc": "Site web explosif et ultra-dynamique pour un centre de fitness, intégrant des effets de parallaxe et des interactions conçues pour la performance."
+  },
+  "testimonials": {
+    "eyebrow": "Témoignages",
+    "title_start": "Ce qu'ils ",
+    "title_highlight": "disent",
+    "subtitle": "Retours d'expérience de clients satisfaits de mon travail.",
+    "t1_name": "M. Traoré",
+    "t1_role": "Fondateur, ID CONSULT",
+    "t1_text": "Une collaboration exceptionnelle. Mouhamed a su comprendre notre vision et livrer une vitrine digitale qui reflète parfaitement l'expertise de notre cabinet. Je recommande vivement !",
+    "t2_name": "Mme Michelle",
+    "t2_role": "Manager de Restaurant",
+    "t2_text": "L'expérience web qu'il a créée pour notre établissement est aussi raffinée que notre cuisine. L'interface est fluide et les réservations ont considérablement augmenté.",
+    "t3_name": "Kouamé Konan",
+    "t3_role": "Product Manager",
+    "t3_text": "Une vraie force de proposition. Le souci du détail et la maîtrise technique de Mouhamed ont donné vie à notre projet bien au-delà de nos attentes initiales."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title_start": "Prêt à créer quelque chose ",
+    "title_highlight": "d'incroyable",
+    "title_end": " ?",
+    "email_label": "Email moi",
+    "whatsapp_label": "Ou texte moi",
+    "location_label": "Localisation",
+    "location_val": "Côte d'ivoire - Abidjan",
+    "form_email": "Votre Email",
+    "form_message": "Comment puis-je vous aider ?",
+    "btn_loading": "Envoi en cours...",
+    "btn_submit": "Envoyer le message",
+    "msg_success": "Merci ! Votre message a bien été envoyé.",
+    "msg_error": "Oups ! Une erreur est survenue. Veuillez réessayer."
+  },
+  "footer": {
+    "status": "Disponible pour de nouvelles opportunités",
+    "rights": "Tous droits réservés."
+  }
+}

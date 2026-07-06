@@ -124,21 +124,22 @@
 /* Name headline */
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(46px, 5.5vw, 72px);
-  line-height: 1;
-  font-weight: 700;
-  margin: 0 0 8px;
+  font-size: clamp(52px, 4.5vw, 78px);
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0 0 12px;
   letter-spacing: -0.03em;
   color: transparent;
   background: linear-gradient(
     135deg,
     #ffffff 0%,
-    #d4e3ff 40%,
-    var(--accent) 70%,
-    var(--gold) 100%
+    #d4e3ff 30%,
+    var(--accent) 75%,
+    #a25aff 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
+  width: fit-content;
 }
 
 /* Role */
@@ -206,16 +207,15 @@
   color: var(--text-secondary);
   text-decoration: none;
   background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease,
-    transform 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .hero__social-link:hover {
   color: var(--accent);
-  border-color: rgba(76, 141, 255, 0.4);
-  background: var(--accent-soft);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(76, 141, 255, 0.2);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-15px) scale(1.15);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(76, 141, 255, 0.3);
 }
 
 /* CTA buttons */

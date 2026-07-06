@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import './Hero.css';
 
 export default function Hero() {
+  const { t } = useTranslation();
   const sceneRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const introRef = useRef<HTMLDivElement>(null);
@@ -104,15 +106,14 @@ export default function Hero() {
       {/* ── LEFT : intro ── */}
       <div className="hero__content" ref={introRef}>
         <h1 className="hero__name">
-          MOUHAMED<br />
-          MOURTADA<br />
-          DICKO
+          {t('hero.name1')}<br />
+          {t('hero.name2')} <br /> {t('hero.name3')}
         </h1>
 
-        <p className="hero__role">Développeur frontend</p>
+        <p className="hero__role">{t('hero.role')}</p>
 
         <p className="hero__manifesto">
-          Je transforme des idées en expériences digitales <span className="highlight">modernes</span> et <span className="highlight">performantes</span>.
+          {t('hero.manifesto_start')}<span className="highlight">{t('hero.manifesto_modern')}</span>{t('hero.manifesto_and')}<span className="highlight">{t('hero.manifesto_perf')}</span>{t('hero.manifesto_end')}
         </p>
 
         {/* Socials */}
@@ -154,13 +155,13 @@ export default function Hero() {
         {/* CTAs */}
         <div className="hero__ctas">
           <a href="/cv-mouhamed-dicko.pdf" className="hero__cv" download="CV_Mouhamed_Dicko.pdf">
-            Télécharger mon CV
+            {t('hero.download_cv')}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
               <path d="M12 3v13m0 0-4-4m4 4 4-4M4 21h16" />
             </svg>
           </a>
           <a href="#projects" className="hero__scroll">
-            Voir mes projets
+            {t('hero.view_projects')}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -195,9 +196,9 @@ export default function Hero() {
 
           {/* Card: Expérience */}
           <div className="hero__float-card hero__float-card--exp" ref={(el) => { cardRefs.current[1] = el; }}>
-            <span className="float-card__title">Expérience</span>
+            <span className="float-card__title">{t('hero.exp_title')}</span>
             <div className="float-card__value">3+</div>
-            <span className="float-card__sub">années</span>
+            <span className="float-card__sub">{t('hero.exp_sub')}</span>
             <div className="float-card__chart">
               <svg viewBox="0 0 50 20" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M0 15 Q 10 10 15 15 T 30 10 T 40 5 L 50 0" stroke="var(--accent)"/>
@@ -207,9 +208,9 @@ export default function Hero() {
 
           {/* Card: Projets */}
           <div className="hero__float-card hero__float-card--proj" ref={(el) => { cardRefs.current[2] = el; }}>
-            <span className="float-card__title">Projets</span>
+            <span className="float-card__title">{t('hero.proj_title')}</span>
             <div className="float-card__value">10+</div>
-            <span className="float-card__sub">réalisés</span>
+            <span className="float-card__sub">{t('hero.proj_sub')}</span>
             <div className="float-card__icon">
                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5">
                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -219,7 +220,7 @@ export default function Hero() {
 
           {/* Card: Focus */}
           <div className="hero__float-card hero__float-card--focus" ref={(el) => { cardRefs.current[3] = el; }}>
-            <span className="float-card__title">Focus</span>
+            <span className="float-card__title">{t('hero.focus_title')}</span>
             <ul className="float-card__list">
               <li>UI / UX</li>
               <li>Performance</li>
@@ -234,7 +235,7 @@ export default function Hero() {
 
       {/* Scroll Indicator */}
       <a href="#experience" className="hero__scroll-indicator" aria-label="Scroll down">
-        <span>Scroll</span>
+        <span>{t('hero.scroll')}</span>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />
         </svg>
