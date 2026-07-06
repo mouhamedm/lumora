@@ -1,4 +1,3 @@
-/* ─── ABOUT SECTION ────────────────────────────────────────────────────────── */
 .about {
   position: relative;
   padding: 120px 48px;
@@ -21,7 +20,6 @@
   align-items: center;
 }
 
-/* --- LEFT COLUMN: IMAGE & 3D EFFECTS --- */
 .about__visuals {
   position: relative;
   perspective: 1500px;
@@ -179,11 +177,9 @@
 }
 
 .about__description-line {
-  /* Used for GSAP split text animation */
   display: block;
 }
 
-/* Magnetic Button */
 .about__actions {
   margin-top: 40px;
   perspective: 500px;

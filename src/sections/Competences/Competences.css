@@ -1,4 +1,3 @@
-/* ─── COMPETENCES SECTION ─────────────────────────────────────────────────── */
 .competences {
   position: relative;
   padding: 120px 48px;
@@ -65,7 +64,6 @@
   margin: 0 auto;
 }
 
-/* Grid */
 .competences__grid {
   display: flex;
   flex-wrap: wrap;
@@ -75,7 +73,6 @@
   perspective: 1200px;
 }
 
-/* Tech Cards */
 .tech-card {
   position: relative;
   background: rgba(23, 23, 26, 0.6);
@@ -149,7 +146,6 @@
   color: var(--tech-color);
 }
 
-/* Sizes */
 .tech-card--large {
   width: 260px;
   height: 140px;

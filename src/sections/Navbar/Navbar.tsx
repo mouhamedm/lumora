@@ -54,20 +54,17 @@ export default function Navbar() {
         
         const tl = gsap.timeline();
         
-        // Reveal overlay with clipPath
         tl.fromTo(menuRef.current,
           { clipPath: 'circle(0% at 90% 10%)', backgroundColor: 'rgba(11, 11, 12, 0)' },
           { clipPath: 'circle(150% at 90% 10%)', backgroundColor: 'rgba(11, 11, 12, 0.96)', duration: 0.8, ease: 'power4.inOut' }
         );
         
-        // Stagger links
         tl.fromTo('.mobile-nav__link',
           { y: 60, opacity: 0, rotationZ: 5 },
           { y: 0, opacity: 1, rotationZ: 0, duration: 0.7, stagger: 0.1, ease: 'back.out(1.5)' },
           '-=0.4'
         );
 
-        // CTA pop
         tl.fromTo('.mobile-nav__cta',
           { scale: 0.8, opacity: 0, y: 20 },
           { scale: 1, opacity: 1, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' },

@@ -18,7 +18,6 @@ export default function Hero() {
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    // Entrée : les cartes arrivent en fondu avec un léger décalage.
     gsap.fromTo(
       cards,
       { opacity: 0, y: 60, rotateX: -10 },
@@ -43,7 +42,6 @@ export default function Hero() {
 
     if (prefersReducedMotion) return;
 
-    // Flottement idle : chaque carte monte/descend à une vitesse différente.
     const floaters = cards.map((card, i) =>
       gsap.to(card, {
         y: '+=14',
@@ -54,7 +52,6 @@ export default function Hero() {
       })
     );
 
-    // Parallax souris : gsap.quickTo évite les re-render, très performant.
     const setters = cards.map((_, i) => ({
       x: gsap.quickTo(cards[i], 'x', { duration: 0.6, ease: 'power3.out' }),
       rotY: gsap.quickTo(cards[i], 'rotateY', {

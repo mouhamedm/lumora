@@ -72,11 +72,9 @@ export default function About() {
 
       const handleMouseMove = (e: MouseEvent) => {
         const rect = imageWrapper.getBoundingClientRect();
-        // Calculate relative position (-1 to 1)
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         
-        // Apply tilt (max 15 degrees)
         xTo(x * 30);
         yTo(-y * 30);
       };
@@ -115,7 +113,6 @@ export default function About() {
     }
   }, []);
 
-  // Magnetic Button Logic
   useEffect(() => {
     const btn = btnRef.current;
     if (!btn) return;
@@ -128,7 +125,6 @@ export default function About() {
       const relX = e.clientX - rect.left - rect.width / 2;
       const relY = e.clientY - rect.top - rect.height / 2;
       
-      // Move button towards cursor (max 15px)
       xTo(relX * 0.3);
       yTo(relY * 0.3);
     };

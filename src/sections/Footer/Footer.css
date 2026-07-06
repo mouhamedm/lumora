@@ -1,4 +1,3 @@
-/* ─── FOOTER SECTION ───────────────────────────────────────────────────────── */
 .footer {
   position: relative;
   background: var(--bg-base);
@@ -10,7 +9,6 @@
   padding-top: 80px;
 }
 
-/* Social Dock */
 .footer__dock-container {
   position: absolute;
   top: 25%;
@@ -64,7 +62,6 @@
   filter: brightness(1);
 }
 
-/* Scrub Text */
 .footer__text-wrapper {
   width: 100%;
   text-align: center;
@@ -98,11 +95,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-stroke: 0;
-  /* GSAP will animate clip-path */
   clip-path: inset(100% 0 0 0);
 }
 
-/* Bottom Bar */
 .footer__bottom {
   display: flex;
   justify-content: space-between;
@@ -132,7 +127,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #10B981; /* Green */
+  background: #10B981;
   box-shadow: 0 0 10px #10B981;
   animation: pulseGreen 2s infinite;
 }

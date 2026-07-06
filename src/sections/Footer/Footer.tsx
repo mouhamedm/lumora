@@ -23,19 +23,17 @@ export default function Footer() {
     if (!footer || !textFill || !dock) return;
 
     let ctx = gsap.context(() => {
-      // Scrub animation for the massive text
       gsap.to(textFill, {
         clipPath: 'inset(0% 0% 0% 0%)',
         ease: 'none',
         scrollTrigger: {
           trigger: footer,
-          start: 'top bottom', // Start when the top of footer hits bottom of viewport
-          end: 'bottom bottom', // End when bottom of footer hits bottom of viewport
-          scrub: 1, // Smooth scrubbing
+          start: 'top bottom', 
+          end: 'bottom bottom', 
+          scrub: 1, 
         }
       });
 
-      // Entrance animation for dock
       gsap.fromTo(dock,
         { opacity: 0, y: 50, scale: 0.9 },
         {

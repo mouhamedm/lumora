@@ -44,7 +44,6 @@ export default function Testimonials() {
     if (!section || !title || cards.length === 0) return;
 
     let ctx = gsap.context(() => {
-      // Header animation
       gsap.fromTo(
         title.children,
         { opacity: 0, y: 30 },
@@ -61,7 +60,6 @@ export default function Testimonials() {
         }
       );
 
-      // Cards 3D reveal animation
       cards.forEach((card, i) => {
         gsap.fromTo(
           card,

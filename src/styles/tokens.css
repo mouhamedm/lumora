@@ -13,12 +13,12 @@
   --text-secondary: #9C9B96;
   --text-muted: #6B6A66;
 
-  /* Accent principal (bleu électrique) */
+  /* Accent principal */
   --accent: #4C8DFF;
   --accent-hover: #6EA1FF;
   --accent-soft: rgba(76, 141, 255, 0.12);
 
-  /* Accent secondaire (clin d'oeil au logo) */
+  /* Accent secondaire */
   --gold: #C9A227;
 
   /* Typographie */

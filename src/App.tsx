@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from './sections/Navbar/Navbar';
 import Hero from './sections/Hero/Hero';
 import Competences from './sections/Competences/Competences';
@@ -15,9 +15,6 @@ function App() {
   return (
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      
-      {/* The rest of the site is always rendered so that images load in the background, 
-          but GSAP inside Preloader blocks scrolling initially */}
       <Navbar />
       <Hero />
       <Competences />

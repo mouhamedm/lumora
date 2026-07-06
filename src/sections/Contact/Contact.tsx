@@ -44,7 +44,7 @@ export default function Contact() {
     if (!section) return;
 
     let ctx = gsap.context(() => {
-      // Title words reveal
+      // Title
       const title = titleRef.current;
       if (title) {
         const inners = title.querySelectorAll('.word-inner');
@@ -81,7 +81,6 @@ export default function Contact() {
           }
         );
 
-        // Mouse tracking for cards border glow
         const handleMouseMove = (e: MouseEvent, card: HTMLElement) => {
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left;

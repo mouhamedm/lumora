@@ -42,7 +42,7 @@ export default function Competences() {
     if (!section || !title || cards.length === 0) return;
 
     let ctx = gsap.context(() => {
-      // Title animation
+      // Animation
       gsap.fromTo(
         title,
         { opacity: 0, y: 50 },
@@ -58,7 +58,6 @@ export default function Competences() {
         }
       );
 
-      // Cards entrance animation
       gsap.fromTo(
         cards,
         { opacity: 0, scale: 0.8, y: 100, rotationX: 45 },
@@ -75,7 +74,6 @@ export default function Competences() {
             start: 'top 75%',
           },
           onComplete: () => {
-            // Floating idle animation after entrance
             cards.forEach((card, i) => {
               gsap.to(card, {
                 y: '+=15',

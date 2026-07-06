@@ -1,12 +1,10 @@
-/* ─── PROJECTS SECTION (GSAP HORIZONTAL SCROLL) ─── */
 .projects {
   position: relative;
   background: var(--bg-base);
-  overflow: hidden; /* Prevent horizontal scrollbar on body */
+  overflow: hidden; 
   z-index: 10;
 }
 
-/* We pin this wrapper */
 .projects__pin-wrapper {
   height: 100vh;
   display: flex;
@@ -47,7 +45,6 @@
   margin: 0;
 }
 
-/* The track that moves horizontally */
 .projects__track {
   display: flex;
   gap: 80px;
@@ -56,7 +53,6 @@
   will-change: transform;
 }
 
-/* Each Project Card */
 .project-card {
   position: relative;
   width: 60vw; 
@@ -87,7 +83,6 @@
   overflow: hidden;
 }
 
-/* The image is wider to allow parallax movement */
 .project-card__image {
   position: absolute;
   top: 0;
@@ -123,7 +118,6 @@
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* On hover OR when active (centered via JS later if needed), reveal text */
 .project-card:hover .project-card__content {
   transform: translateY(0);
   opacity: 1;
@@ -217,7 +211,7 @@
   .project-card__overlay {
     position: relative;
     padding: 24px 20px;
-    background: #0d0d0e; /* solid dark background */
+    background: #0d0d0e; 
     flex-grow: 1;
     justify-content: flex-start;
   }
@@ -251,6 +245,6 @@
 
 @media (min-width: 769px) and (max-width: 900px) {
   .project-card {
-    width: 50vw; /* Rend la carte moins "tirée" (moins large) sur tablette */
+    width: 50vw; 
   }
 }

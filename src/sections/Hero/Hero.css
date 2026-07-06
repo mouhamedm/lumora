@@ -1,4 +1,4 @@
-/* ─── HERO SECTION ─────────────────────────────────────────────────────────── */
+/* HERO SECTION */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-/* ─── AURORA BACKGROUND ────────────────────────────────────────────────────── */
+/* AURORA BACKGROUND */
 .hero__aurora {
   position: fixed;
   inset: 0;
@@ -67,7 +67,7 @@
   66%       { transform: translate(-20px, 30px) scale(0.95); }
 }
 
-/* ─── GRID OVERLAY ─────────────────────────────────────────────────────────── */
+/* GRID OVERLAY */
 .hero__grid {
   position: fixed;
   inset: 0;
@@ -80,13 +80,11 @@
   pointer-events: none;
 }
 
-/* ─── CONTENT ──────────────────────────────────────────────────────────────── */
 .hero__content {
   position: relative;
   z-index: 2;
 }
 
-/* Eyebrow */
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
@@ -121,7 +119,6 @@
   50%       { opacity: 0.5; transform: scale(0.75); }
 }
 
-/* Name headline */
 .hero__name {
   font-family: var(--font-display);
   font-size: clamp(52px, 4.5vw, 78px);
@@ -142,7 +139,6 @@
   width: fit-content;
 }
 
-/* Role */
 .hero__role {
   font-size: clamp(16px, 2vw, 20px);
   color: var(--text-secondary);
@@ -163,7 +159,6 @@
   flex-shrink: 0;
 }
 
-/* Tech stack tags */
 .hero__tags {
   display: flex;
   flex-wrap: wrap;
@@ -189,7 +184,6 @@
   background: var(--accent-soft);
 }
 
-/* Social links */
 .hero__socials {
   display: flex;
   gap: 10px;
@@ -218,7 +212,6 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(76, 141, 255, 0.3);
 }
 
-/* CTA buttons */
 .hero__ctas {
   display: flex;
   gap: 14px;
@@ -270,7 +263,6 @@
   transform: translateY(-2px);
 }
 
-/* ─── SCENE (code cards) ───────────────────────────────────────────────────── */
 .hero__right {
   transform: translateY(-40px);
 }
@@ -282,7 +274,6 @@
   z-index: 1;
 }
 
-/* Glow halo behind cards */
 .hero__scene::before {
   content: '';
   position: absolute;
@@ -298,7 +289,6 @@
   animation: float-orb 8s ease-in-out infinite;
 }
 
-/* ─── CODE CARDS ───────────────────────────────────────────────────────────── */
 .code-card {
   position: absolute;
   width: 320px;
@@ -443,7 +433,6 @@
   font-weight: 500;
 }
 
-/* Card header bar */
 .code-card__bar {
   display: flex;
   align-items: center;
@@ -472,7 +461,6 @@
   letter-spacing: 0.02em;
 }
 
-/* Card body */
 .code-card__body {
   margin: 0;
   padding: 18px 20px;
@@ -483,7 +471,6 @@
   white-space: pre-wrap;
 }
 
-/* Syntax tokens */
 .tok-keyword { color: #c792ea; }
 .tok-fn      { color: var(--accent); font-weight: 600; }
 .tok-string  { color: #c3e88d; }
@@ -491,7 +478,7 @@
 .tok-comment { color: var(--text-muted); }
 .tok-success { color: #57ab5a; }
 
-/* ─── SCROLL INDICATOR ─────────────────────────────────────────────────────── */
+/* SCROLL INDICATOR */
 .hero__scroll-indicator {
   position: absolute;
   bottom: 32px;
@@ -531,7 +518,7 @@
   }
 }
 
-/* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
+/* RESPONSIVE */
 @media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr 1fr;

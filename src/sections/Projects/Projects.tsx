@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
-
-// Images imports
 import idconsultImg from '../../assets/images/idconsult.png';
 import immoAppartImg from '../../assets/images/immo-appart.png';
 import prestigeDiningImg from '../../assets/images/prestige-dining.png';
@@ -68,34 +66,29 @@ export default function Projects() {
 
     if (!section || !track) return;
 
-    // Proper GSAP cleanup for React 18 Strict Mode
     let ctx = gsap.context(() => {
-      // Calculer la distance de scroll horizontale nécessaire
       const getScrollAmount = () => {
         const trackWidth = track.scrollWidth;
-        // On décale la piste vers la gauche d'une valeur égale à la largeur débordante de la fenêtre
         return -(trackWidth - window.innerWidth + 96); 
       };
 
-      // 1. Animation principale : Pin & glissement horizontal
       gsap.to(track, {
         x: getScrollAmount,
         ease: "none",
         scrollTrigger: {
           trigger: section,
-          start: "top top", // Dès que le haut de la section touche le haut de l'écran
-          end: () => `+=${track.scrollWidth}`, // La durée du scroll = la largeur de tous les projets
-          pin: true, // Bloque la section à l'écran
-          scrub: 1, // Mouvement lié au scroll de la souris (fluidifié avec 1s)
-          invalidateOnRefresh: true, // Recalcule en cas de redimensionnement de l'écran
+          start: "top top",
+          end: () => `+=${track.scrollWidth}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
         }
       });
 
-      // 2. Parallaxe sur les images à l'intérieur des cartes
       const images = imageRefs.current.filter(Boolean);
       images.forEach((img) => {
         gsap.to(img, {
-          x: '5%', // Correspond à la largeur supplémentaire de 10% (left: -5%, width: 110%)
+          x: '5%', 
           ease: "none",
           scrollTrigger: {
             trigger: section,
