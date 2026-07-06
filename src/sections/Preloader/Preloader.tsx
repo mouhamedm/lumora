@@ -72,15 +72,23 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
       });
 
       // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // Utilisation de yPercent: -120 pour garantir qu'il sort entièrement de l'écran 
-      // même sur Safari iOS avec la barre d'adresse dynamique.
+      // FIX IPHONE BUG: 
+      // 1. yPercent: -200 l'envoie DEUX FOIS plus haut que l'écran (impossible de voir le bout).
+      // 2. L'ease 'power3.in' fait accélérer l'écran vers le haut. Avant, le 'inOut' le faisait ralentir
+      // à la fin, ce qui laissait l'écran traîner pendant presqu'une seconde.
       tl.to(containerRef.current, {
-        yPercent: -120,
-        duration: 1.2,
-        ease: 'power4.inOut',
+        yPercent: -200,
+        duration: 1.0, // Un peu plus rapide
+        ease: 'power3.in', 
         borderBottomRightRadius: '50% 10%', 
         borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
+
+      // 7. Sécurité absolue pour Safari : on force l'opacité à 0 juste avant que le composant se démonte
+      tl.to(containerRef.current, {
+        opacity: 0,
+        duration: 0.2
+      }, '-=0.2');
 
     }, containerRef);
 
