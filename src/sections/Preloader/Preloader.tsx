@@ -72,10 +72,12 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       });
 
       // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // FIX IPHONE BUG: On force un déplacement en vh strict (120vh pour couvrir la courbure) 
-      // L'ease power3 évite de ralentir trop à la fin, ce qui causait l'impression que "le bas" restait collé.
+      // FIX IPHONE BUG: Safari sur iOS bug complètement quand on anime un transform Y avec un border-radius sur un élément fixed.
+      // La solution absolue est d'animer la `height` de 100% à 0. L'écran va se réduire vers le haut, en gardant la courbure, sans bugger !
       tl.to(containerRef.current, {
-        y: '-120vh',
+        height: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
         duration: 1.2,
         ease: 'power3.inOut',
         borderBottomRightRadius: '50% 10%', 
