@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './Preloader.css';
 
@@ -6,7 +6,7 @@ interface PreloaderProps {
   onComplete: () => void;
 }
 
-const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
+const Preloader = ({ onComplete }: PreloaderProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
@@ -64,28 +64,20 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       tl.to({}, { duration: 0.4 });
 
       // 5. Faire monter le contenu textuel vers le haut avec un fondu
-      // ET on fait disparaître la barre de progression (le trait) pour ne pas qu'il remonte avec l'écran
       tl.to('.preloader__content', {
         y: -100,
         opacity: 0,
         duration: 0.8,
         ease: 'power4.in'
       });
-      
-      tl.to('.preloader__bar-container', {
-        opacity: 0,
-        duration: 0.4
-      }, '<');
 
       // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // L'ease 'power3.in' garantit que l'écran accélère vers le haut et ne ralentit pas à la fin,
-      // ce qui évite l'effet "le trait reste coincé 2 secondes en haut".
+      // Utilisation de yPercent: -120 pour garantir qu'il sort entièrement de l'écran 
+      // même sur Safari iOS avec la barre d'adresse dynamique.
       tl.to(containerRef.current, {
-        height: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        duration: 1.0, // Un peu plus rapide pour plus de dynamisme
-        ease: 'power3.in', 
+        yPercent: -120,
+        duration: 1.2,
+        ease: 'power4.inOut',
         borderBottomRightRadius: '50% 10%', 
         borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
