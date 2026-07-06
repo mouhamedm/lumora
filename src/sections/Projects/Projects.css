@@ -43,7 +43,7 @@
   font-size: clamp(32px, 5vw, 64px);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--text-h);
+  color: #ffffff;
   margin: 0;
 }
 
