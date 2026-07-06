@@ -13,30 +13,24 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Bloquer le scroll du body
     document.body.style.overflow = 'hidden';
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          // Débloquer le scroll
           document.body.style.overflow = '';
-          // Informer le parent que l'animation est finie
           onComplete();
         }
       });
 
-      // Objet temporaire pour animer de 0 à 100
       const counterObj = { value: 0 };
 
-      // 1. Faire apparaître le compteur
       tl.to('.preloader__counter-wrapper', { 
         opacity: 1, 
         duration: 0.5, 
         ease: 'power2.out' 
       });
 
-      // 2. Animer le compteur et la barre de progression en même temps
       tl.to(counterObj, {
         value: 100,
         duration: 2.2,
@@ -52,7 +46,6 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         ease: 'power3.inOut'
       }, '<');
 
-      // 3. Révéler le logo "MMD.DEV" un peu avant la fin du compteur (vers 70%)
       tl.to('.preloader__logo', {
         opacity: 1,
         y: 0,
@@ -60,10 +53,8 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         ease: 'power4.out',
       }, '-=0.8');
 
-      // 4. Petite pause pour admirer le 100% et le logo
       tl.to({}, { duration: 0.4 });
 
-      // 5. Faire monter le contenu textuel vers le haut avec un fondu
       tl.to('.preloader__content', {
         y: -100,
         opacity: 0,
@@ -71,23 +62,10 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         ease: 'power4.in'
       });
       
-      // On fait disparaître le "trait" (la barre bleue de progression) 
-      // juste avant que le rideau noir ne se lève pour qu'elle ne reste pas coincée en haut.
-      tl.to('.preloader__bar-container', {
-        opacity: 0,
-        duration: 0.4
-      }, '<');
-
-      // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // SOLUTION FINALE : On anime la "height" (hauteur) jusqu'à 0 !
-      // Ça oblige physiquement l'écran noir à se rapetisser vers le haut, 
-      // contournant totalement les bugs d'affichage de Safari avec les "transform" Y.
       tl.to(containerRef.current, {
-        height: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        duration: 1.0, 
-        ease: 'power3.in', 
+        y: -(window.innerHeight * 1.5),
+        duration: 1.2, 
+        ease: 'power4.inOut', 
         borderBottomRightRadius: '50% 10%', 
         borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
