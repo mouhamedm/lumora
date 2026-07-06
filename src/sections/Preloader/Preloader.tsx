@@ -72,13 +72,12 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       });
 
       // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // FIX IPHONE BUG: On met yPercent à -150 au lieu de -100 pour être absolument sûr
-      // qu'aucune partie courbée ne reste visible à cause de la barre d'adresse iOS.
+      // FIX IPHONE BUG: On force un déplacement en vh strict (120vh pour couvrir la courbure) 
+      // L'ease power3 évite de ralentir trop à la fin, ce qui causait l'impression que "le bas" restait collé.
       tl.to(containerRef.current, {
-        yPercent: -150,
-        opacity: 0, // Ajout d'une opacité 0 à la fin pour garantir l'invisibilité
+        y: '-120vh',
         duration: 1.2,
-        ease: 'power4.inOut',
+        ease: 'power3.inOut',
         borderBottomRightRadius: '50% 10%', 
         borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
