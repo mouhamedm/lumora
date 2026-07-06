@@ -64,22 +64,28 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       tl.to({}, { duration: 0.4 });
 
       // 5. Faire monter le contenu textuel vers le haut avec un fondu
+      // ET on fait disparaître la barre de progression (le trait) pour ne pas qu'il remonte avec l'écran
       tl.to('.preloader__content', {
         y: -100,
         opacity: 0,
         duration: 0.8,
         ease: 'power4.in'
       });
+      
+      tl.to('.preloader__bar-container', {
+        opacity: 0,
+        duration: 0.4
+      }, '<');
 
       // 6. La transition épique : on "lève le rideau" avec un effet élastique courbé
-      // FIX IPHONE BUG: Safari sur iOS bug complètement quand on anime un transform Y avec un border-radius sur un élément fixed.
-      // La solution absolue est d'animer la `height` de 100% à 0. L'écran va se réduire vers le haut, en gardant la courbure, sans bugger !
+      // L'ease 'power3.in' garantit que l'écran accélère vers le haut et ne ralentit pas à la fin,
+      // ce qui évite l'effet "le trait reste coincé 2 secondes en haut".
       tl.to(containerRef.current, {
         height: 0,
         paddingTop: 0,
         paddingBottom: 0,
-        duration: 1.2,
-        ease: 'power3.inOut',
+        duration: 1.0, // Un peu plus rapide pour plus de dynamisme
+        ease: 'power3.in', 
         borderBottomRightRadius: '50% 10%', 
         borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
