@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
-import idconsultImg from '../../assets/images/idconsult.png';
-import immoAppartImg from '../../assets/images/immo-appart.png';
-import prestigeDiningImg from '../../assets/images/prestige-dining.png';
-import mokaNoirImg from '../../assets/images/moka-noir.png';
-import empiregymImg from '../../assets/images/empiregym.png';
+import idconsultImg from '../../assets/images/idconsult.webp';
+import immoAppartImg from '../../assets/images/immo-appart.webp';
+import prestigeDiningImg from '../../assets/images/prestige-dining.webp';
+import mokaNoirImg from '../../assets/images/moka-noir.webp';
+import empiregymImg from '../../assets/images/empiregym.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

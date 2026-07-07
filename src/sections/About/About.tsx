@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import aproposImg from '../../assets/images/apropos-img.jpg';
+import aproposImg from '../../assets/images/apropos-img.webp';
 import './About.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +21,8 @@ export default function About() {
     const section = sectionRef.current;
     if (!section) return;
 
+    const isMobile = window.innerWidth < 768;
+
     // 1. Text Animations (Reveal)
     const title = titleRef.current;
     const lines = linesRef.current.filter(Boolean);
@@ -28,11 +30,11 @@ export default function About() {
     if (title) {
       gsap.fromTo(
         title,
-        { opacity: 0, y: 40, filter: 'blur(10px)' },
+        { opacity: 0, y: 40, filter: isMobile ? 'none' : 'blur(10px)' },
         {
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
+          filter: isMobile ? 'none' : 'blur(0px)',
           duration: 1.2,
           ease: 'power3.out',
           scrollTrigger: {
@@ -46,11 +48,11 @@ export default function About() {
     if (lines.length > 0) {
       gsap.fromTo(
         lines,
-        { opacity: 0, y: 20, filter: 'blur(5px)' },
+        { opacity: 0, y: 20, filter: isMobile ? 'none' : 'blur(5px)' },
         {
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
+          filter: isMobile ? 'none' : 'blur(0px)',
           duration: 1,
           ease: 'power3.out',
           stagger: 0.2,
