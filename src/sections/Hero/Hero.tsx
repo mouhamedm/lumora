@@ -33,7 +33,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
     const ctx = gsap.context(() => {
       gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
-      gsap.set('.hero__name', isMobile ? { opacity: 0, y: 30 } : { clipPath: 'inset(0 105% 0 0)' });
+      gsap.set('.hero__name', { clipPath: 'inset(0 105% 0 0)' });
       gsap.set('.hero__role', { x: -60, opacity: 0, filter: isMobile ? 'none' : 'blur(8px)' });
       gsap.set('.word', { opacity: 0, y: 40, rotateZ: 6 });
       gsap.set('.hero__social-link', { opacity: 0, x: -20, scale: 0.7 });
@@ -46,12 +46,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
       tl.to('.hero__aurora, .hero__grid', { opacity: 1, duration: 1.5 }, 0);
 
-      tl.to('.hero__name', isMobile ? {
-        opacity: 1,
-        y: 0,
-        duration: 1.1,
-        ease: 'power3.out',
-      } : {
+      tl.to('.hero__name', {
         clipPath: 'inset(0 0% 0 0)',
         duration: 1.1,
         ease: 'power3.inOut',
