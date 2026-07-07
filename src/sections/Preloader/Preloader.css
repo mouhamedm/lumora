@@ -2,90 +2,118 @@
   position: fixed;
   inset: 0;
   width: 100%;
-  height: 100vh; 
-  height: 100svh; 
-  background: var(--bg-base);
-  z-index: 99999; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
+  height: 100svh;
+  z-index: 99999;
   overflow: hidden;
-  color: var(--text-primary);
-  will-change: transform, border-radius;
+  background: transparent;
+}
+
+/* ── Rideau (2 panneaux) ── */
+.preloader__panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--bg-base);
+  will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
 }
 
+.preloader__panel--left {
+  left: 0;
+  border-right: 1px solid rgba(76, 141, 255, 0.06);
+}
+
+.preloader__panel--right {
+  right: 0;
+  border-left: 1px solid rgba(76, 141, 255, 0.06);
+}
+
+/* ── Contenu centré ── */
 .preloader__content {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  will-change: transform, opacity;
+  gap: 22px;
 }
 
+/* 
+  IMPORTANT : ce wrapper ne reçoit QUE des animations d'opacity,
+  jamais de transform en même temps que l'élément en dégradé
+  à l'intérieur -> ça évite le bug Safari qui "coupe" le texte
+  quand un parent-transform + un enfant-background-clip:text
+  sont recomposés ensemble.
+*/
 .preloader__logo {
+  opacity: 0;
   font-family: var(--font-display, system-ui, sans-serif);
-  font-size: clamp(32px, 6vw, 60px);
+  font-size: clamp(36px, 6vw, 58px);
   font-weight: 800;
-  letter-spacing: 0.1em;
-  opacity: 0; 
-  transform: translateY(20px);
-  margin-bottom: 30px;
-  position: relative;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1.15;
+  padding: 4px 0;
+}
+
+.preloader__logo-text {
+  color: var(--text-primary);
 }
 
 .preloader__logo-dot {
   color: var(--accent);
 }
 
+/* 
+  Isolation propre du texte en dégradé sur sa propre couche GPU :
+  ça empêche Safari de re-découper le gradient pendant les repaints
+  provoqués par les animations voisines (rideau, opacity, etc).
+*/
 .preloader__logo-dev {
+  display: inline-block;
   color: transparent;
   background: linear-gradient(135deg, #fff 0%, #CBD5E1 100%);
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  isolation: isolate;
 }
 
-.preloader__counter-wrapper {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
+.preloader__bar-wrapper {
   opacity: 0;
+  width: 160px;
 }
 
-.preloader__counter {
-  font-family: var(--font-mono, monospace);
-  font-size: clamp(60px, 15vw, 120px);
-  font-weight: 300;
-  line-height: 0.8;
-  color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
-}
-
-.preloader__percent {
-  font-family: var(--font-mono, monospace);
-  font-size: clamp(16px, 3vw, 24px);
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: var(--accent);
-}
-
-.preloader__bar-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.preloader__bar-track {
+  position: relative;
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
+  height: 2px;
+  background: var(--border-subtle);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .preloader__bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--accent), #CBD5E1);
-  will-change: width;
+  background: linear-gradient(90deg, var(--accent), #7B61FF);
+  border-radius: 2px;
+}
+
+@media (max-width: 480px) {
+  .preloader__bar-wrapper {
+    width: 130px;
+  }
 }
