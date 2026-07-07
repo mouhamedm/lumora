@@ -126,7 +126,6 @@
 .badge-2 { bottom: 20%; left: -10%; }
 
 
-/* --- RIGHT COLUMN: TEXT CONTENT --- */
 .about__content {
   display: flex;
   flex-direction: column;
