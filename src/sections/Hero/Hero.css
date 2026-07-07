@@ -290,9 +290,7 @@
   position: absolute;
   width: 320px;
   border-radius: 14px;
-  background: rgba(23, 23, 26, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(23, 23, 26, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     0 30px 60px -20px rgba(0, 0, 0, 0.7),
@@ -300,7 +298,13 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transform-style: preserve-3d;
   will-change: transform;
-  transition: box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease, backdrop-filter 0.5s ease, background 0.5s ease;
+}
+
+.code-card.card-ready {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(23, 23, 26, 0.85);
 }
 
 .code-card:hover {
@@ -321,9 +325,7 @@
 
 .hero__float-card {
   position: absolute;
-  background: rgba(23, 23, 26, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(23, 23, 26, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 14px;
   padding: 16px 20px;
@@ -332,6 +334,13 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transform-style: preserve-3d;
   will-change: transform;
+  transition: backdrop-filter 0.5s ease, background 0.5s ease;
+}
+
+.hero__float-card.card-ready {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(23, 23, 26, 0.75);
 }
 
 .hero__float-card--exp {
