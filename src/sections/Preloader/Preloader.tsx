@@ -61,13 +61,24 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         duration: 0.8,
         ease: 'power4.in'
       });
-      
+
+      // On applique le border-radius INSTANTANÉMENT (set, pas to)
+      // juste avant le grand déplacement, au lieu de l'animer en
+      // parallèle. C'est ça qui faisait ramer/freezer Safari iOS :
+      // animer border-radius + transform en même temps sur un
+      // élément plein écran force un repaint coûteux à chaque frame.
+      tl.set(containerRef.current, {
+        borderBottomRightRadius: '50% 10%',
+        borderBottomLeftRadius: '50% 10%',
+      }, '-=0.4');
+
+      // yPercent au lieu de y calculé avec window.innerHeight :
+      // évite les soucis liés à la barre d'adresse Safari iOS qui
+      // fait varier innerHeight pendant l'animation.
       tl.to(containerRef.current, {
-        y: -(window.innerHeight * 1.5),
+        yPercent: -250,
         duration: 1.2, 
         ease: 'power4.inOut', 
-        borderBottomRightRadius: '50% 10%', 
-        borderBottomLeftRadius: '50% 10%',
       }, '-=0.4');
 
     }, containerRef);
