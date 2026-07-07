@@ -31,8 +31,8 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
     const ctx = gsap.context(() => {
       gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
-      gsap.set('.hero__name', { opacity: 0, y: 25 });
-      gsap.set('.hero__role', { x: -60, opacity: 0 });
+      gsap.set('.hero__name', { clipPath: 'inset(0 105% 0 0)' });
+      gsap.set('.hero__role', { x: -60, opacity: 0, filter: 'blur(8px)' });
       gsap.set('.word', { opacity: 0, y: 40, rotateZ: 6 });
       gsap.set('.hero__social-link', { opacity: 0, x: -20, scale: 0.7 });
       gsap.set('.hero__ctas > *', { opacity: 0, y: 30, scale: 0.95 });
@@ -45,10 +45,9 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       tl.to('.hero__aurora, .hero__grid', { opacity: 1, duration: 1.5 }, 0);
 
       tl.to('.hero__name', {
-        opacity: 1,
-        y: 0,
-        duration: 1.0,
-        ease: 'power3.out',
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 1.1,
+        ease: 'power3.inOut',
       }, 0.1);
 
       tl.to(cards, {
@@ -57,14 +56,12 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         duration: 1.3,
         ease: 'power4.out',
         stagger: 0.12,
-        onComplete: () => {
-          cards.forEach(card => card?.classList.add('card-ready'));
-        }
       }, 0.15);
 
       tl.to('.hero__role', {
         x: 0,
         opacity: 1,
+        filter: 'blur(0px)',
         duration: 0.9,
       }, 0.5);
 
