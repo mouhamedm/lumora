@@ -20,8 +20,6 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          // Delay React unmount slightly so the compositor has time to settle
-          // before removing the Preloader's GPU layers (fixes iOS ProMotion pause)
           gsap.delayedCall(0.3, onComplete);
         }
       });
@@ -56,8 +54,6 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
         ease: 'power2.in',
       }, '<');
 
-      // Restore overflow BEFORE panels slide so iOS recalculates
-      // scroll layout before Hero/Nav animations begin
       tl.call(() => {
         document.body.style.overflow = '';
       }, [], '-=0.05');
