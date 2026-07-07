@@ -58,7 +58,7 @@ export default function Projects() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -85,19 +85,7 @@ export default function Projects() {
         }
       });
 
-      const images = imageRefs.current.filter(Boolean);
-      images.forEach((img) => {
-        gsap.to(img, {
-          x: '5%', 
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: () => `+=${track.scrollWidth}`,
-            scrub: 1,
-          }
-        });
-      });
+
     }, sectionRef);
 
     return () => {
@@ -115,7 +103,7 @@ export default function Projects() {
         </div>
 
         <div className="projects__track" ref={trackRef}>
-          {projectsData.map((project, index) => (
+          {projectsData.map((project) => (
             <div className="project-card" key={project.id}>
               
               <div className="project-card__image-container">
@@ -123,7 +111,6 @@ export default function Projects() {
                   src={project.image} 
                   alt={t(project.titleKey)} 
                   className="project-card__image" 
-                  ref={(el) => { imageRefs.current[index] = el; }}
                 />
                 
                 <div className="project-card__overlay">

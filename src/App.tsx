@@ -15,8 +15,8 @@ function App() {
   return (
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      <Navbar />
-      <Hero />
+      <Navbar isLoaded={!isLoading} />
+      <Hero isLoaded={!isLoading} />
       <Competences />
       <About />
       <Projects />

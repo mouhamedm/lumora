@@ -11,11 +11,16 @@ const NAV_LINKS = [
   { key: 'nav.contact', href: '#contact' },
 ];
 
-export default function Navbar() {
+export interface NavbarProps {
+  isLoaded?: boolean;
+}
+
+export default function Navbar({ isLoaded = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const navRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   
   const { t, i18n } = useTranslation();
@@ -43,6 +48,26 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Entrance Animation
+  useEffect(() => {
+    if (!navRef.current) return;
+    
+    const ctx = gsap.context(() => {
+      if (!isLoaded) {
+        gsap.set('.nav__logo', { x: -30, opacity: 0 });
+        gsap.set('.nav__link', { y: -20, opacity: 0 });
+        gsap.set('.nav__actions > *', { x: 30, opacity: 0 });
+      } else {
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+          .fromTo('.nav__logo', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, 0.2)
+          .fromTo('.nav__link', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }, 0.3)
+          .fromTo('.nav__actions > *', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, stagger: 0.1 }, 0.3);
+      }
+    }, navRef);
+
+    if (!isLoaded) return () => ctx.revert();
+  }, [isLoaded]);
 
   // Menu Animation
   useEffect(() => {
@@ -90,7 +115,7 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   return (
-    <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${hidden ? 'nav--hidden' : ''}`}>
+    <header ref={navRef} className={`nav ${scrolled ? 'nav--scrolled' : ''} ${hidden ? 'nav--hidden' : ''}`}>
       <div className="nav__inner">
         <a href="#top" className="nav__logo">
           MMD<span className="nav__logo-dot">.</span>DEV

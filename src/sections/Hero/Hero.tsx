@@ -3,7 +3,22 @@ import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import './Hero.css';
 
-export default function Hero() {
+export interface HeroProps {
+  isLoaded?: boolean;
+}
+
+const splitWords = (text: string) => {
+  return text.split(' ').map((word, index) => (
+    <span key={index} className="word-wrap" style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
+      <span className="word" style={{ display: 'inline-block', transformOrigin: 'left bottom' }}>
+        {word}
+      </span>
+      {'\u00A0'}
+    </span>
+  ));
+};
+
+export default function Hero({ isLoaded = false }: HeroProps) {
   const { t } = useTranslation();
   const sceneRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -14,33 +29,79 @@ export default function Hero() {
     const scene = sceneRef.current;
     if (!scene || cards.length === 0) return;
 
+    const ctx = gsap.context(() => {
+      gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
+      gsap.set('.hero__name', { clipPath: 'inset(0 105% 0 0)' });
+      gsap.set('.hero__role', { x: -60, opacity: 0, filter: 'blur(8px)' });
+      gsap.set('.word', { opacity: 0, y: 40, rotateZ: 6 });
+      gsap.set('.hero__social-link', { opacity: 0, x: -20, scale: 0.7 });
+      gsap.set('.hero__ctas > *', { opacity: 0, y: 30, scale: 0.95 });
+      gsap.set(cards, { opacity: 0, x: 150 });
+
+      if (!isLoaded) return;
+
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+      tl.to('.hero__aurora, .hero__grid', { opacity: 1, duration: 1.5 }, 0);
+
+      tl.to('.hero__name', {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 1.1,
+        ease: 'power3.inOut',
+      }, 0.1);
+
+      tl.to(cards, {
+        opacity: 1,
+        x: 0,
+        duration: 1.3,
+        ease: 'power4.out',
+        stagger: 0.12,
+      }, 0.15);
+
+      tl.to('.hero__role', {
+        x: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 0.9,
+      }, 0.5);
+
+      tl.to('.word', {
+        opacity: 1,
+        y: 0,
+        rotateZ: 0,
+        duration: 0.8,
+        stagger: 0.025,
+      }, 0.6);
+
+      tl.to('.hero__social-link', {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'back.out(2)',
+        clearProps: 'all',
+      }, 0.75);
+
+      tl.to('.hero__ctas > *', {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        clearProps: 'all',
+      }, 0.9);
+    }, introRef);
+
+    if (!isLoaded) return () => ctx.revert();
+
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 60, rotateX: -10 },
-      {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        duration: 1.1,
-        ease: 'power3.out',
-        stagger: 0.15,
-        delay: 0.3,
-      }
-    );
-
-    if (introRef.current) {
-      gsap.fromTo(
-        introRef.current.children,
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }
-      );
+    if (prefersReducedMotion) {
+      return () => ctx.revert();
     }
-
-    if (prefersReducedMotion) return;
 
     const floaters = cards.map((card, i) =>
       gsap.to(card, {
@@ -85,8 +146,9 @@ export default function Hero() {
       scene.removeEventListener('mousemove', handleMouseMove);
       scene.removeEventListener('mouseleave', handleMouseLeave);
       floaters.forEach((tween) => tween.kill());
+      ctx.revert();
     };
-  }, []);
+  }, [isLoaded]);
 
   return (
     <section className="hero" id="top">
@@ -100,17 +162,21 @@ export default function Hero() {
       {/* Grid overlay */}
       <div className="hero__grid" aria-hidden="true" />
 
-      {/* ── LEFT : intro ── */}
+      {/* LEFT */}
       <div className="hero__content" ref={introRef}>
         <h1 className="hero__name">
           {t('hero.name1')}<br />
           {t('hero.name2')} <br /> {t('hero.name3')}
         </h1>
 
-        <p className="hero__role">{t('hero.role')}</p>
+        <p className="hero__role">{splitWords(t('hero.role'))}</p>
 
         <p className="hero__manifesto">
-          {t('hero.manifesto_start')}<span className="highlight">{t('hero.manifesto_modern')}</span>{t('hero.manifesto_and')}<span className="highlight">{t('hero.manifesto_perf')}</span>{t('hero.manifesto_end')}
+          {splitWords(t('hero.manifesto_start'))}
+          <span className="highlight">{splitWords(t('hero.manifesto_modern'))}</span>
+          {splitWords(t('hero.manifesto_and'))}
+          <span className="highlight">{splitWords(t('hero.manifesto_perf'))}</span>
+          {splitWords(t('hero.manifesto_end'))}
         </p>
 
         {/* Socials */}
@@ -166,7 +232,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── RIGHT : Illustration & Manifesto ── */}
+      {/* RIGHT */}
       <div className="hero__right">
         <div className="hero__scene" ref={sceneRef}>
           {/* Main IDE */}
