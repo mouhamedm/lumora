@@ -9,7 +9,6 @@
   background: transparent;
 }
 
-/* ── Rideau (2 panneaux) ── */
 .preloader__panel {
   position: absolute;
   top: 0;
@@ -32,7 +31,6 @@
   border-left: 1px solid rgba(76, 141, 255, 0.06);
 }
 
-/* ── Contenu centré ── */
 .preloader__content {
   position: absolute;
   top: 50%;
@@ -45,13 +43,6 @@
   gap: 22px;
 }
 
-/* 
-  IMPORTANT : ce wrapper ne reçoit QUE des animations d'opacity,
-  jamais de transform en même temps que l'élément en dégradé
-  à l'intérieur -> ça évite le bug Safari qui "coupe" le texte
-  quand un parent-transform + un enfant-background-clip:text
-  sont recomposés ensemble.
-*/
 .preloader__logo {
   opacity: 0;
   font-family: var(--font-display, system-ui, sans-serif);
@@ -72,11 +63,6 @@
   color: var(--accent);
 }
 
-/* 
-  Isolation propre du texte en dégradé sur sa propre couche GPU :
-  ça empêche Safari de re-découper le gradient pendant les repaints
-  provoqués par les animations voisines (rideau, opacity, etc).
-*/
 .preloader__logo-dev {
   display: inline-block;
   color: transparent;

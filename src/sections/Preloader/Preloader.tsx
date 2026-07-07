@@ -43,7 +43,6 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         ease: 'power2.inOut',
       }, '-=0.1');
 
-      // ── Sortie quasi immédiate ──
       tl.to(logoWrapRef.current, {
         opacity: 0,
         duration: 0.25,
@@ -56,7 +55,6 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         ease: 'power2.in',
       }, '<');
 
-      // ── Rideau (translateX uniquement, léger pour le GPU) ──
       tl.to(panelLeftRef.current, {
         xPercent: -100,
         duration: 0.6,
