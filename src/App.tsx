@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Navbar from './sections/Navbar/Navbar';
 import Hero from './sections/Hero/Hero';
 import Competences from './sections/Competences/Competences';
@@ -11,12 +11,21 @@ import Preloader from './sections/Preloader/Preloader';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const handlePreloaderStart = useCallback(() => setIsLoaded(true), []);
+  const handlePreloaderComplete = useCallback(() => setIsLoading(false), []);
 
   return (
     <>
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      <Navbar isLoaded={!isLoading} />
-      <Hero isLoaded={!isLoading} />
+      {isLoading && (
+        <Preloader
+          onStart={handlePreloaderStart}
+          onComplete={handlePreloaderComplete}
+        />
+      )}
+      <Navbar isLoaded={isLoaded} />
+      <Hero isLoaded={isLoaded} />
       <Competences />
       <About />
       <Projects />

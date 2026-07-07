@@ -3,10 +3,11 @@ import gsap from 'gsap';
 import './Preloader.css';
 
 interface PreloaderProps {
+  onStart: () => void;
   onComplete: () => void;
 }
 
-const Preloader = ({ onComplete }: PreloaderProps) => {
+const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelLeftRef = useRef<HTMLDivElement>(null);
   const panelRightRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,6 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         }
       });
 
-      // ── Entrée rapide ──
       tl.to(logoWrapRef.current, {
         opacity: 1,
         duration: 0.35,
@@ -59,6 +59,9 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
         xPercent: -100,
         duration: 0.6,
         ease: 'power3.inOut',
+        onStart: () => {
+          onStart();
+        }
       }, '-=0.05');
 
       tl.to(panelRightRef.current, {
@@ -70,7 +73,7 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [onComplete]);
+  }, [onStart, onComplete]);
 
   return (
     <div className="preloader" ref={containerRef}>
