@@ -20,7 +20,12 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          gsap.delayedCall(0.3, onComplete);
+          // The preloader panels are already off-screen by now, but the
+          // fixed, full-viewport <div> they sit in is still mounted and
+          // still its own top-level compositing layer. Unmounting it forces
+          // a repaint of that layer — wait until the Hero entrance timeline
+          // has fully settled so that repaint doesn't land mid-animation.
+          gsap.delayedCall(1.5, onComplete);
         }
       });
 
