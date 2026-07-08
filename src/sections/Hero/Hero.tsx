@@ -35,7 +35,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
       gsap.set('.hero__name-mask', { scaleX: 1 });
       gsap.set('.hero__role', { x: -60, opacity: 0, filter: isMobile ? 'none' : 'blur(8px)' });
-      gsap.set('.word', { opacity: 0, y: 40, rotateZ: 6 });
+      gsap.set('.word', { opacity: 0, y: 40, rotateZ: isMobile ? 0 : 6 });
       gsap.set('.hero__social-link', { opacity: 0, x: -20, scale: 0.7 });
       gsap.set('.hero__ctas > *', { opacity: 0, y: 30, scale: 0.95 });
       gsap.set(cards, { opacity: 0, x: 150 });
@@ -101,7 +101,10 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    if (prefersReducedMotion) {
+    // No pointer on touch devices, and the continuous float + backdrop-filter
+    // cards are the heaviest ongoing compositor work on the page — skip them
+    // on mobile instead of running them for no visual benefit.
+    if (prefersReducedMotion || isMobile) {
       return () => ctx.revert();
     }
 

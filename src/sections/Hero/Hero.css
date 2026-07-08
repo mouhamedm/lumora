@@ -585,4 +585,22 @@
   .code-card {
     width: 260px;
   }
+
+  /* backdrop-filter across multiple overlapping glass cards is one of the
+     heaviest compositor costs on iOS Safari; drop it on mobile and use a
+     solid panel instead so the entrance animation has less to composite. */
+  .code-card,
+  .hero__float-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #1c1c20;
+  }
+
+  .hero__scene::before {
+    filter: none;
+  }
+
+  .hero__orb {
+    filter: blur(40px);
+  }
 }
