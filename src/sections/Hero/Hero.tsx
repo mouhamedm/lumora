@@ -106,8 +106,9 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: 'power2.out',
         clearProps: 'transform',
       }, 0.9);
     }, introRef);
