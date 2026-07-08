@@ -117,6 +117,7 @@
 }
 
 .hero__name {
+  position: relative;
   font-family: var(--font-display);
   font-size: clamp(52px, 4.5vw, 78px);
   line-height: 1.1;
@@ -134,6 +135,14 @@
   -webkit-background-clip: text;
   background-clip: text;
   width: fit-content;
+}
+
+.hero__name-mask {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-base);
+  transform-origin: right center;
+  pointer-events: none;
 }
 
 .hero__role {
