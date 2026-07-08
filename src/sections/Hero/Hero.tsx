@@ -35,7 +35,15 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
       gsap.set('.hero__name-mask', { scaleX: 1 });
       gsap.set('.hero__role', { x: -60, opacity: 0, filter: isMobile ? 'none' : 'blur(8px)' });
-      gsap.set('.word', { opacity: 0, y: 40, rotateZ: isMobile ? 0 : 6 });
+      // On mobile, animating ~13 individual word spans at once (each forcing
+      // its own compositor layer) is still enough concurrent work to stutter.
+      // Treat the manifesto as a single block instead of a per-word cascade.
+      if (isMobile) {
+        gsap.set('.hero__manifesto', { y: 24, opacity: 0 });
+        gsap.set('.word', { opacity: 1, y: 0, rotateZ: 0 });
+      } else {
+        gsap.set('.word', { opacity: 0, y: 40, rotateZ: 6 });
+      }
       gsap.set('.hero__social-link', { opacity: 0, x: -20, scale: 0.7 });
       gsap.set('.hero__ctas > *', { opacity: 0, y: 30, scale: 0.95 });
       gsap.set(cards, { opacity: 0, x: 150 });
@@ -67,13 +75,22 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         duration: 0.9,
       }, 0.5);
 
-      tl.to('.word', {
-        opacity: 1,
-        y: 0,
-        rotateZ: 0,
-        duration: 0.8,
-        stagger: 0.025,
-      }, 0.6);
+      if (isMobile) {
+        tl.to('.hero__manifesto', {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power3.out',
+        }, 0.6);
+      } else {
+        tl.to('.word', {
+          opacity: 1,
+          y: 0,
+          rotateZ: 0,
+          duration: 0.8,
+          stagger: 0.025,
+        }, 0.6);
+      }
 
       tl.to('.hero__social-link', {
         opacity: 1,
