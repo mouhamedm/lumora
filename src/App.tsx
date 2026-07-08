@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import Navbar from './sections/Navbar/Navbar';
 import Hero from './sections/Hero/Hero';
 import Competences from './sections/Competences/Competences';
@@ -13,7 +13,46 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const handlePreloaderStart = useCallback(() => setIsLoaded(true), []);
+  const preloaderStartedRef = useRef(false);
+  const fontsReadyRef = useRef(false);
+
+  const revealHero = useCallback(() => {
+    if (preloaderStartedRef.current && fontsReadyRef.current) {
+      setIsLoaded(true);
+    }
+  }, []);
+
+  // Wait for web fonts to finish loading before revealing the Hero.
+  // On iOS Safari/Chrome, a font swap that lands mid-animation forces WebKit
+  // to re-layout the text and re-composite the blurred cards, which freezes
+  // the timeline for a second or two. Gating the reveal on `fonts.ready`
+  // guarantees the swap always happens before the animation starts.
+  useEffect(() => {
+    let cancelled = false;
+    const markReady = () => {
+      if (cancelled) return;
+      fontsReadyRef.current = true;
+      revealHero();
+    };
+
+    if ('fonts' in document) {
+      Promise.race([
+        document.fonts.ready,
+        new Promise((resolve) => setTimeout(resolve, 1500)),
+      ]).then(markReady);
+    } else {
+      markReady();
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [revealHero]);
+
+  const handlePreloaderStart = useCallback(() => {
+    preloaderStartedRef.current = true;
+    revealHero();
+  }, [revealHero]);
   const handlePreloaderComplete = useCallback(() => setIsLoading(false), []);
 
   return (
