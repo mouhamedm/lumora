@@ -63,9 +63,9 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       tl.to(cards, {
         opacity: 1,
         x: 0,
-        duration: 1.3,
+        duration: isMobile ? 0.7 : 1.3,
         ease: 'power4.out',
-        stagger: 0.12,
+        stagger: isMobile ? 0.08 : 0.12,
       }, 0.15);
 
       tl.to('.hero__role', {
@@ -99,7 +99,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         duration: 0.6,
         stagger: 0.1,
         ease: 'back.out(2)',
-        clearProps: 'all',
+        clearProps: 'transform',
       }, 0.75);
 
       tl.to('.hero__ctas > *', {
@@ -108,7 +108,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         scale: 1,
         duration: 0.8,
         stagger: 0.15,
-        clearProps: 'all',
+        clearProps: 'transform',
       }, 0.9);
     }, introRef);
 
