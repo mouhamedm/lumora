@@ -169,7 +169,7 @@ export default function About() {
           <div className="about__image-wrapper" ref={imageWrapperRef}>
             <div className="about__glow-orb" />
             <div className="about__image-inner" ref={imageInnerRef}>
-              <img src={aproposImg} alt="À propos de moi" className="about__image" />
+              <img src={aproposImg} alt="À propos de moi" className="about__image" loading="lazy" decoding="async" />
             </div>
 
             {/* Floating Badges */}

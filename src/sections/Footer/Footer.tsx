@@ -62,13 +62,13 @@ export default function Footer() {
       <div className="footer__dock-container" ref={dockRef}>
         <div className="footer__dock">
           <a href="https://github.com/Mourtada-002" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="GitHub">
-            <img src={githubIcon} alt="GitHub" />
+            <img src={githubIcon} alt="GitHub" loading="lazy" decoding="async" />
           </a>
           <a href="https://www.linkedin.com/in/mouhamedmdicko/" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="LinkedIn">
-            <img src={linkedinIcon} alt="LinkedIn" />
+            <img src={linkedinIcon} alt="LinkedIn" loading="lazy" decoding="async" />
           </a>
           <a href="https://wa.me/2250719076206" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="WhatsApp">
-            <img src={whatsappIcon} alt="WhatsApp" />
+            <img src={whatsappIcon} alt="WhatsApp" loading="lazy" decoding="async" />
           </a>
         </div>
       </div>

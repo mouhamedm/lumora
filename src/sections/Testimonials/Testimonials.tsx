@@ -120,7 +120,7 @@ export default function Testimonials() {
               <div className="testimonial-card__author">
                 <div className="testimonial-card__avatar">
                   {testi.avatar ? (
-                    <img src={testi.avatar} alt={t(testi.nameKey)} />
+                    <img src={testi.avatar} alt={t(testi.nameKey)} loading="lazy" decoding="async" />
                   ) : (
                     <span>{t(testi.nameKey).charAt(0)}</span>
                   )}

@@ -107,10 +107,12 @@ export default function Projects() {
             <div className="project-card" key={project.id}>
               
               <div className="project-card__image-container">
-                <img 
-                  src={project.image} 
-                  alt={t(project.titleKey)} 
-                  className="project-card__image" 
+                <img
+                  src={project.image}
+                  alt={t(project.titleKey)}
+                  className="project-card__image"
+                  loading="lazy"
+                  decoding="async"
                 />
                 
                 <div className="project-card__overlay">
