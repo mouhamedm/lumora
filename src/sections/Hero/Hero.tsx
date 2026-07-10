@@ -35,9 +35,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
       gsap.set('.hero__name-mask', { scaleX: 1 });
       gsap.set('.hero__role', { x: -60, opacity: 0, filter: isMobile ? 'none' : 'blur(8px)' });
-      // On mobile, animating ~13 individual word spans at once (each forcing
-      // its own compositor layer) is still enough concurrent work to stutter.
-      // Treat the manifesto as a single block instead of a per-word cascade.
+ 
       if (isMobile) {
         gsap.set('.hero__manifesto', { y: 24, opacity: 0 });
         gsap.set('.word', { opacity: 1, y: 0, rotateZ: 0 });
@@ -119,9 +117,6 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    // No pointer on touch devices, and the continuous float + backdrop-filter
-    // cards are the heaviest ongoing compositor work on the page — skip them
-    // on mobile instead of running them for no visual benefit.
     if (prefersReducedMotion || isMobile) {
       return () => ctx.revert();
     }
@@ -193,7 +188,9 @@ export default function Hero({ isLoaded = false }: HeroProps) {
           <span className="hero__name-mask" aria-hidden="true" />
         </h1>
 
-        <p className="hero__role">{splitWords(t('hero.role'))}</p>
+        <p className="hero__role">
+          <span>{splitWords(t('hero.role'))}</span>
+        </p>
 
         <p className="hero__manifesto">
           {splitWords(t('hero.manifesto_start'))}

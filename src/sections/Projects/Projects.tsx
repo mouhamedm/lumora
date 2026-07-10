@@ -8,6 +8,7 @@ import immoAppartImg from '../../assets/images/immo-appart.webp';
 import prestigeDiningImg from '../../assets/images/prestige-dining.webp';
 import mokaNoirImg from '../../assets/images/moka-noir.webp';
 import empiregymImg from '../../assets/images/empiregym.webp';
+import inadiaImg from '../../assets/images/inadia.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +23,14 @@ const projectsData = [
   },
   {
     id: 2,
+    titleKey: 'projects.inadia_title',
+    descKey: 'projects.inadia_desc',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Firebase'],
+    image: inadiaImg,
+    link: 'https://inadia.shop/',
+  },
+  {
+    id: 3,
     titleKey: 'projects.p2_title',
     descKey: 'projects.p2_desc',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
@@ -29,7 +38,7 @@ const projectsData = [
     link: 'https://immo-appart.netlify.app/',
   },
   {
-    id: 3,
+    id: 4,
     titleKey: 'projects.p3_title',
     descKey: 'projects.p3_desc',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
@@ -37,7 +46,7 @@ const projectsData = [
     link: 'https://prestige-dining.vercel.app/',
   },
   {
-    id: 4,
+    id: 5,
     titleKey: 'projects.p4_title',
     descKey: 'projects.p4_desc',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
@@ -45,7 +54,7 @@ const projectsData = [
     link: 'https://moka-noir.vercel.app/',
   },
   {
-    id: 5,
+    id: 6,
     titleKey: 'projects.p5_title',
     descKey: 'projects.p5_desc',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
@@ -66,7 +75,7 @@ export default function Projects() {
 
     if (!section || !track) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const getScrollAmount = () => {
         const trackWidth = track.scrollWidth;
         return -(trackWidth - window.innerWidth + 96); 
