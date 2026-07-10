@@ -146,10 +146,10 @@
 }
 
 .hero__role {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: 20px;
   color: var(--text-secondary);
   margin: 20px 0 30px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.01em;
   display: flex;
   align-items: center;
