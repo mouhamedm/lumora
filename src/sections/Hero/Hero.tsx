@@ -51,13 +51,27 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       }, 0.2);
 
       // Cards
-      tl.to(cards, {
-        opacity: 1,
-        x: 0,
-        duration: isMobile ? 0.7 : 1.3,
-        ease: 'power4.out',
-        stagger: isMobile ? 0.08 : 0.12,
-      }, 0.15);
+      if (isMobile) {
+        gsap.to(cards, {
+          opacity: 1,
+          x: 0,
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: scene,
+            start: 'top 75%',
+          }
+        });
+      } else {
+        tl.to(cards, {
+          opacity: 1,
+          x: 0,
+          duration: 1.3,
+          ease: 'power4.out',
+          stagger: 0.12,
+        }, 0.15);
+      }
 
       // Subtitle
       tl.to('.hero__subtitle', {
