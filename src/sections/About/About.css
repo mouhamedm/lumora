@@ -160,7 +160,7 @@
 
 .about__title .highlight {
   color: transparent;
-  background: linear-gradient(135deg, var(--accent) 0%, #7B61FF 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #1A6FE8 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }

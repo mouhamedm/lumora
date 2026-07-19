@@ -41,7 +41,7 @@ export default function Competences() {
 
     if (!section || !title || cards.length === 0) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Animation
       gsap.fromTo(
         title,

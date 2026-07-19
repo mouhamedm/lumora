@@ -22,7 +22,7 @@ export default function Footer() {
 
     if (!footer || !textFill || !dock) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.to(textFill, {
         clipPath: 'inset(0% 0% 0% 0%)',
         ease: 'none',

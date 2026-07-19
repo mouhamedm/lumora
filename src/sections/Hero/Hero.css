@@ -41,7 +41,7 @@
 .hero__orb--2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #7B61FF 0%, transparent 70%);
+  background: radial-gradient(circle, #1A6FE8 0%, transparent 70%);
   top: 10%;
   right: -100px;
   animation-delay: -5s;
@@ -256,7 +256,7 @@
   transform: translateY(-2px);
 }
 
-/* ===== RIGHT SIDE ===== */
+/* RIGHT SIDE */
 .hero__right {
   transform: translateY(-40px);
 }

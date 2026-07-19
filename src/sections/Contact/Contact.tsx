@@ -34,7 +34,7 @@ export default function Contact() {
       } else {
         setStatus("ERROR");
       }
-    } catch (error) {
+    } catch {
       setStatus("ERROR");
     }
   };
@@ -43,7 +43,7 @@ export default function Contact() {
     const section = sectionRef.current;
     if (!section) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Title
       const title = titleRef.current;
       if (title) {

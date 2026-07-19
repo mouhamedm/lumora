@@ -16,7 +16,7 @@
   transform: translate(-50%, -50%);
   width: 800px;
   height: 400px;
-  background: radial-gradient(ellipse at center, rgba(170, 59, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(76, 141, 255, 0.1) 0%, transparent 70%);
   filter: blur(60px);
   z-index: -1;
   pointer-events: none;
@@ -63,7 +63,7 @@
 
 .testimonials__title .highlight {
   color: transparent;
-  background: linear-gradient(135deg, var(--accent) 0%, #7B61FF 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #1A6FE8 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -100,8 +100,8 @@
 
 .testimonial-card:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(170, 59, 255, 0.1);
-  border-color: rgba(170, 59, 255, 0.3);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(76, 141, 255, 0.1);
+  border-color: rgba(76, 141, 255, 0.3);
 }
 
 .testimonial-card__quote {
@@ -130,7 +130,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(170, 59, 255, 0.2), rgba(170, 59, 255, 0.5));
+  background: linear-gradient(135deg, rgba(76, 141, 255, 0.2), rgba(76, 141, 255, 0.5));
   display: flex;
   align-items: center;
   justify-content: center;

@@ -43,7 +43,7 @@ export default function Testimonials() {
 
     if (!section || !title || cards.length === 0) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.fromTo(
         title.children,
         { opacity: 0, y: 30 },

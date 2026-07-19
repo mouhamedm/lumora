@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-/* --- LEFT: INFO --- */
+/* LEFT */
 .contact__info {
   display: flex;
   flex-direction: column;
@@ -49,7 +49,7 @@
 }
 
 .text-gradient-blue {
-  background: linear-gradient(135deg, #4c8dff 0%, #a25aff 100%);
+  background: linear-gradient(135deg, #4c8dff 0%, #1A6FE8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -135,7 +135,7 @@
   font-family: var(--font-body);
 }
 
-/* --- RIGHT: FORM --- */
+/* RIGHT */
 .contact__form-wrapper {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
