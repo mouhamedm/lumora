@@ -94,7 +94,7 @@
 .preloader__bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--accent), #7B61FF);
+  background: var(--accent);
   border-radius: 2px;
 }
 
