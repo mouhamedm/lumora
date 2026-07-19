@@ -59,8 +59,8 @@ export default function Footer() {
     <footer className="footer" ref={footerRef}>
       
       {/* Social Dock */}
-      <div className="footer__dock-container" ref={dockRef}>
-        <div className="footer__dock">
+      <div className="footer__dock-container">
+        <div className="footer__dock" ref={dockRef}>
           <a href="https://github.com/Mourtada-002" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="GitHub">
             <img src={githubIcon} alt="GitHub" loading="lazy" decoding="async" />
           </a>
