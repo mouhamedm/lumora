@@ -39,10 +39,9 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-decoration: none;
-  color: transparent;
-  background: linear-gradient(135deg, #fff 0%, var(--accent) 60%, #CBD5E1 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: baseline;
   position: relative;
   transition: opacity 0.25s ease;
 }
@@ -51,9 +50,18 @@
   opacity: 0.85;
 }
 
+.nav__logo-text {
+  color: var(--text-primary);
+}
+
 .nav__logo-dot {
+  color: var(--accent);
+}
+
+.nav__logo-dev {
+  display: inline-block;
   color: transparent;
-  background: linear-gradient(135deg, var(--accent), #CBD5E1);
+  background: linear-gradient(135deg, #fff 0%, #CBD5E1 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -129,37 +137,47 @@
 
 .nav__cta {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 13px;
   font-weight: 600;
   font-family: var(--font-body);
   text-decoration: none;
   color: #fff;
-  padding: 9px 22px;
+  padding: 8px 21px;
   border-radius: 8px;
+  border: 1px solid rgba(76, 141, 255, 0.3);
   overflow: hidden;
-  background: linear-gradient(135deg, var(--accent) 0%, #7B61FF 100%);
-  box-shadow: 0 0 0 0 rgba(76, 141, 255, 0);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  background: linear-gradient(135deg, rgba(76, 141, 255, 0.25) 0%, rgba(76, 141, 255, 0.1) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   isolation: isolate;
 }
 
 .nav__cta::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #6EA1FF 0%, #9B8CFF 100%);
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .nav__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(76, 141, 255, 0.45);
-  filter: brightness(1.08);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(76, 141, 255, 0.4);
 }
 
 .nav__cta:hover::before {
-  opacity: 1;
+  transform: translateY(0);
 }
 
 .nav__cta span {

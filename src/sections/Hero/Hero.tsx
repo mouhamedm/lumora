@@ -7,17 +7,6 @@ export interface HeroProps {
   isLoaded?: boolean;
 }
 
-const splitWords = (text: string) => {
-  return text.split(' ').map((word, index) => (
-    <span key={index} className="word-wrap" style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
-      <span className="word" style={{ display: 'inline-block', transformOrigin: 'left bottom' }}>
-        {word}
-      </span>
-      {'\u00A0'}
-    </span>
-  ));
-};
-
 export default function Hero({ isLoaded = false }: HeroProps) {
   const { t } = useTranslation();
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -33,15 +22,9 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
     const ctx = gsap.context(() => {
       gsap.set('.hero__aurora, .hero__grid', { opacity: 0 });
+      gsap.set('.hero__eyebrow', { x: -40, opacity: 0 });
       gsap.set('.hero__name-mask', { scaleX: 1 });
-      gsap.set('.hero__role', { x: -60, opacity: 0, filter: isMobile ? 'none' : 'blur(8px)' });
- 
-      if (isMobile) {
-        gsap.set('.hero__manifesto', { y: 24, opacity: 0 });
-        gsap.set('.word', { opacity: 1, y: 0, rotateZ: 0 });
-      } else {
-        gsap.set('.word', { opacity: 0, y: 40, rotateZ: 6 });
-      }
+      gsap.set('.hero__subtitle', { y: 24, opacity: 0 });
       gsap.set('.hero__social-link', { opacity: 0, x: -20, scale: 0.7 });
       gsap.set('.hero__ctas > *', { opacity: 0, y: 30, scale: 0.95 });
       gsap.set(cards, { opacity: 0, x: 150 });
@@ -52,12 +35,22 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
       tl.to('.hero__aurora, .hero__grid', { opacity: 1, duration: 1.5 }, 0);
 
+      // Eyebrow slide in
+      tl.to('.hero__eyebrow', {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+      }, 0.1);
+
+      // Name mask reveal
       tl.to('.hero__name-mask', {
         scaleX: 0,
         duration: 1.1,
         ease: 'power3.inOut',
-      }, 0.1);
+      }, 0.2);
 
+      // Cards
       tl.to(cards, {
         opacity: 1,
         x: 0,
@@ -66,30 +59,15 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         stagger: isMobile ? 0.08 : 0.12,
       }, 0.15);
 
-      tl.to('.hero__role', {
-        x: 0,
+      // Subtitle
+      tl.to('.hero__subtitle', {
+        y: 0,
         opacity: 1,
-        filter: isMobile ? 'none' : 'blur(0px)',
-        duration: 0.9,
-      }, 0.5);
+        duration: 0.8,
+        ease: 'power3.out',
+      }, 0.6);
 
-      if (isMobile) {
-        tl.to('.hero__manifesto', {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power3.out',
-        }, 0.6);
-      } else {
-        tl.to('.word', {
-          opacity: 1,
-          y: 0,
-          rotateZ: 0,
-          duration: 0.8,
-          stagger: 0.025,
-        }, 0.6);
-      }
-
+      // Socials
       tl.to('.hero__social-link', {
         opacity: 1,
         x: 0,
@@ -100,6 +78,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         clearProps: 'transform',
       }, 0.75);
 
+      // CTAs
       tl.to('.hero__ctas > *', {
         opacity: 1,
         y: 0,
@@ -182,23 +161,21 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
       {/* LEFT */}
       <div className="hero__content" ref={introRef}>
+        {/* Eyebrow */}
+        <p className="hero__eyebrow">
+          <span className="hero__eyebrow-line" aria-hidden="true" />
+          {t('hero.eyebrow')}
+        </p>
+
         <h1 className="hero__name">
-          {t('hero.name1')}<br />
-          {t('hero.name2')} <br /> {t('hero.name3')}
+          <span className="hero__name-solid">{t('hero.name1')}</span><br />
+          <span className="hero__name-outline">{t('hero.name2')}</span>
+          <br />
+          <span className="hero__name-outline">{t('hero.name3')}</span>
           <span className="hero__name-mask" aria-hidden="true" />
         </h1>
 
-        <p className="hero__role">
-          <span>{splitWords(t('hero.role'))}</span>
-        </p>
-
-        <p className="hero__manifesto">
-          {splitWords(t('hero.manifesto_start'))}
-          <span className="highlight">{splitWords(t('hero.manifesto_modern'))}</span>
-          {splitWords(t('hero.manifesto_and'))}
-          <span className="highlight">{splitWords(t('hero.manifesto_perf'))}</span>
-          {splitWords(t('hero.manifesto_end'))}
-        </p>
+        <p className="hero__subtitle">{t('hero.subtitle')}</p>
 
         {/* Socials */}
         <div className="hero__socials">
@@ -318,7 +295,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       </div>
 
       {/* Scroll Indicator */}
-      <a href="#experience" className="hero__scroll-indicator" aria-label="Scroll down">
+      <a href="#competences" className="hero__scroll-indicator" aria-label="Scroll down">
         <span>{t('hero.scroll')}</span>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />

@@ -82,10 +82,10 @@
   z-index: 2;
 }
 
+/* EYEBROW */
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;
@@ -94,47 +94,35 @@
   color: var(--accent);
   margin: 0 0 28px;
   padding: 8px 16px;
-  background: rgba(76, 141, 255, 0.08);
+  background: var(--accent-soft);
   border: 1px solid rgba(76, 141, 255, 0.2);
   border-radius: 100px;
-  width: fit-content;
 }
 
-.hero__eyebrow::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-  flex-shrink: 0;
-  animation: pulse-dot 2s ease-in-out infinite;
+.hero__eyebrow-line {
+  display: none;
 }
 
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(0.75); }
-}
-
+/* NAME */
 .hero__name {
   position: relative;
   font-family: var(--font-display);
-  font-size: clamp(52px, 4.5vw, 78px);
-  line-height: 1.1;
+  font-size: clamp(60px, 5.5vw, 96px);
+  line-height: 1.05;
   font-weight: 800;
-  margin: 0 0 12px;
+  margin: 0 0 24px;
   letter-spacing: -0.03em;
-  color: transparent;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #d4e3ff 30%,
-    var(--accent) 75%,
-    #a25aff 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--text-primary);
   width: fit-content;
+}
+
+.hero__name-solid {
+  color: var(--text-primary);
+}
+
+.hero__name-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(242, 241, 237, 0.5);
 }
 
 .hero__name-mask {
@@ -145,51 +133,17 @@
   pointer-events: none;
 }
 
-.hero__role {
-  font-size: 20px;
+/* SUBTITLE */
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
   color: var(--text-secondary);
-  margin: 20px 0 30px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  letter-spacing: 0.02em;
+  margin: 0 0 36px;
+  line-height: 1.6;
 }
 
-.hero__role::before {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  flex-shrink: 0;
-}
-
-.hero__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 36px;
-}
-
-.hero__tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-muted);
-  padding: 5px 12px;
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
-}
-
-.hero__tag:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
+/* SOCIALS */
 .hero__socials {
   display: flex;
   gap: 10px;
@@ -218,6 +172,7 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(76, 141, 255, 0.3);
 }
 
+/* CTAs */
 .hero__ctas {
   display: flex;
   gap: 14px;
@@ -225,25 +180,57 @@
 }
 
 .hero__cv {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
   font-family: var(--font-body);
   color: #fff;
   text-decoration: none;
-  padding: 14px 28px;
+  padding: 13px 27px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent) 0%, #7B61FF 100%);
-  box-shadow: 0 4px 24px rgba(76, 141, 255, 0.3);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  border: 1px solid rgba(76, 141, 255, 0.3);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(76, 141, 255, 0.25) 0%, rgba(76, 141, 255, 0.1) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  isolation: isolate;
+}
+
+.hero__cv::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .hero__cv:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(76, 141, 255, 0.45);
-  filter: brightness(1.15);
+  border-color: var(--accent);
+  box-shadow: 0 12px 32px rgba(76, 141, 255, 0.4);
+}
+
+.hero__cv:hover::before {
+  transform: translateY(0);
+}
+
+.hero__cv svg {
+  transition: transform 0.3s ease;
+}
+
+.hero__cv:hover svg {
+  transform: translateY(3px);
 }
 
 .hero__scroll {
@@ -269,6 +256,7 @@
   transform: translateY(-2px);
 }
 
+/* ===== RIGHT SIDE ===== */
 .hero__right {
   transform: translateY(-40px);
 }
@@ -425,20 +413,7 @@
   z-index: 4;
 }
 
-.hero__manifesto {
-  text-align: left;
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 36px;
-}
-
-.hero__manifesto .highlight {
-  color: var(--accent);
-  font-weight: 500;
-}
-
+/* CODE CARD INTERNALS */
 .code-card__bar {
   display: flex;
   align-items: center;
@@ -458,14 +433,6 @@
 .dot--red    { background-color: #e5534b; box-shadow: 0 0 6px rgba(229, 83, 75, 0.5); }
 .dot--yellow { background-color: #d4a72c; box-shadow: 0 0 6px rgba(212, 167, 44, 0.5); }
 .dot--green  { background-color: #57ab5a; box-shadow: 0 0 6px rgba(87, 171, 90, 0.5); }
-
-.code-card__title {
-  margin-left: 10px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-}
 
 .code-card__body {
   margin: 0;
@@ -573,6 +540,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(0);
   }
 
   .hero__scene {
@@ -586,9 +554,6 @@
     width: 260px;
   }
 
-  /* backdrop-filter across multiple overlapping glass cards is one of the
-     heaviest compositor costs on iOS Safari; drop it on mobile and use a
-     solid panel instead so the entrance animation has less to composite. */
   .code-card,
   .hero__float-card {
     backdrop-filter: none;
@@ -603,5 +568,9 @@
 
   .hero__orb {
     filter: blur(40px);
+  }
+
+  .hero__name-outline {
+    -webkit-text-stroke-width: 1px;
   }
 }

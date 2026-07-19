@@ -118,7 +118,9 @@ export default function Navbar({ isLoaded = false }: NavbarProps) {
     <header ref={navRef} className={`nav ${scrolled ? 'nav--scrolled' : ''} ${hidden ? 'nav--hidden' : ''}`}>
       <div className="nav__inner">
         <a href="#top" className="nav__logo">
-          MMD<span className="nav__logo-dot">.</span>DEV
+          <span className="nav__logo-text">MMD</span>
+          <span className="nav__logo-dot">.</span>
+          <span className="nav__logo-dev">DEV</span>
         </a>
 
         <nav className="nav__links">

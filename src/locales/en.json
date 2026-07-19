@@ -8,10 +8,11 @@
     "cta": "Contact me"
   },
   "hero": {
+    "eyebrow": "Hello, I'm",
     "name1": "MOUHAMED",
     "name2": "MOURTADA",
     "name3": "DICKO",
-    "role": "Frontend Developer",
+    "subtitle": "Frontend Developer · Web & Mobile",
     "manifesto_start": "I transform ideas into ",
     "manifesto_modern": "modern",
     "manifesto_and": " and ",

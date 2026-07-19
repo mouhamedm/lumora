@@ -8,10 +8,11 @@
     "cta": "Contactez-moi"
   },
   "hero": {
+    "eyebrow": "Bonjour, je suis",
     "name1": "MOUHAMED",
     "name2": "MOURTADA",
     "name3": "DICKO",
-    "role": "Développeur frontend",
+    "subtitle": "Développeur Frontend · Web & Mobile",
     "manifesto_start": "Je transforme des idées en expériences digitales ",
     "manifesto_modern": "modernes",
     "manifesto_and": " et ",
