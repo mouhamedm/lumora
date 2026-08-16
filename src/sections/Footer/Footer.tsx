@@ -61,10 +61,10 @@ export default function Footer() {
       {/* Social Dock */}
       <div className="footer__dock-container">
         <div className="footer__dock" ref={dockRef}>
-          <a href="https://github.com/Mourtada-002" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="GitHub">
+          <a href="https://github.com/mouhamedm" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="GitHub">
             <img src={githubIcon} alt="GitHub" loading="lazy" decoding="async" />
           </a>
-          <a href="https://www.linkedin.com/in/mouhamedmdicko/" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/mouhamedm/" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="LinkedIn">
             <img src={linkedinIcon} alt="LinkedIn" loading="lazy" decoding="async" />
           </a>
           <a href="https://wa.me/2250719076206" target="_blank" rel="noreferrer" className="footer__dock-item" aria-label="WhatsApp">

@@ -194,7 +194,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         {/* Socials */}
         <div className="hero__socials">
           <a
-            href="https://github.com/Mourtada-002"
+            href="https://github.com/mouhamedm"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
@@ -205,7 +205,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
             </svg>
           </a>
           <a
-            href="https://www.linkedin.com/in/mouhamedmdicko/"
+            href="https://www.linkedin.com/in/mouhamedm/"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
