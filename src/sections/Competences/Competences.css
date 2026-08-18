@@ -52,7 +52,7 @@
 
 .competences__title .highlight {
   color: transparent;
-  background: linear-gradient(135deg, var(--accent) 0%, #1A6FE8 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #1a6fe8 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -87,34 +87,50 @@
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   transform-style: preserve-3d;
   will-change: transform;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
   cursor: default;
 }
 
 .tech-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 50%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    transparent 50%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
 }
 
 .tech-card:hover {
   border-color: var(--tech-color);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 .tech-card__glow {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(circle at center, var(--tech-color) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    var(--tech-color) 0%,
+    transparent 70%
+  );
   opacity: 0;
   filter: blur(20px);
   transition: opacity 0.4s ease;
@@ -214,7 +230,9 @@
   color: #fff;
   border-color: var(--tool-color);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    0 0 10px rgba(255, 255, 255, 0.02);
 }
 
 .tool-dot {
@@ -235,7 +253,7 @@
   .competences {
     padding: 100px 24px;
   }
-  
+
   .competences__grid {
     gap: 16px;
   }
@@ -247,7 +265,7 @@
     max-width: none;
     height: 100px;
   }
-  
+
   .tech-card__name {
     font-size: 16px !important;
   }
@@ -256,14 +274,13 @@
     margin-top: 60px;
     gap: 24px;
   }
-  
+
   .competences__tools-grid {
     gap: 12px;
   }
-  
+
   .tool-card {
     padding: 8px 16px;
     font-size: 12px;
   }
 }
-

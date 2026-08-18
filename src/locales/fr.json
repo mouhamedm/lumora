@@ -42,7 +42,8 @@
     "title_start": "Mes ",
     "title_highlight": "Compétences",
     "subtitle": "Technologies et outils avec lesquels je travaille au quotidien pour donner vie à vos projets.",
-    "tools_title": "Outils & Environnement"
+    "tools_title": "Outils & Environnement",
+    "backend_title": "Backend & Services"
   },
   "projects": {
     "eyebrow": "Projets",

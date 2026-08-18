@@ -1,29 +1,32 @@
-import { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './Competences.css';
+import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "./Competences.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const techStack = [
-  { name: 'React', color: '#61DAFB', size: 'large' },
-  { name: 'Next.js', color: '#FFFFFF', size: 'large' },
-  { name: 'TypeScript', color: '#3178C6', size: 'medium' },
-  { name: 'Tailwind CSS', color: '#38B2AC', size: 'medium' },
-  { name: 'Node.js', color: '#339933', size: 'medium' },
-  { name: 'Flutter/Dart', color: '#02569B', size: 'medium' },
-  { name: 'JavaScript', color: '#F7DF1E', size: 'small' },
-  { name: 'HTML5', color: '#E34F26', size: 'small' },
-  { name: 'CSS3', color: '#1572B6', size: 'small' },
+  { name: "React", color: "#61DAFB", size: "large" },
+  { name: "Next.js", color: "#FFFFFF", size: "large" },
+  { name: "TypeScript", color: "#3178C6", size: "medium" },
+  { name: "Tailwind CSS", color: "#38B2AC", size: "medium" },
+  { name: "Flutter/Dart", color: "#02569B", size: "medium" },
+  { name: "JavaScript", color: "#F7DF1E", size: "small" },
+  { name: "HTML5", color: "#E34F26", size: "small" },
+  { name: "CSS3", color: "#1572B6", size: "small" },
 ];
 
 const toolsStack = [
-  { name: 'Git', color: '#F05032' },
-  { name: 'Figma', color: '#F24E1E' },
-  { name: 'VS Code', color: '#007ACC' },
-  { name: 'Firebase', color: '#FFCA28' },
-  { name: 'GitHub', color: '#FFFFFF' },
+  { name: "Git", color: "#F05032" },
+  { name: "Figma", color: "#F24E1E" },
+  { name: "VS Code", color: "#007ACC" },
+  { name: "GitHub", color: "#FFFFFF" },
+];
+
+const backendStack = [
+  { name: "Node.js", color: "#339933" },
+  { name: "Firebase", color: "#FFCA28" },
 ];
 
 export default function Competences() {
@@ -31,6 +34,7 @@ export default function Competences() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const toolRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const backendRefs = useRef<(HTMLDivElement | null)[]>([]);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -50,12 +54,12 @@ export default function Competences() {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: 'top 80%',
+            start: "top 80%",
           },
-        }
+        },
       );
 
       gsap.fromTo(
@@ -67,26 +71,26 @@ export default function Competences() {
           y: 0,
           rotationX: 0,
           duration: 1.2,
-          ease: 'back.out(1.5)',
+          ease: "back.out(1.5)",
           stagger: 0.1,
           scrollTrigger: {
             trigger: section,
-            start: 'top 75%',
+            start: "top 75%",
           },
           onComplete: () => {
             cards.forEach((card, i) => {
               gsap.to(card, {
-                y: '+=15',
+                y: "+=15",
                 rotationZ: i % 2 === 0 ? 2 : -2,
                 duration: 2 + i * 0.2,
-                ease: 'sine.inOut',
+                ease: "sine.inOut",
                 yoyo: true,
                 repeat: -1,
                 delay: Math.random() * 0.5,
               });
             });
           },
-        }
+        },
       );
 
       // Tools animation
@@ -98,22 +102,22 @@ export default function Competences() {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: 'power3.out',
+            ease: "power3.out",
             stagger: 0.1,
             scrollTrigger: {
               trigger: section,
-              start: 'top 50%',
+              start: "top 50%",
             },
-          }
+          },
         );
       }
     }, sectionRef);
 
     // Parallax effect on mouse move
     const setters = cards.map((card, i) => ({
-      x: gsap.quickTo(card, 'x', { duration: 0.8, ease: 'power3.out' }),
-      y: gsap.quickTo(card, 'y', { duration: 0.8, ease: 'power3.out' }),
-      strength: (i % 3 + 1) * 10,
+      x: gsap.quickTo(card, "x", { duration: 0.8, ease: "power3.out" }),
+      y: gsap.quickTo(card, "y", { duration: 0.8, ease: "power3.out" }),
+      strength: ((i % 3) + 1) * 10,
     }));
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -134,12 +138,12 @@ export default function Competences() {
       });
     };
 
-    section.addEventListener('mousemove', handleMouseMove);
-    section.addEventListener('mouseleave', handleMouseLeave);
+    section.addEventListener("mousemove", handleMouseMove);
+    section.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      section.removeEventListener('mousemove', handleMouseMove);
-      section.removeEventListener('mouseleave', handleMouseLeave);
+      section.removeEventListener("mousemove", handleMouseMove);
+      section.removeEventListener("mouseleave", handleMouseLeave);
       ctx.revert();
     };
   }, []);
@@ -149,14 +153,13 @@ export default function Competences() {
       <div className="competences__container">
         <div className="competences__header">
           <div className="competences__eyebrow" aria-hidden="true">
-            {t('skills.eyebrow')}
+            {t("skills.eyebrow")}
           </div>
           <h2 className="competences__title" ref={titleRef}>
-            {t('skills.title_start')}<span className="highlight">{t('skills.title_highlight')}</span>
+            {t("skills.title_start")}
+            <span className="highlight">{t("skills.title_highlight")}</span>
           </h2>
-          <p className="competences__subtitle">
-            {t('skills.subtitle')}
-          </p>
+          <p className="competences__subtitle">{t("skills.subtitle")}</p>
         </div>
 
         <div className="competences__grid">
@@ -167,7 +170,7 @@ export default function Competences() {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              style={{ '--tech-color': tech.color } as React.CSSProperties}
+              style={{ "--tech-color": tech.color } as React.CSSProperties}
             >
               <div className="tech-card__glow" />
               <div className="tech-card__content">
@@ -178,14 +181,39 @@ export default function Competences() {
         </div>
 
         <div className="competences__tools">
-          <h3 className="competences__tools-title">{t('skills.tools_title')}</h3>
+          <h3 className="competences__tools-title">
+            {t("skills.tools_title")}
+          </h3>
           <div className="competences__tools-grid">
             {toolsStack.map((tool, index) => (
-              <div 
+              <div
                 key={tool.name}
                 className="tool-card"
-                ref={(el) => { toolRefs.current[index] = el; }}
-                style={{ '--tool-color': tool.color } as React.CSSProperties}
+                ref={(el) => {
+                  toolRefs.current[index] = el;
+                }}
+                style={{ "--tool-color": tool.color } as React.CSSProperties}
+              >
+                <div className="tool-dot" />
+                <span>{tool.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="competences__tools">
+          <h3 className="competences__tools-title">
+            {t("skills.backend_title")}
+          </h3>
+          <div className="competences__tools-grid">
+            {backendStack.map((tool, index) => (
+              <div
+                key={tool.name}
+                className="tool-card"
+                ref={(el) => {
+                  backendRefs.current[index] = el;
+                }}
+                style={{ "--tool-color": tool.color } as React.CSSProperties}
               >
                 <div className="tool-dot" />
                 <span>{tool.name}</span>
