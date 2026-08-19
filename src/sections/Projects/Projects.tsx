@@ -4,10 +4,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
 import idconsultImg from '../../assets/images/idconsult.webp';
-import immoAppartImg from '../../assets/images/immo-appart.webp';
+import strideImg from '../../assets/images/stride.webp';
 import prestigeDiningImg from '../../assets/images/prestige-dining.webp';
 import mokaNoirImg from '../../assets/images/moka-noir.webp';
-import empiregymImg from '../../assets/images/empiregym.webp';
+import pulseImg from '../../assets/images/pulse.webp';
 import inadiaImg from '../../assets/images/inadia.webp';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -33,9 +33,9 @@ const projectsData = [
     id: 3,
     titleKey: 'projects.p2_title',
     descKey: 'projects.p2_desc',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
-    image: immoAppartImg,
-    link: 'https://immo-appart.netlify.app/',
+    tags: ['Next.js 15', 'React 18', 'TypeScript', 'Tailwind CSS', 'Three.js', 'GSAP'],
+    image: strideImg,
+    link: 'https://stride-sneaker.vercel.app/',
   },
   {
     id: 4,
@@ -57,9 +57,9 @@ const projectsData = [
     id: 6,
     titleKey: 'projects.p5_title',
     descKey: 'projects.p5_desc',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
-    image: empiregymImg,
-    link: 'https://empiregym.vercel.app/',
+    tags: ['Next.js 15', 'React 18', 'TypeScript', 'Tailwind CSS', 'GSAP'],
+    image: pulseImg,
+    link: 'https://pulse-smartwatch.vercel.app/',
   }
 ];
 
