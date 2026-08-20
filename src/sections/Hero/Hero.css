@@ -234,6 +234,7 @@
 }
 
 .hero__scroll {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -245,15 +246,41 @@
   border-radius: 10px;
   border: 1px solid var(--border-subtle);
   background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease,
-    transform 0.25s ease;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  isolation: isolate;
+}
+
+.hero__scroll::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .hero__scroll:hover {
+  transform: translateY(-3px);
   border-color: var(--border-strong);
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.05);
+}
+
+.hero__scroll:hover::before {
+  transform: translateY(0);
+}
+
+.hero__scroll svg {
+  transition: transform 0.3s ease;
+}
+
+.hero__scroll:hover svg {
+  transform: translateX(3px);
 }
 
 /* RIGHT SIDE */

@@ -8,6 +8,7 @@ import Testimonials from './sections/Testimonials/Testimonials';
 import Contact from './sections/Contact/Contact';
 import Footer from './sections/Footer/Footer';
 import Preloader from './sections/Preloader/Preloader';
+import CustomCursor from './components/CustomCursor/CustomCursor';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,11 +23,6 @@ function App() {
     }
   }, []);
 
-  // Wait for web fonts to finish loading before revealing the Hero.
-  // On iOS Safari/Chrome, a font swap that lands mid-animation forces WebKit
-  // to re-layout the text and re-composite the blurred cards, which freezes
-  // the timeline for a second or two. Gating the reveal on `fonts.ready`
-  // guarantees the swap always happens before the animation starts.
   useEffect(() => {
     let cancelled = false;
     const markReady = () => {
@@ -57,6 +53,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       {isLoading && (
         <Preloader
           onStart={handlePreloaderStart}
