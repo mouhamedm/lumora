@@ -43,7 +43,8 @@
     "title_highlight": "Skills",
     "subtitle": "Technologies and tools I work with every day to bring your projects to life.",
     "tools_title": "Tools & Environment",
-    "backend_title": "Backend & Services"
+    "backend_title": "Backend & Services",
+    "frontend_title": "Frontend & Mobile"
   },
   "projects": {
     "eyebrow": "Projects",
