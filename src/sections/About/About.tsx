@@ -23,45 +23,56 @@ export default function About() {
 
     const isMobile = window.innerWidth < 768;
 
-    // 1. Text Animations (Reveal)
+    // 1. Text Animations
+    const content = section.querySelector('.about__content');
     const title = titleRef.current;
     const lines = linesRef.current.filter(Boolean);
+    const btn = btnRef.current;
 
-    if (title) {
-      gsap.fromTo(
+    if (content && title) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: content,
+          start: 'top 80%',
+        }
+      });
+
+      tl.fromTo(
         title,
         { opacity: 0, y: 40, filter: isMobile ? 'none' : 'blur(10px)' },
         {
           opacity: 1,
           y: 0,
           filter: isMobile ? 'none' : 'blur(0px)',
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 70%',
-          },
-        }
-      );
-    }
-
-    if (lines.length > 0) {
-      gsap.fromTo(
-        lines,
-        { opacity: 0, y: 20, filter: isMobile ? 'none' : 'blur(5px)' },
-        {
-          opacity: 1,
-          y: 0,
-          filter: isMobile ? 'none' : 'blur(0px)',
           duration: 1,
           ease: 'power3.out',
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 60%',
-          },
         }
       );
+
+      if (lines.length > 0) {
+        tl.fromTo(
+          lines,
+          { opacity: 0, y: 20, filter: isMobile ? 'none' : 'blur(5px)' },
+          {
+            opacity: 1,
+            y: 0,
+            filter: isMobile ? 'none' : 'blur(0px)',
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.15,
+          },
+          "-=0.6"
+        );
+      }
+
+      if (btn) {
+        tl.fromTo(
+          btn,
+          { opacity: 0, y: 20, scale: 0.9 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.5)' },
+          "-=0.4"
+        );
+      }
     }
 
     // 2. Image 3D Tilt Effect
