@@ -246,7 +246,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
       {/* Subtle Background Kinetic Watermark (Option 1) */}
       <div
-        className="absolute inset-0 flex items-start pt-[360px] max-[390px]:pt-[330px] md:items-center md:pt-0 justify-center pointer-events-none select-none z-0 overflow-hidden"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden"
         style={{
           maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
           WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",

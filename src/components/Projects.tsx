@@ -649,6 +649,9 @@ export default function Projects() {
                 triggerRef={sectionRef}
               />
             </h2>
+            <p className="font-[var(--font-body)] text-sm sm:text-base text-[var(--text-secondary)] mt-2.5 sm:mt-3 leading-relaxed max-w-xl">
+              {t("projects.subtitle")}
+            </p>
           </div>
 
           {/* 3D Showcase Deck Driven by Scroll */}
