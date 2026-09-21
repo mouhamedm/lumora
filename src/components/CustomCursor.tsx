@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import "./CustomCursor.css";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -43,18 +42,20 @@ export default function CustomCursor() {
     const xSet = gsap.quickSetter(follower, "x", "px");
     const ySet = gsap.quickSetter(follower, "y", "px");
 
-    gsap.ticker.add(() => {
+    const tickerCallback = () => {
       const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
       pos.x += (mouse.x - pos.x) * dt;
       pos.y += (mouse.y - pos.y) * dt;
       xSet(pos.x);
       ySet(pos.y);
-    });
+    };
 
+    gsap.ticker.add(tickerCallback);
     window.addEventListener("mousemove", onMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
+      gsap.ticker.remove(tickerCallback);
     };
   }, []);
 

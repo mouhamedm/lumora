@@ -1,18 +1,65 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import './Preloader.css';
+import { motion } from 'framer-motion';
+
+function PulsatingDots({ dotClassName = 'bg-accent' }: { dotClassName?: string }) {
+  return (
+    <div className="flex items-center justify-center">
+      <div className="flex space-x-2">
+        <motion.div
+          className={`h-3 w-3 rounded-full ${dotClassName}`}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          }}
+        />
+        <motion.div
+          className={`h-3 w-3 rounded-full ${dotClassName}`}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            delay: 0.3,
+          }}
+        />
+        <motion.div
+          className={`h-3 w-3 rounded-full ${dotClassName}`}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            delay: 0.6,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 interface PreloaderProps {
   onStart: () => void;
   onComplete: () => void;
 }
 
-const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
+export default function Preloader({ onStart, onComplete }: PreloaderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelLeftRef = useRef<HTMLDivElement>(null);
   const panelRightRef = useRef<HTMLDivElement>(null);
   const logoWrapRef = useRef<HTMLDivElement>(null);
-  const barRef = useRef<HTMLDivElement>(null);
+  const loaderWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -20,11 +67,6 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          // The preloader panels are already off-screen by now, but the
-          // fixed, full-viewport <div> they sit in is still mounted and
-          // still its own top-level compositing layer. Unmounting it forces
-          // a repaint of that layer — wait until the Hero entrance timeline
-          // has fully settled so that repaint doesn't land mid-animation.
           gsap.delayedCall(1.5, onComplete);
         }
       });
@@ -35,29 +77,22 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
         ease: 'power2.out',
       });
 
-      tl.to('.preloader__bar-wrapper', {
+      tl.to(loaderWrapRef.current, {
         opacity: 1,
-        duration: 0.25,
+        duration: 0.3,
         ease: 'power2.out',
       }, '-=0.15');
 
-      tl.to(barRef.current, {
-        width: '100%',
-        duration: 0.55,
-        ease: 'power2.inOut',
-      }, '-=0.1');
+      // Let the pulsating dots animation run smoothly
+      tl.to({}, {
+        duration: 1.2,
+      });
 
-      tl.to(logoWrapRef.current, {
+      tl.to([logoWrapRef.current, loaderWrapRef.current], {
         opacity: 0,
         duration: 0.25,
         ease: 'power2.in',
-      }, '+=0.1');
-
-      tl.to('.preloader__bar-wrapper', {
-        opacity: 0,
-        duration: 0.2,
-        ease: 'power2.in',
-      }, '<');
+      });
 
       tl.call(() => {
         document.body.style.overflow = '';
@@ -69,6 +104,9 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
         ease: 'power3.inOut',
         onStart: () => {
           onStart();
+          if (containerRef.current) {
+            containerRef.current.style.pointerEvents = 'none';
+          }
         }
       });
 
@@ -95,14 +133,10 @@ const Preloader = ({ onStart, onComplete }: PreloaderProps) => {
           <span className="preloader__logo-dev">DEV</span>
         </div>
 
-        <div className="preloader__bar-wrapper">
-          <div className="preloader__bar-track">
-            <div className="preloader__bar" ref={barRef}></div>
-          </div>
+        <div className="preloader__dots-wrapper" ref={loaderWrapRef}>
+          <PulsatingDots dotClassName="bg-accent shadow-[0_0_12px_rgba(76,141,255,0.7)]" />
         </div>
       </div>
     </div>
   );
-};
-
-export default Preloader;
+}
