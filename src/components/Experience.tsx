@@ -370,7 +370,7 @@ export default function Experience() {
             <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
             {t("experience.eyebrow")}
           </div>
-          <h2 className="font-display text-[clamp(32px,4vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
+          <h2 className="font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
             <TextReveal
               text={t("experience.title_start")}
               type="chars"

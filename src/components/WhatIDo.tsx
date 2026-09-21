@@ -114,7 +114,7 @@ const PointItem: React.FC<PointItemProps> = ({
           </h3>
           <p
             className={cn(
-              "font-[var(--font-body)] text-xs sm:text-sm md:text-[15px] leading-relaxed max-w-[480px] transition-colors duration-300",
+              "font-[var(--font-body)] text-sm md:text-[15px] leading-relaxed max-w-[480px] transition-colors duration-300",
               isActive ? "text-zinc-300" : "text-zinc-500",
             )}
           >
@@ -239,7 +239,7 @@ export default function WhatIDo() {
               <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[var(--accent)]" />
               {t("whatido.eyebrow")}
             </div>
-            <h2 className="font-display text-[clamp(32px,4vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
+            <h2 className="font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
               <TextReveal
                 text={t("whatido.title_start")}
                 type="chars"
@@ -265,7 +265,7 @@ export default function WhatIDo() {
                 </>
               ) : null}
             </h2>
-            <div className="font-[var(--font-body)] text-xs sm:text-sm text-[var(--text-secondary)] max-w-[580px] mx-auto leading-relaxed">
+            <div className="font-[var(--font-body)] text-sm sm:text-base text-[var(--text-secondary)] max-w-[580px] mx-auto leading-relaxed">
               <TextReveal
                 text={t("whatido.subtitle")}
                 type="words"

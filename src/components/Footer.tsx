@@ -58,6 +58,18 @@ const FOOTER_STYLES = `
   user-select: none;
 }
 
+@media (max-width: 768px) {
+  .footer-giant-bg-text {
+    font-size: clamp(44px, 18vw, 76px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
 /* Metallic Text Glow */
 .footer-text-glow {
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
@@ -288,21 +300,15 @@ export default function Footer() {
       {/* Unified footer with the exact same background atmosphere as Contact */}
       <footer
         ref={footerRef}
-        className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden pt-12 md:pt-16 pb-6 md:pb-8 z-[2] bg-transparent text-[var(--text-primary)]"
+        className="relative w-full min-h-screen h-auto md:h-screen md:min-h-screen flex flex-col justify-between overflow-hidden pt-12 md:pt-16 pb-4 md:pb-8 z-[2] bg-transparent text-[var(--text-primary)]"
       >
-        {/* Giant background brand text with subtle stroke and parallax */}
-        <div
-          ref={giantTextRef}
-          className="footer-giant-bg-text absolute -bottom-[5vh] left-1/2 -translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none"
-        >
-          MMD DEV
-        </div>
-
         {/* 1. Diagonal Sleek Marquee */}
-        <div className="relative w-full overflow-hidden border-y border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] backdrop-blur-md py-3.5 z-10 -rotate-1 scale-105 shadow-xl">
-          <div className="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.25em] text-[var(--text-muted)] uppercase font-[var(--font-mono)]">
-            {renderMarquee()}
-            {renderMarquee()}
+        <div className="relative w-full overflow-hidden py-2 my-2 md:my-0 z-10">
+          <div className="w-full overflow-hidden border-y border-white/10 bg-white/[0.04] backdrop-blur-md py-4 md:py-3.5 -rotate-1 scale-105 shadow-xl">
+            <div className="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.2em] text-[var(--text-secondary)] uppercase font-[var(--font-mono)]">
+              {renderMarquee()}
+              {renderMarquee()}
+            </div>
           </div>
         </div>
 
@@ -351,7 +357,7 @@ export default function Footer() {
         </div>
 
         {/* 3. Bottom Bar / Copyright & Status */}
-        <div className="relative z-20 w-full border-t border-[rgba(255,255,255,0.06)] pt-6 pb-6">
+        <div className="relative z-20 w-full border-t border-[rgba(255,255,255,0.06)] pt-6 pb-2 md:pb-6">
           <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <div className="font-[var(--font-mono)] text-[11px] md:text-xs text-[var(--text-muted)] text-center md:text-left">
@@ -364,6 +370,14 @@ export default function Footer() {
               <span>{t('footer.status')}</span>
             </div>
           </div>
+        </div>
+
+        {/* Giant brand text - positioned below copyright on mobile, backdrop on desktop */}
+        <div
+          ref={giantTextRef}
+          className="footer-giant-bg-text w-full text-center relative pt-2 pb-6 block md:absolute md:w-auto md:pt-0 md:pb-0 md:-bottom-[5vh] md:left-1/2 md:-translate-x-1/2 whitespace-nowrap z-0 pointer-events-none select-none"
+        >
+          MMD DEV
         </div>
       </footer>
     </>

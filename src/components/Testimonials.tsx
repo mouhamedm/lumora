@@ -123,7 +123,7 @@ export default function Testimonials() {
             <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
             {t("testimonials.eyebrow")}
           </div>
-          <h2 className="testimonials__title font-display text-[clamp(32px,4vw,64px)] lg:text-[64px] leading-[1.1] font-bold mb-4 sm:mb-5">
+          <h2 className="testimonials__title font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.1] font-bold mb-4 sm:mb-5">
             <span className="title-glow">{t("testimonials.title_start")}</span>{" "}
             <span className="highlight">
               {t("testimonials.title_highlight")}

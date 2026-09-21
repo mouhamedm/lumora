@@ -388,7 +388,7 @@ export const ProjectShowcase = ({
             )}
 
             {/* Project Description */}
-            <p className="font-body text-xs sm:text-sm md:text-base leading-relaxed text-[var(--text-secondary)] mb-3 sm:mb-8 md:mb-10 max-w-xl line-clamp-2 sm:line-clamp-none">
+            <p className="font-body text-sm sm:text-base leading-relaxed text-[var(--text-secondary)] mb-3 sm:mb-8 md:mb-10 max-w-xl line-clamp-2 sm:line-clamp-none">
               {currentProject.quote}
             </p>
           </motion.div>
@@ -634,7 +634,7 @@ export default function Projects() {
               <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
               {t("projects.eyebrow")}
             </div>
-            <h2 className="font-[var(--font-display)] text-[clamp(28px,4.5vw,64px)] lg:text-[64px] font-bold leading-[1.1] m-0">
+            <h2 className="font-[var(--font-display)] text-[clamp(38px,4.5vw,64px)] lg:text-[64px] font-bold leading-[1.1] m-0">
               <TextReveal
                 text={t("projects.title_start")}
                 type="chars"

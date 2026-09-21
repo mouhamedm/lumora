@@ -289,7 +289,7 @@ export default function About() {
 
           {/* Section Title with Kinetic Reveal */}
           <h2
-            className="about__title font-display text-[clamp(32px,3.8vw,64px)] lg:text-[64px] leading-[1.15] font-bold mb-6 text-white text-center lg:text-left"
+            className="about__title font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.15] font-bold mb-6 text-white text-center lg:text-left"
             ref={titleRef}
           >
             <TextReveal

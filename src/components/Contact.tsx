@@ -146,7 +146,7 @@ export default function Contact() {
           </div>
 
           <h2
-            className="font-[var(--font-display)] text-[clamp(48px,6vw,80px)] leading-[1.05] font-bold mb-10"
+            className="font-[var(--font-display)] text-[clamp(38px,6vw,80px)] leading-[1.05] font-bold mb-10"
             ref={titleRef}
           >
             <span

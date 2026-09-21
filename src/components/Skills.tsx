@@ -151,7 +151,7 @@ export default function Skills() {
         </div>
 
         {/* Title */}
-        <h2 className="relative z-10 mx-auto max-w-4xl text-center font-[var(--font-display)] text-[clamp(36px,4.5vw,64px)] lg:text-[64px] leading-[1.1] font-bold tracking-tight mb-4">
+        <h2 className="relative z-10 mx-auto max-w-4xl text-center font-[var(--font-display)] text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.1] font-bold tracking-tight mb-4">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -178,7 +178,7 @@ export default function Skills() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="relative z-10 mx-auto mt-6 max-w-2xl text-center text-base text-zinc-400 md:text-lg dark:text-zinc-400"
+          className="relative z-10 mx-auto mt-6 max-w-2xl text-center text-sm sm:text-base text-zinc-400 md:text-lg dark:text-zinc-400"
         >
           {t("skills.subtitle")}
         </motion.p>
