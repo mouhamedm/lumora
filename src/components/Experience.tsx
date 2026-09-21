@@ -256,8 +256,9 @@ export default function Experience() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: header,
-            start: "top 88%",
+            start: "top 90%",
             once: true,
+            fastScrollEnd: true,
           },
         },
       );
@@ -315,10 +316,12 @@ export default function Experience() {
               scale: 1,
               duration: 0.85,
               ease: "power3.out",
+              clearProps: "transform",
               scrollTrigger: {
                 trigger: row,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
+                fastScrollEnd: true,
               },
             },
           );
@@ -335,8 +338,9 @@ export default function Experience() {
               ease: "back.out(1.8)",
               scrollTrigger: {
                 trigger: row,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
+                fastScrollEnd: true,
               },
             },
           );

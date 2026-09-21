@@ -160,8 +160,9 @@ export default function WhatIDo() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: header,
-            start: "top 88%",
+            start: "top 90%",
             once: true,
+            fastScrollEnd: true,
           },
         },
       );
@@ -177,10 +178,12 @@ export default function WhatIDo() {
             duration: 0.9,
             delay: 0.2,
             ease: "power3.out",
+            clearProps: "transform",
             scrollTrigger: {
               trigger: leftColRef.current,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
+              fastScrollEnd: true,
             },
           },
         );
@@ -198,10 +201,12 @@ export default function WhatIDo() {
             duration: 1,
             delay: 0.3,
             ease: "power3.out",
+            clearProps: "transform",
             scrollTrigger: {
               trigger: rightColRef.current,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
+              fastScrollEnd: true,
             },
           },
         );

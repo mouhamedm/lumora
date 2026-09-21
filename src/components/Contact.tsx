@@ -78,9 +78,12 @@ export default function Contact() {
             duration: 0.8,
             ease: "power3.out",
             stagger: 0.15,
+            clearProps: "transform",
             scrollTrigger: {
               trigger: section,
-              start: "top 65%",
+              start: "top 85%",
+              once: true,
+              fastScrollEnd: true,
             },
           },
         );
@@ -111,9 +114,12 @@ export default function Contact() {
             scale: 1,
             duration: 1,
             ease: "power3.out",
+            clearProps: "transform",
             scrollTrigger: {
               trigger: section,
-              start: "top 60%",
+              start: "top 85%",
+              once: true,
+              fastScrollEnd: true,
             },
           },
         );

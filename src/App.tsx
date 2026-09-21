@@ -34,11 +34,11 @@ function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
+      syncTouch: false,
+      touchMultiplier: 1,
     });
     lenisRef.current = lenis;
 
-    ScrollTrigger.config({ ignoreMobileResize: true });
     lenis.on('scroll', ScrollTrigger.update);
 
     const updateTicker = (time: number) => {
@@ -46,7 +46,13 @@ function App() {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
+
+    // Native scroll listener ensuring ScrollTrigger stays up to date on mobile
+    const handleNativeScroll = () => {
+      ScrollTrigger.update();
+    };
+    window.addEventListener('scroll', handleNativeScroll, { passive: true });
 
     // Smooth navigation on internal anchor clicks
     const handleAnchorClick = (e: MouseEvent) => {
@@ -69,8 +75,18 @@ function App() {
 
     document.addEventListener('click', handleAnchorClick);
 
+    // Recalculate ScrollTrigger on window resize / orientation change
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
     return () => {
       document.removeEventListener('click', handleAnchorClick);
+      window.removeEventListener('scroll', handleNativeScroll);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       lenisRef.current = null;
@@ -99,6 +115,9 @@ function App() {
       if (cancelled) return;
       fontsReadyRef.current = true;
       revealHero();
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
     };
 
     if ('fonts' in document) {
@@ -119,7 +138,13 @@ function App() {
     preloaderStartedRef.current = true;
     revealHero();
   }, [revealHero]);
-  const handlePreloaderComplete = useCallback(() => setIsLoading(false), []);
+
+  const handlePreloaderComplete = useCallback(() => {
+    setIsLoading(false);
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 120);
+  }, []);
 
   return (
     <>

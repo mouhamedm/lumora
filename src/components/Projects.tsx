@@ -556,8 +556,9 @@ export default function Projects() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
+            start: "top 88%",
             once: true,
+            fastScrollEnd: true,
           },
         },
       );
@@ -573,10 +574,12 @@ export default function Projects() {
           duration: 0.9,
           delay: 0.25,
           ease: "power3.out",
+          clearProps: "transform",
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
+            start: "top 88%",
             once: true,
+            fastScrollEnd: true,
           },
         },
       );

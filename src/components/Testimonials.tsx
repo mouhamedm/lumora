@@ -55,8 +55,9 @@ export default function Testimonials() {
           stagger: 0.15,
           scrollTrigger: {
             trigger: title,
-            start: "top 85%",
+            start: "top 88%",
             once: true,
+            fastScrollEnd: true,
           },
         },
       );
@@ -83,6 +84,7 @@ export default function Testimonials() {
               trigger: card,
               start: "top 90%",
               once: true,
+              fastScrollEnd: true,
             },
             delay: i * 0.2,
             onComplete: () => {

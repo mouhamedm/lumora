@@ -41,8 +41,9 @@ export default function About() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: content || section,
-            start: "top 85%",
+            start: "top 88%",
             once: true,
+            fastScrollEnd: true,
           },
         },
       );
@@ -59,10 +60,12 @@ export default function About() {
             ease: "power3.out",
             stagger: 0.12,
             delay: 0.25,
+            clearProps: "transform",
             scrollTrigger: {
               trigger: content || section,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
+              fastScrollEnd: true,
             },
           },
         );
@@ -80,10 +83,12 @@ export default function About() {
             duration: 0.75,
             ease: "power3.out",
             delay: 0.45,
+            clearProps: "transform",
             scrollTrigger: {
               trigger: content || section,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
+              fastScrollEnd: true,
             },
           },
         );
@@ -100,10 +105,12 @@ export default function About() {
             y: 0,
             duration: 1,
             ease: "power3.out",
+            clearProps: "transform",
             scrollTrigger: {
               trigger: imageWrapper,
-              start: "top 82%",
+              start: "top 85%",
               once: true,
+              fastScrollEnd: true,
             },
           },
         );

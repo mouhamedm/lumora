@@ -40,7 +40,7 @@ export const TextReveal: React.FC<TextRevealProps> = ({
         {
           yPercent: 110,
           opacity: 0,
-          rotateZ: type === "chars" ? 5 : 2,
+          rotateZ: type === "chars" ? 4 : 2,
         },
         {
           yPercent: 0,
@@ -50,10 +50,13 @@ export const TextReveal: React.FC<TextRevealProps> = ({
           stagger: type === "chars" ? 0.022 : 0.038,
           delay,
           ease: "power3.out",
+          clearProps: "transform,willChange",
           scrollTrigger: {
             trigger: triggerEl,
-            start: "top 88%",
+            start: "top 92%",
             once: true,
+            fastScrollEnd: true,
+            preventOverlaps: true,
           },
         },
       );

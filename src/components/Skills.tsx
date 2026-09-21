@@ -153,8 +153,8 @@ export default function Skills() {
         {/* Title */}
         <h2 className="relative z-10 mx-auto max-w-4xl text-center font-[var(--font-display)] text-[clamp(36px,4.5vw,64px)] lg:text-[64px] leading-[1.1] font-bold tracking-tight mb-4">
           <motion.span
-            initial={{ opacity: 0, filter: "blur(6px)", y: 12 }}
-            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="mr-2 inline-block text-white title-glow"
@@ -162,8 +162,8 @@ export default function Skills() {
             {t("skills.title_start")}
           </motion.span>
           <motion.span
-            initial={{ opacity: 0, filter: "blur(6px)", y: 12 }}
-            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeInOut" }}
             className="inline-block highlight"
