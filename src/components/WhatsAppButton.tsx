@@ -38,14 +38,15 @@ export default function WhatsAppButton({
   return (
     <AnimatePresence>
       {isLoaded && !isMenuOpen && (
-        <motion.div
-          key="whatsapp-container"
-          initial={{ opacity: 0, scale: 0.6, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: 20 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] flex flex-col items-end gap-3 pointer-events-none"
-        >
+        <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] flex flex-col items-end gap-3 pointer-events-none">
+          <motion.div
+            key="whatsapp-container"
+            initial={{ opacity: 0, scale: 0.6, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.6, y: 20 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="flex flex-col items-end gap-3"
+          >
       {/* Scroll to Top Button (appears directly above WhatsApp button after passing Hero) */}
       <AnimatePresence>
         {showScrollTop && (
@@ -147,7 +148,8 @@ export default function WhatsAppButton({
           />
         </motion.a>
       </div>
-        </motion.div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
