@@ -345,7 +345,7 @@ export default function About() {
               href="https://wa.me/2250719076206"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-magnetic inline-flex items-center gap-3 px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-[var(--accent)] rounded-full text-white text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_25px_rgba(76,141,255,0.3)] group"
+              className="btn-magnetic inline-flex items-center gap-3 px-8 py-3.5 bg-white/5 hover:bg-[var(--accent-soft)] border border-white/15 hover:border-[rgba(76,141,255,0.3)] rounded-full text-white text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(76,141,255,0.18)] group"
               ref={btnRef}
             >
               <span>{t("about.cta")}</span>

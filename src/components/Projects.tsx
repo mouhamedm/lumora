@@ -2,6 +2,7 @@ import * as React from "react";
 import { useEffect, useState, useCallback, useRef, forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
+import { useScroll, useMotionValueEvent } from "motion/react";
 import { Sparkles } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -522,16 +523,25 @@ export default function Projects() {
 
   const totalProjects = projectsData.length;
 
-  // Set up GSAP Pinned ScrollTrigger
+  // Track scroll progress with native Framer Motion / Motion useScroll (buttery smooth with Lenis, zero pinning glitches)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const adjusted = Math.min(latest * 1.02, 0.999);
+    const index = Math.min(
+      Math.floor(adjusted * totalProjects),
+      totalProjects - 1,
+    );
+    setActive(index);
+  });
+
+  // Entrance animations for eyebrow & deck wrapper
   useEffect(() => {
     const section = sectionRef.current;
-    const container = containerRef.current;
-    if (!section || !container) return;
-
-    const isMobile = window.innerWidth < 1024;
-    // Calibrated scroll distance with exit buffer for smooth unpinning
-    const perProjectScroll = isMobile ? 380 : 550;
-    const scrollDistance = (totalProjects - 1) * perProjectScroll + (isMobile ? 120 : 180);
+    if (!section) return;
 
     const ctx = gsap.context(() => {
       // Eyebrow entrance
@@ -546,7 +556,7 @@ export default function Projects() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 82%",
+            start: "top 85%",
             once: true,
           },
         },
@@ -565,60 +575,42 @@ export default function Projects() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 82%",
+            start: "top 85%",
             once: true,
           },
         },
       );
-
-      ScrollTrigger.create({
-        id: "projects-pin",
-        trigger: section,
-        start: "top top",
-        end: () => `+=${scrollDistance}`,
-        pin: container,
-        pinSpacing: true,
-        scrub: true,
-        anticipatePin: 0,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          // Small buffer at the end so last project doesn't unpin with an abrupt jerk
-          const adjusted = Math.min(progress * 1.04, 1);
-          const index = Math.min(
-            Math.floor(adjusted * totalProjects),
-            totalProjects - 1,
-          );
-          setActive(index);
-        },
-      });
     }, section);
 
     return () => ctx.revert();
-  }, [totalProjects]);
+  }, []);
 
   // Synchronize manual button clicks with page scroll position
   const handleNext = useCallback(() => {
     const nextIdx = Math.min(active + 1, totalProjects - 1);
     setActive(nextIdx);
-
-    const st = ScrollTrigger.getById("projects-pin");
-    if (st) {
-      const targetProgress = (nextIdx + 0.5) / totalProjects;
-      const targetY = st.start + targetProgress * (st.end - st.start);
-      window.scrollTo({ top: targetY, behavior: "smooth" });
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      const scrollTop = window.scrollY + rect.top;
+      const scrollHeight = sectionRef.current.offsetHeight - window.innerHeight;
+      if (scrollHeight > 0) {
+        const targetY = scrollTop + (nextIdx / (totalProjects - 1)) * scrollHeight;
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
     }
   }, [active, totalProjects]);
 
   const handlePrev = useCallback(() => {
     const prevIdx = Math.max(active - 1, 0);
     setActive(prevIdx);
-
-    const st = ScrollTrigger.getById("projects-pin");
-    if (st) {
-      const targetProgress = (prevIdx + 0.5) / totalProjects;
-      const targetY = st.start + targetProgress * (st.end - st.start);
-      window.scrollTo({ top: targetY, behavior: "smooth" });
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      const scrollTop = window.scrollY + rect.top;
+      const scrollHeight = sectionRef.current.offsetHeight - window.innerHeight;
+      if (scrollHeight > 0) {
+        const targetY = scrollTop + (prevIdx / (totalProjects - 1)) * scrollHeight;
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
     }
   }, [active, totalProjects]);
 
@@ -626,53 +618,56 @@ export default function Projects() {
     <section ref={sectionRef} className="relative w-full z-10" id="projects">
       <style>{PROJECTS_STYLES}</style>
 
-      {/* Pinned Viewport Container */}
-      <div
-        ref={containerRef}
-        className="w-full min-h-[100dvh] h-[100dvh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden will-change-transform"
-      >
-        {/* Header */}
-        <div className="mb-4 sm:mb-8 max-w-2xl">
-          <div className="projects-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-3 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
-            <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
-            {t("projects.eyebrow")}
+      {/* Multi-viewport scroll container for smooth, native CSS sticky scroll */}
+      <div className="relative w-full h-[360vh] max-lg:h-auto">
+        {/* Pinned Viewport Container via CSS Sticky */}
+        <div
+          ref={containerRef}
+          className="sticky top-0 w-full h-screen max-h-screen flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden max-lg:static max-lg:h-auto max-lg:min-h-0"
+        >
+          {/* Header */}
+          <div className="mb-4 sm:mb-8 max-w-2xl">
+            <div className="projects-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-3 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
+              <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+              {t("projects.eyebrow")}
+            </div>
+            <h2 className="font-[var(--font-display)] text-[clamp(28px,4.5vw,64px)] lg:text-[64px] font-bold leading-[1.1] m-0">
+              <TextReveal
+                text={t("projects.title_start")}
+                type="chars"
+                spanClassName="title-glow"
+                triggerRef={sectionRef}
+              />{" "}
+              <TextReveal
+                text={t("projects.title_highlight")}
+                type="chars"
+                spanClassName="highlight"
+                delay={0.2}
+                triggerRef={sectionRef}
+              />
+            </h2>
           </div>
-          <h2 className="font-[var(--font-display)] text-[clamp(28px,4.5vw,64px)] lg:text-[64px] font-bold leading-[1.1] m-0">
-            <TextReveal
-              text={t("projects.title_start")}
-              type="chars"
-              spanClassName="title-glow"
-              triggerRef={sectionRef}
-            />{" "}
-            <TextReveal
-              text={t("projects.title_highlight")}
-              type="chars"
-              spanClassName="highlight"
-              delay={0.2}
-              triggerRef={sectionRef}
-            />
-          </h2>
-        </div>
 
-        {/* 3D Showcase Deck Driven by Scroll */}
-        <div className="projects-deck-wrapper w-full">
-          <ProjectShowcase
-            testimonials={projectsData}
-            active={active}
-            onNext={handleNext}
-            onPrev={handlePrev}
-            buttonInscriptions={{
-              previousButton: isFr ? "Précédent" : "Previous",
-              nextButton: isFr ? "Suivant" : "Next",
-              openWebAppButton: isFr ? "Voir" : "View",
-            }}
-            outlineColor="rgba(255, 255, 255, 0.02)"
-            colors={{
-              name: "#FFFFFF",
-              position: "var(--accent)",
-              testimony: "var(--text-secondary)",
-            }}
-          />
+          {/* 3D Showcase Deck Driven by Scroll */}
+          <div className="projects-deck-wrapper w-full">
+            <ProjectShowcase
+              testimonials={projectsData}
+              active={active}
+              onNext={handleNext}
+              onPrev={handlePrev}
+              buttonInscriptions={{
+                previousButton: isFr ? "Précédent" : "Previous",
+                nextButton: isFr ? "Suivant" : "Next",
+                openWebAppButton: isFr ? "Voir" : "View",
+              }}
+              outlineColor="rgba(255, 255, 255, 0.02)"
+              colors={{
+                name: "#FFFFFF",
+                position: "var(--accent)",
+                testimony: "var(--text-secondary)",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

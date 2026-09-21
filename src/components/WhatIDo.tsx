@@ -220,15 +220,15 @@ export default function WhatIDo() {
     <section
       id="what-i-do"
       ref={containerRef}
-      className="relative w-full bg-[var(--color-bg-base)]"
+      className="relative w-full bg-[var(--color-bg-base)] pt-8 sm:pt-12 md:pt-16"
     >
       {/* Scrollable multi-viewport container to drive the sticky reveal */}
       <div className="relative w-full h-[400vh] max-lg:h-auto">
-        <div className="sticky top-0 w-full h-screen max-h-screen flex flex-col justify-center py-4 lg:py-6 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 max-lg:static max-lg:h-auto max-lg:min-h-0">
+        <div className="sticky top-0 w-full h-screen max-h-screen flex flex-col justify-center py-6 lg:py-8 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 max-lg:static max-lg:h-auto max-lg:min-h-0">
           {/* Section Header */}
-          <div ref={headerRef} className="text-center mb-4 lg:mb-6 shrink-0">
+          <div ref={headerRef} className="text-center mb-5 lg:mb-7 shrink-0">
             <div
-              className="whatido-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-2 px-3.5 py-1 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_16px_rgba(76,141,255,0.12)]"
+              className="whatido-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-2.5 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_16px_rgba(76,141,255,0.12)]"
               aria-hidden="true"
             >
               <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[var(--accent)]" />

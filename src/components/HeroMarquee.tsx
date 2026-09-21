@@ -58,7 +58,7 @@ export default function HeroMarquee() {
   );
 
   return (
-    <div className="relative w-full overflow-hidden py-6 md:py-10 my-4 z-10 select-none">
+    <div className="relative w-full overflow-hidden py-6 md:py-10 mt-6 md:mt-10 mb-20 sm:mb-28 md:mb-36 lg:mb-44 z-10 select-none">
       <style>{HERO_MARQUEE_STYLES}</style>
 
       {/* Horizontal banner wrapper with tall height, glassmorphism & accent glows */}
