@@ -2,12 +2,13 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { motion } from 'framer-motion';
 
-function PulsatingDots({ dotClassName = 'bg-accent' }: { dotClassName?: string }) {
+function PulsatingDots({ dotClassName = '' }: { dotClassName?: string }) {
   return (
     <div className="flex items-center justify-center">
       <div className="flex space-x-2">
         <motion.div
           className={`h-3 w-3 rounded-full ${dotClassName}`}
+          style={{ backgroundColor: 'var(--accent, #4c8dff)' }}
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.5, 1, 0.5],
@@ -20,6 +21,7 @@ function PulsatingDots({ dotClassName = 'bg-accent' }: { dotClassName?: string }
         />
         <motion.div
           className={`h-3 w-3 rounded-full ${dotClassName}`}
+          style={{ backgroundColor: 'var(--accent, #4c8dff)' }}
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.5, 1, 0.5],
@@ -33,6 +35,7 @@ function PulsatingDots({ dotClassName = 'bg-accent' }: { dotClassName?: string }
         />
         <motion.div
           className={`h-3 w-3 rounded-full ${dotClassName}`}
+          style={{ backgroundColor: 'var(--accent, #4c8dff)' }}
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.5, 1, 0.5],
@@ -134,7 +137,7 @@ export default function Preloader({ onStart, onComplete }: PreloaderProps) {
         </div>
 
         <div className="preloader__dots-wrapper" ref={loaderWrapRef}>
-          <PulsatingDots dotClassName="bg-accent shadow-[0_0_12px_rgba(76,141,255,0.7)]" />
+          <PulsatingDots dotClassName="shadow-[0_0_12px_rgba(76,141,255,0.7)]" />
         </div>
       </div>
     </div>

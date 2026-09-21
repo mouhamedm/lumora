@@ -220,7 +220,7 @@ export default function WhatIDo() {
     <section
       id="what-i-do"
       ref={containerRef}
-      className="relative w-full bg-[var(--color-bg-base)] pt-8 sm:pt-12 md:pt-16"
+      className="relative w-full bg-[var(--color-bg-base)] pt-8 sm:pt-12 md:pt-16 mb-16 md:mb-28 lg:mb-32"
     >
       {/* Scrollable multi-viewport container to drive the sticky reveal */}
       <div className="relative w-full h-[400vh] max-lg:h-auto">
