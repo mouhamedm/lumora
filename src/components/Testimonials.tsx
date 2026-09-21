@@ -138,7 +138,7 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full [perspective:1500px]">
           {defaultTestimonials.map((testi, index) => (
             <div
-              className="relative bg-[rgba(23,23,26,0.6)] backdrop-blur-[12px] border border-white/10 rounded-[24px] p-6 sm:p-8 md:p-10 flex flex-col justify-between shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-[box-shadow,border-color] duration-400 hover:-translate-y-2.5 hover:scale-[1.02] hover:border-[rgba(76,141,255,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_0_20px_rgba(76,141,255,0.1)] [transform-style:preserve-3d] will-change-transform"
+              className="relative bg-[rgba(23,23,26,0.6)] backdrop-blur-[12px] border border-white/10 rounded-[24px] p-6 sm:p-8 md:p-10 flex flex-col justify-between shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-[box-shadow,border-color,transform] duration-400 hover:-translate-y-2.5 hover:scale-[1.02] hover:border-[rgba(76,141,255,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_0_20px_rgba(76,141,255,0.1)] [transform-style:preserve-3d]"
               key={testi.id}
               ref={(el) => {
                 cardRefs.current[index] = el;

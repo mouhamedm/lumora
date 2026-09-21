@@ -209,7 +209,7 @@ export default function About() {
         {/* LEFT COLUMN: Image & 3D Interactive Visual Card */}
         <div className="relative perspective-[1200px] flex justify-center lg:justify-end items-center w-full">
           <div
-            className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] aspect-[4/5] transform-3d will-change-transform"
+            className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] aspect-[4/5] transform-3d"
             ref={imageWrapperRef}
           >
             {/* Glow orb — contained within image bounds */}
@@ -321,7 +321,7 @@ export default function About() {
           {/* Descriptive Text Lines */}
           <div className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed mb-8 flex flex-col gap-4">
             <p
-              className="will-change-transform"
+              className=""
               ref={(el) => {
                 linesRef.current[0] = el;
               }}
@@ -329,7 +329,7 @@ export default function About() {
               {t("about.p1")}
             </p>
             <p
-              className="will-change-transform"
+              className=""
               ref={(el) => {
                 linesRef.current[1] = el;
               }}
@@ -337,7 +337,7 @@ export default function About() {
               {t("about.p2")}
             </p>
             <p
-              className="will-change-transform"
+              className=""
               ref={(el) => {
                 linesRef.current[2] = el;
               }}

@@ -253,7 +253,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
         }}
         aria-hidden="true"
       >
-        <div ref={giantParallaxRef} className="will-change-transform w-full">
+        <div ref={giantParallaxRef} className="w-full">
           <div className="hero-watermark-track">
             {/* Track A */}
             <div className="flex items-center space-x-12 shrink-0 pr-12 hero-watermark-text">
@@ -411,12 +411,12 @@ export default function Hero({ isLoaded = false }: HeroProps) {
       {/* RIGHT */}
       <div className="hero__right -translate-y-10 max-[768px]:relative max-[768px]:w-full max-[768px]:h-[340px] max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center max-[768px]:translate-y-0">
         <div
-          className="hero__scene relative h-[480px] [perspective:1400px] z-[1] max-[960px]:h-[320px] max-[768px]:w-full max-[768px]:h-full max-[768px]:scale-[0.85] max-[768px]:[transform-origin:center_center] before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[340px] before:h-[340px] before:rounded-full before:bg-[radial-gradient(circle,rgba(76,141,255,0.15)_0%,transparent_70%)] before:[filter:blur(40px)] before:pointer-events-none before:[animation:float-orb_8s_ease-in-out_infinite] max-[768px]:before:[filter:none]"
+          className="hero__scene relative h-[480px] [perspective:1400px] z-[1] max-[960px]:h-[320px] max-[768px]:w-full max-[768px]:h-full max-[768px]:scale-[0.85] max-[768px]:[transform-origin:center_center] before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[340px] before:h-[340px] before:rounded-full before:bg-[radial-gradient(circle,rgba(76,141,255,0.15)_0%,transparent_70%)] before:[filter:blur(40px)] before:translate-z-0 before:pointer-events-none before:[animation:float-orb_8s_ease-in-out_infinite] max-[768px]:before:[filter:none]"
           ref={sceneRef}
         >
           {/* Main IDE */}
           <div
-            className="code-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] z-[1] max-[960px]:w-[220px] max-[768px]:w-[260px] rounded-[14px] bg-[rgba(23,23,26,0.85)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.08)] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7),0_0_0_1px_rgba(76,141,255,0.05),inset_0_1px_0_rgba(255,255,255,0.06)] [transform-style:preserve-3d] will-change-transform transition-shadow duration-[400ms] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(76,141,255,0.2),0_0_40px_rgba(76,141,255,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
+            className="code-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] z-[1] max-[960px]:w-[220px] max-[768px]:w-[260px] rounded-[14px] bg-[rgba(23,23,26,0.85)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.08)] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7),0_0_0_1px_rgba(76,141,255,0.05),inset_0_1px_0_rgba(255,255,255,0.06)] [transform-style:preserve-3d] transition-shadow duration-[400ms] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(76,141,255,0.2),0_0_40px_rgba(76,141,255,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
             ref={(el) => {
               cardRefs.current[0] = el;
             }}
@@ -466,7 +466,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
           {/* Card: Expérience */}
           <div
-            className="hero__float-card absolute top-[10px] right-[10px] z-[3] bg-[rgba(23,23,26,0.75)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.06)] rounded-[14px] px-5 py-4 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] [transform-style:preserve-3d] will-change-transform max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)] max-[960px]:scale-[0.85]"
+            className="hero__float-card absolute top-[10px] right-[10px] z-[3] bg-[rgba(23,23,26,0.75)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.06)] rounded-[14px] px-5 py-4 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] [transform-style:preserve-3d] max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)] max-[960px]:scale-[0.85]"
             ref={(el) => {
               cardRefs.current[1] = el;
             }}
@@ -497,7 +497,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
           {/* Card: Projets */}
           <div
-            className="hero__float-card absolute bottom-[60px] left-[-20px] z-[3] bg-[rgba(23,23,26,0.75)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.06)] rounded-[14px] px-5 py-4 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] [transform-style:preserve-3d] will-change-transform max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)] max-[960px]:scale-[0.85]"
+            className="hero__float-card absolute bottom-[60px] left-[-20px] z-[3] bg-[rgba(23,23,26,0.75)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.06)] rounded-[14px] px-5 py-4 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] [transform-style:preserve-3d] max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)] max-[960px]:scale-[0.85]"
             ref={(el) => {
               cardRefs.current[2] = el;
             }}
@@ -527,7 +527,7 @@ export default function Hero({ isLoaded = false }: HeroProps) {
 
           {/* Card: Focus */}
           <div
-            className="hero__float-card absolute z-[3] bg-[rgba(23,23,26,0.75)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.06)] rounded-[14px] px-5 py-4 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] [transform-style:preserve-3d] will-change-transform max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)] max-[960px]:scale-[0.85]"
+            className="hero__float-card absolute z-[3] bg-[rgba(23,23,26,0.75)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.06)] rounded-[14px] px-5 py-4 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] [transform-style:preserve-3d] max-[768px]:backdrop-blur-none max-[768px]:bg-[#1c1c20] max-[768px]:shadow-[0_12px_28px_rgba(0,0,0,0.5)] max-[960px]:scale-[0.85]"
             style={{ top: "62%", right: -30, marginTop: -10 }}
             ref={(el) => {
               cardRefs.current[3] = el;

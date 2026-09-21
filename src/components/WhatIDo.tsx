@@ -323,12 +323,12 @@ export default function WhatIDo() {
               className="lg:col-span-6 relative w-full h-[480px] sm:h-[500px] md:h-[520px] lg:h-[460px] flex items-center justify-center mt-8 lg:mt-0"
             >
               {/* Subtle ambient backglow */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-3xl blur-3xl opacity-60 pointer-events-none" />
+              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-3xl blur-3xl opacity-60 pointer-events-none translate-z-0" />
 
               {/* CARD 1: Creative 3D & WebGL Canvas Preview */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-[opacity,transform] duration-500",
                   isCard1
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",
@@ -430,7 +430,7 @@ export default function WhatIDo() {
               {/* CARD 2: Full-Stack Architecture & Speed */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-[opacity,transform] duration-500",
                   isCard2
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",
@@ -508,7 +508,7 @@ export default function WhatIDo() {
               {/* CARD 3: Design Systems & Immersive UI/UX */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-[opacity,transform] duration-500",
                   isCard3
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",
@@ -575,7 +575,7 @@ export default function WhatIDo() {
               {/* CARD 4: Mobile-First & Applications Cross-Platform */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-[opacity,transform] duration-500",
                   isCard4
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",

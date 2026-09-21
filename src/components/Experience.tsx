@@ -111,7 +111,7 @@ const ExperienceCard: React.FC<{
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || window.matchMedia("(hover: none)").matches) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -150,7 +150,7 @@ const ExperienceCard: React.FC<{
           : "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, box-shadow 0.3s",
       }}
       className={cn(
-        "relative rounded-2xl bg-[rgba(23,23,26,0.75)] border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.5)] overflow-hidden cursor-default group will-change-transform",
+        "relative rounded-2xl bg-[rgba(23,23,26,0.75)] border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.5)] overflow-hidden cursor-default group",
         item.isCurrent
           ? "border-[rgba(76,141,255,0.35)] shadow-[0_0_30px_rgba(76,141,255,0.15)]"
           : "hover:border-white/20 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7)]",
@@ -166,7 +166,7 @@ const ExperienceCard: React.FC<{
 
       {/* Top ambient color glow */}
       <div
-        className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none transition-opacity duration-300 group-hover:opacity-40"
+        className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none translate-z-0 transition-opacity duration-300 group-hover:opacity-40"
         style={{ backgroundColor: item.accentColor }}
       />
 
@@ -358,7 +358,7 @@ export default function Experience() {
       className="relative py-16 md:py-32 px-4 sm:px-6 md:px-12 max-w-[1340px] w-full mx-auto overflow-hidden bg-[var(--color-bg-base)]"
     >
       {/* Background Decorative Lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-blue-600/10 via-cyan-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-blue-600/10 via-cyan-500/5 to-transparent rounded-full blur-3xl pointer-events-none translate-z-0" />
 
       <div className="relative z-10 w-full flex flex-col items-center">
         {/* Section Header */}
