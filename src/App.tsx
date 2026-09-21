@@ -27,28 +27,35 @@ function App() {
   const fontsReadyRef = useRef(false);
   const lenisRef = useRef<Lenis | null>(null);
 
-  // Smooth scroll with Lenis synchronized with GSAP ScrollTrigger
+  // Smooth scroll with Lenis on desktop; 100% native smooth scroll on touch/mobile
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      syncTouch: false,
-      touchMultiplier: 1,
-    });
-    lenisRef.current = lenis;
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
 
-    lenis.on('scroll', ScrollTrigger.update);
+    let updateTicker: ((time: number) => void) | null = null;
 
-    const updateTicker = (time: number) => {
-      lenis.raf(time * 1000);
-    };
+    if (!isTouch) {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+      });
+      lenisRef.current = lenis;
 
-    gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(500, 33);
+      lenis.on('scroll', ScrollTrigger.update);
 
-    // Native scroll listener ensuring ScrollTrigger stays up to date on mobile
+      updateTicker = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(updateTicker);
+      gsap.ticker.lagSmoothing(500, 33);
+    }
+
+    // Native scroll listener ensuring ScrollTrigger stays up to date on mobile / touch
     const handleNativeScroll = () => {
       ScrollTrigger.update();
     };
@@ -62,12 +69,21 @@ function App() {
       if (href && href.startsWith('#')) {
         if (href === '#top') {
           e.preventDefault();
-          lenis.scrollTo(0, { duration: 1.3 });
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(0, { duration: 1.3 });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         } else if (href.length > 1) {
           const element = document.querySelector(href);
           if (element) {
             e.preventDefault();
-            lenis.scrollTo(element as HTMLElement, { offset: -20, duration: 1.3 });
+            if (lenisRef.current) {
+              lenisRef.current.scrollTo(element as HTMLElement, { offset: -20, duration: 1.3 });
+            } else {
+              const top = element.getBoundingClientRect().top + window.scrollY - 20;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }
           }
         }
       }
@@ -87,9 +103,13 @@ function App() {
       window.removeEventListener('scroll', handleNativeScroll);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
-      gsap.ticker.remove(updateTicker);
-      lenis.destroy();
-      lenisRef.current = null;
+      if (updateTicker) {
+        gsap.ticker.remove(updateTicker);
+      }
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
     };
   }, []);
 

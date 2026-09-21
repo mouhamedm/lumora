@@ -70,7 +70,7 @@ export default function Preloader({ onStart, onComplete }: PreloaderProps) {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          gsap.delayedCall(1.5, onComplete);
+          onComplete();
         }
       });
 

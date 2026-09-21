@@ -225,11 +225,11 @@ export default function WhatIDo() {
     <section
       id="what-i-do"
       ref={containerRef}
-      className="relative w-full bg-[var(--color-bg-base)] pt-8 sm:pt-12 md:pt-16 mb-16 md:mb-28 lg:mb-32"
+      className="relative w-full bg-[var(--color-bg-base)] pt-12 sm:pt-16 md:pt-20 lg:pt-16 mb-16 md:mb-28 lg:mb-32"
     >
-      {/* Scrollable multi-viewport container to drive the sticky reveal */}
-      <div className="relative w-full h-[400vh] max-lg:h-auto">
-        <div className="sticky top-0 w-full h-screen max-h-screen flex flex-col justify-center py-6 lg:py-8 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 max-lg:static max-lg:h-auto max-lg:min-h-0">
+      {/* Scrollable multi-viewport container to drive the sticky reveal on desktop, natural flow on mobile */}
+      <div className="relative w-full h-auto lg:h-[400vh]">
+        <div className="relative static h-auto min-h-0 w-full flex flex-col justify-center py-8 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 lg:sticky lg:top-0 lg:h-screen lg:max-h-screen lg:py-8">
           {/* Section Header */}
           <div ref={headerRef} className="text-center mb-5 lg:mb-7 shrink-0">
             <div
@@ -239,7 +239,7 @@ export default function WhatIDo() {
               <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[var(--accent)]" />
               {t("whatido.eyebrow")}
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-[1.15] font-bold text-white mb-2">
+            <h2 className="font-display text-[clamp(32px,4vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
               <TextReveal
                 text={t("whatido.title_start")}
                 type="chars"
@@ -320,7 +320,7 @@ export default function WhatIDo() {
             {/* Right Column: Dynamic Interactive Visual Cards (NO external images) */}
             <div
               ref={rightColRef}
-              className="lg:col-span-6 relative w-full h-[400px] sm:h-[430px] md:h-[460px] flex items-center justify-center max-lg:mt-6"
+              className="lg:col-span-6 relative w-full h-[480px] sm:h-[500px] md:h-[520px] lg:h-[460px] flex items-center justify-center mt-8 lg:mt-0"
             >
               {/* Subtle ambient backglow */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-3xl blur-3xl opacity-60 pointer-events-none" />

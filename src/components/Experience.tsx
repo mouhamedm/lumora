@@ -444,7 +444,7 @@ export default function Experience() {
                     className={cn(
                       "experience-card-col w-full lg:w-[calc(50%-48px)]",
                       isEven ? "experience-col-left lg:order-1" : "experience-col-right lg:order-2",
-                      "max-lg:pl-9 sm:max-lg:pl-16",
+                      "pl-9 sm:pl-16 lg:pl-0",
                     )}
                   >
                     <ExperienceCard item={item} />

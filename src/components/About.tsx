@@ -280,7 +280,7 @@ export default function About() {
         </div>
 
         {/* RIGHT COLUMN: Content */}
-        <div className="about__content flex flex-col items-start max-w-[540px] lg:max-w-[560px] w-full max-lg:items-center max-lg:text-center max-lg:mx-auto">
+        <div className="about__content flex flex-col items-center text-center mx-auto lg:items-start lg:text-left lg:mx-0 max-w-[540px] lg:max-w-[560px] w-full">
           {/* Eyebrow Badge */}
           <div className="about-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-4 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
             <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
@@ -289,7 +289,7 @@ export default function About() {
 
           {/* Section Title with Kinetic Reveal */}
           <h2
-            className="about__title font-display text-[clamp(32px,3.8vw,64px)] lg:text-[64px] leading-[1.15] font-bold mb-6 text-white max-lg:text-center"
+            className="about__title font-display text-[clamp(32px,3.8vw,64px)] lg:text-[64px] leading-[1.15] font-bold mb-6 text-white text-center lg:text-left"
             ref={titleRef}
           >
             <TextReveal

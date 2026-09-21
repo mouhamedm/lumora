@@ -388,7 +388,7 @@ export const ProjectShowcase = ({
             )}
 
             {/* Project Description */}
-            <p className="font-body text-xs sm:text-sm md:text-base leading-relaxed text-[var(--text-secondary)] mb-5 sm:mb-8 md:mb-10 max-w-xl">
+            <p className="font-body text-xs sm:text-sm md:text-base leading-relaxed text-[var(--text-secondary)] mb-3 sm:mb-8 md:mb-10 max-w-xl line-clamp-2 sm:line-clamp-none">
               {currentProject.quote}
             </p>
           </motion.div>
@@ -621,15 +621,15 @@ export default function Projects() {
     <section ref={sectionRef} className="relative w-full z-10" id="projects">
       <style>{PROJECTS_STYLES}</style>
 
-      {/* Multi-viewport scroll container for smooth, native CSS sticky scroll */}
-      <div className="relative w-full h-[360vh] max-lg:h-auto">
+      {/* Multi-viewport scroll container for smooth, native CSS sticky scroll on all devices */}
+      <div className="relative w-full h-[320vh] sm:h-[340vh] lg:h-[360vh]">
         {/* Pinned Viewport Container via CSS Sticky */}
         <div
           ref={containerRef}
-          className="sticky top-0 w-full h-screen max-h-screen flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden max-lg:static max-lg:h-auto max-lg:min-h-0"
+          className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden"
         >
           {/* Header */}
-          <div className="mb-4 sm:mb-8 max-w-2xl">
+          <div className="mb-2 sm:mb-6 md:mb-8 max-w-2xl">
             <div className="projects-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-3 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
               <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
               {t("projects.eyebrow")}
