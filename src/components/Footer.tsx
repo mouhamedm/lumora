@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
 import githubIcon from '../assets/icons/github-icon.svg';
 import linkedinIcon from '../assets/icons/linkedin_icon.svg';
-import whatsappIcon from '../assets/icons/whatsapp-icon.svg';
+import whatsappIcon from '../assets/icons/whatsapp.svg';
 
 // Register ScrollTrigger safely
 if (typeof window !== 'undefined') {

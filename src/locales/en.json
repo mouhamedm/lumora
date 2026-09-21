@@ -58,10 +58,8 @@
     "p1_desc": "Modern showcase site for a consulting agency, featuring an ISO certification catalog and an interactive, animated quote request system. The architecture emphasizes brand authority and seamless lead generation.",
     "p2_title": "Stride",
     "p2_desc": "Interactive 3D sneaker experience built with Next.js, Three.js, and GSAP for an immersive product showcase. Users can freely manipulate the model in full 360 degrees and inspect every technical detail in real time.",
-    "p3_title": "Prestige Dining",
-    "p3_desc": "An immersive and refined web experience designed for a gourmet establishment, highlighting culinary art through subtle animations. Every interaction evokes luxury and elegance to entice guests to book an unforgettable table.",
-    "p4_title": "MokaNoir",
-    "p4_desc": "Modern online store for an artisanal coffee roaster, offering a seamless coffee selection experience and a dynamic interactive cart. A warm aesthetic that highlights artisanal roasting while optimizing every step of the order process.",
+    "p3_title": "Ghost",
+    "p3_desc": "Streetwear drop showcase, built with Next.js, TypeScript and GSAP ScrollTrigger, featuring glitch UI, a custom cursor and a full multi-page architecture.",
     "p5_title": "Pulse",
     "p5_desc": "Smartwatch product page combining an immersive carousel, custom cursor, and GSAP-driven storytelling. A futuristic presentation engineered to captivate visitors and highlight advanced connected features."
   },
@@ -110,7 +108,10 @@
     "p2_desc": "Developing blazing-fast applications scoring 100/100 on Lighthouse, featuring real-time data sync, optimized APIs, and bulletproof maintainable code.",
     "p3_number": "03",
     "p3_title": "Design Systems & Immersive UI/UX",
-    "p3_desc": "Crafting robust design systems, pixel-perfect modular components, and bespoke micro-interactions for a truly unforgettable user experience."
+    "p3_desc": "Crafting robust design systems, pixel-perfect modular components, and bespoke micro-interactions for a truly unforgettable user experience.",
+    "p4_number": "04",
+    "p4_title": "Mobile-First & Cross-Platform Apps",
+    "p4_desc": "Building high-performance mobile applications with Flutter, delivering a seamless native experience on both iOS and Android from a single codebase."
   },
   "experience": {
     "eyebrow": "Journey",
@@ -122,7 +123,7 @@
     "freelance_period": "2023 — Present",
     "freelance_role": "Creative Web & Frontend Developer",
     "freelance_org": "Freelance / Independent",
-    "freelance_desc": "Designing and delivering high-end web platforms for various brands and agencies (ID Consult, Inadia Shop, Stride 3D Sneakers, Prestige Dining, etc.). Performance optimization, interactive animations, and real-time backend integrations.",
+    "freelance_desc": "Designing and delivering high-end web platforms for various brands and agencies (ID Consult, Inadia Shop, Stride 3D Sneakers, Ghost, etc.). Performance optimization, interactive animations, and real-time backend integrations.",
     "kabakoo_period": "2022 — 2023",
     "kabakoo_role": "Digital & Advanced Web Developer",
     "kabakoo_org": "Kabakoo Academies",

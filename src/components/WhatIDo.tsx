@@ -1,11 +1,24 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useScroll, useMotionValueEvent } from "motion/react";
-import { Sparkles, Code2, Cpu, Layers, Zap, Gauge, ShieldCheck, Box, Activity, ArrowRight } from "lucide-react";
+import {
+  Sparkles,
+  Code2,
+  Cpu,
+  Layers,
+  Zap,
+  Gauge,
+  ShieldCheck,
+  Box,
+  Activity,
+  ArrowRight,
+  Smartphone,
+  CheckCircle2,
+} from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../lib/utils";
-import TextReveal from "./ui/TextReveal";
+import TextReveal from "./TextReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,12 +67,12 @@ const PointItem: React.FC<PointItemProps> = ({
       )}
     >
       {/* Number and Icon Header */}
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-2.5">
         <div
           className={cn(
-            "w-9 h-9 rounded-xl flex items-center justify-center text-xs font-[var(--font-mono)] font-bold transition-all duration-300",
+            "w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl flex items-center justify-center text-xs sm:text-[13px] font-[var(--font-mono)] font-bold transition-all duration-300 shrink-0",
             isActive
-              ? "bg-[var(--accent)] text-white shadow-[0_0_20px_rgba(76,141,255,0.4)]"
+              ? "bg-[var(--accent)] text-white shadow-[0_0_18px_rgba(76,141,255,0.4)]"
               : "bg-white/5 text-zinc-500 border border-white/10",
           )}
         >
@@ -67,9 +80,9 @@ const PointItem: React.FC<PointItemProps> = ({
         </div>
         <div
           className={cn(
-            "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all duration-300",
+            "inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-medium transition-all duration-300",
             isCurrent
-              ? "bg-[var(--accent-soft)] text-[var(--accent)] border border-[rgba(76,141,255,0.3)] shadow-[0_0_15px_rgba(76,141,255,0.2)]"
+              ? "bg-[var(--accent-soft)] text-[var(--accent)] border border-[rgba(76,141,255,0.3)] shadow-[0_0_14px_rgba(76,141,255,0.2)]"
               : "bg-white/5 text-zinc-400 border border-white/5",
           )}
         >
@@ -79,8 +92,8 @@ const PointItem: React.FC<PointItemProps> = ({
       </div>
 
       {/* Progress track & Content */}
-      <div className="w-full flex pl-1 sm:pl-3">
-        <div className="w-[36px] sm:w-[40px] flex items-start justify-center relative shrink-0">
+      <div className="w-full flex pl-1 sm:pl-2">
+        <div className="w-[28px] sm:w-[32px] flex items-start justify-center relative shrink-0">
           {/* Base track line */}
           <div className="h-full w-[2px] bg-white/10 absolute top-0 left-1/2 -translate-x-1/2 rounded-full" />
           {/* Active filled line */}
@@ -90,10 +103,10 @@ const PointItem: React.FC<PointItemProps> = ({
           />
         </div>
 
-        <div className="w-[calc(100%-36px)] sm:w-[calc(100%-40px)] pl-3 sm:pl-4 pb-8 sm:pb-10">
+        <div className="w-[calc(100%-28px)] sm:w-[calc(100%-32px)] pl-3 sm:pl-4 pb-3.5 sm:pb-4">
           <h3
             className={cn(
-              "font-display text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 transition-colors duration-300",
+              "font-display text-base sm:text-lg md:text-xl lg:text-[22px] font-bold mb-1.5 transition-colors duration-300 leading-snug",
               isActive ? "text-white" : "text-zinc-500",
             )}
           >
@@ -101,7 +114,7 @@ const PointItem: React.FC<PointItemProps> = ({
           </h3>
           <p
             className={cn(
-              "font-[var(--font-body)] text-xs sm:text-sm md:text-base leading-relaxed max-w-[440px] transition-colors duration-300",
+              "font-[var(--font-body)] text-xs sm:text-sm md:text-[15px] leading-relaxed max-w-[480px] transition-colors duration-300",
               isActive ? "text-zinc-300" : "text-zinc-500",
             )}
           >
@@ -198,10 +211,10 @@ export default function WhatIDo() {
     return () => ctx.revert();
   }, []);
 
-  // State calculations for crossfading visual cards
-  const isCard1 = scrollProgress <= 0.35;
-  const isCard2 = scrollProgress > 0.35 && scrollProgress <= 0.68;
-  const isCard3 = scrollProgress > 0.68;
+  const isCard1 = scrollProgress <= 0.25;
+  const isCard2 = scrollProgress > 0.25 && scrollProgress <= 0.5;
+  const isCard3 = scrollProgress > 0.5 && scrollProgress <= 0.75;
+  const isCard4 = scrollProgress > 0.75;
 
   return (
     <section
@@ -210,18 +223,18 @@ export default function WhatIDo() {
       className="relative w-full bg-[var(--color-bg-base)]"
     >
       {/* Scrollable multi-viewport container to drive the sticky reveal */}
-      <div className="relative w-full h-[280vh] max-lg:h-auto">
-        <div className="sticky top-0 w-full min-h-screen flex flex-col justify-center py-10 sm:py-16 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 max-lg:static max-lg:min-h-0">
+      <div className="relative w-full h-[400vh] max-lg:h-auto">
+        <div className="sticky top-0 w-full h-screen max-h-screen flex flex-col justify-center py-4 lg:py-6 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 max-lg:static max-lg:h-auto max-lg:min-h-0">
           {/* Section Header */}
-          <div ref={headerRef} className="text-center mb-10 md:mb-16">
+          <div ref={headerRef} className="text-center mb-4 lg:mb-6 shrink-0">
             <div
-              className="whatido-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-4 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]"
+              className="whatido-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-2 px-3.5 py-1 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_16px_rgba(76,141,255,0.12)]"
               aria-hidden="true"
             >
-              <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[var(--accent)]" />
               {t("whatido.eyebrow")}
             </div>
-            <h2 className="font-display text-[clamp(32px,4vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-[1.15] font-bold text-white mb-2">
               <TextReveal
                 text={t("whatido.title_start")}
                 type="chars"
@@ -247,7 +260,7 @@ export default function WhatIDo() {
                 </>
               ) : null}
             </h2>
-            <div className="font-[var(--font-body)] text-sm md:text-base text-[var(--text-secondary)] max-w-[620px] mx-auto leading-relaxed">
+            <div className="font-[var(--font-body)] text-xs sm:text-sm text-[var(--text-secondary)] max-w-[580px] mx-auto leading-relaxed">
               <TextReveal
                 text={t("whatido.subtitle")}
                 type="words"
@@ -258,15 +271,15 @@ export default function WhatIDo() {
           </div>
 
           {/* Grid Layout: Left Progress Points & Right Dynamic Visual Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
             {/* Left Column: Vertical Reveal Items */}
-            <div ref={leftColRef} className="lg:col-span-6 flex flex-col justify-center space-y-4">
+            <div ref={leftColRef} className="lg:col-span-6 flex flex-col justify-center space-y-1 sm:space-y-1.5">
               <PointItem
                 number={t("whatido.p1_number")}
                 title={t("whatido.p1_title")}
                 description={t("whatido.p1_desc")}
                 thresholdStart={0}
-                thresholdEnd={0.33}
+                thresholdEnd={0.25}
                 scrollProgress={scrollProgress}
                 icon={Code2}
               />
@@ -274,8 +287,8 @@ export default function WhatIDo() {
                 number={t("whatido.p2_number")}
                 title={t("whatido.p2_title")}
                 description={t("whatido.p2_desc")}
-                thresholdStart={0.33}
-                thresholdEnd={0.66}
+                thresholdStart={0.25}
+                thresholdEnd={0.5}
                 scrollProgress={scrollProgress}
                 icon={Cpu}
               />
@@ -283,34 +296,46 @@ export default function WhatIDo() {
                 number={t("whatido.p3_number")}
                 title={t("whatido.p3_title")}
                 description={t("whatido.p3_desc")}
-                thresholdStart={0.66}
-                thresholdEnd={1.0}
+                thresholdStart={0.5}
+                thresholdEnd={0.75}
                 scrollProgress={scrollProgress}
                 icon={Layers}
+              />
+              <PointItem
+                number={t("whatido.p4_number")}
+                title={t("whatido.p4_title")}
+                description={t("whatido.p4_desc")}
+                thresholdStart={0.75}
+                thresholdEnd={1.0}
+                scrollProgress={scrollProgress}
+                icon={Smartphone}
               />
             </div>
 
             {/* Right Column: Dynamic Interactive Visual Cards (NO external images) */}
-            <div ref={rightColRef} className="lg:col-span-6 relative w-full h-[460px] sm:h-[480px] md:h-[500px] flex items-center justify-center max-lg:mt-6">
+            <div
+              ref={rightColRef}
+              className="lg:col-span-6 relative w-full h-[400px] sm:h-[430px] md:h-[460px] flex items-center justify-center max-lg:mt-6"
+            >
               {/* Subtle ambient backglow */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-3xl blur-3xl opacity-60 pointer-events-none" />
 
               {/* CARD 1: Creative 3D & WebGL Canvas Preview */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
                   isCard1
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",
                 )}
               >
                 {/* Window Header */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                    <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                    <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
-                    <span className="ml-3 font-[var(--font-mono)] text-xs text-zinc-400">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                    <span className="ml-2 font-[var(--font-mono)] text-xs text-zinc-400">
                       WebGLCanvas.tsx — 60 FPS
                     </span>
                   </div>
@@ -321,9 +346,9 @@ export default function WhatIDo() {
                 </div>
 
                 {/* Animated Simulated Visualizer & Code */}
-                <div className="relative my-4 flex-1 flex flex-col justify-center rounded-xl bg-[#09090b]/80 border border-white/5 p-4 font-[var(--font-mono)] text-xs overflow-hidden">
+                <div className="relative my-3 flex-1 flex flex-col justify-center rounded-xl bg-[#09090b]/80 border border-white/5 p-3.5 font-[var(--font-mono)] text-xs overflow-hidden">
                   {/* Rotating 3D wireframe polygon visual in background */}
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 w-44 h-44 opacity-25 pointer-events-none">
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 w-40 h-40 opacity-25 pointer-events-none">
                     <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_12s_linear_infinite]">
                       <polygon
                         points="50,5 90,25 90,75 50,95 10,75 10,25"
@@ -343,7 +368,7 @@ export default function WhatIDo() {
                   </div>
 
                   {/* Code snippet lines */}
-                  <div className="space-y-1.5 relative z-10 text-zinc-300">
+                  <div className="space-y-1 relative z-10 text-zinc-300">
                     <div className="flex gap-3">
                       <span className="text-zinc-600 select-none">01</span>
                       <span>
@@ -400,14 +425,14 @@ export default function WhatIDo() {
               {/* CARD 2: Full-Stack Architecture & Speed */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
                   isCard2
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",
                 )}
               >
                 {/* Dashboard Header */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
                     <div className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -422,7 +447,7 @@ export default function WhatIDo() {
                 </div>
 
                 {/* Lighthouse 4 Ring Audit Visual */}
-                <div className="my-2.5 sm:my-3 grid grid-cols-4 gap-1.5 sm:gap-2 text-center">
+                <div className="my-2 grid grid-cols-4 gap-1.5 sm:gap-2 text-center">
                   {[
                     { label: "Performance", score: "100" },
                     { label: "Accessibility", score: "100" },
@@ -431,12 +456,12 @@ export default function WhatIDo() {
                   ].map((metric) => (
                     <div
                       key={metric.label}
-                      className="p-1.5 sm:p-3 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col items-center justify-center gap-1"
+                      className="p-1.5 sm:p-2 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col items-center justify-center gap-1"
                     >
-                      <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full border-2 border-emerald-400/80 bg-emerald-500/10 flex items-center justify-center text-[11px] sm:text-xs font-bold text-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.3)]">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-emerald-400/80 bg-emerald-500/10 flex items-center justify-center text-[11px] sm:text-xs font-bold text-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.3)]">
                         {metric.score}
                       </div>
-                      <span className="text-[9px] sm:text-[10px] text-zinc-400 font-medium truncate w-full mt-0.5 sm:mt-1">
+                      <span className="text-[9px] sm:text-[10px] text-zinc-400 font-medium truncate w-full mt-0.5">
                         {metric.label}
                       </span>
                     </div>
@@ -444,7 +469,7 @@ export default function WhatIDo() {
                 </div>
 
                 {/* Realtime API / Data status metrics */}
-                <div className="space-y-2 p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-[var(--font-mono)]">
+                <div className="space-y-1.5 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-[var(--font-mono)]">
                   <div className="flex justify-between items-center text-zinc-300">
                     <span className="text-zinc-500">Firebase Sync:</span>
                     <span className="text-emerald-400 flex items-center gap-1">
@@ -478,14 +503,14 @@ export default function WhatIDo() {
               {/* CARD 3: Design Systems & Immersive UI/UX */}
               <div
                 className={cn(
-                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
                   isCard3
                     ? "opacity-100 scale-100 pointer-events-auto z-10"
                     : "opacity-0 scale-95 pointer-events-none z-0",
                 )}
               >
                 {/* Design Tokens Header */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-blue-400" />
                     <span className="font-[var(--font-mono)] text-xs text-white font-semibold">
@@ -498,20 +523,20 @@ export default function WhatIDo() {
                 </div>
 
                 {/* Design System Interactive Tokens & UI Elements */}
-                <div className="space-y-3 my-2">
+                <div className="space-y-2 my-1.5">
                   {/* Swatches */}
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
                     <span className="text-xs text-zinc-400 font-[var(--font-mono)]">Color Tokens</span>
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-lg bg-[#4c8dff] shadow-[0_0_8px_#4c8dff]" title="#4C8DFF" />
-                      <div className="w-6 h-6 rounded-lg bg-[#1a6fe8]" title="#1A6FE8" />
-                      <div className="w-6 h-6 rounded-lg bg-[#0b0b0c] border border-white/20" title="#0B0B0C" />
-                      <div className="w-6 h-6 rounded-lg bg-[#17171a] border border-white/10" title="#17171A" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-[#4c8dff] shadow-[0_0_8px_#4c8dff]" title="#4C8DFF" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-[#1a6fe8]" title="#1A6FE8" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-[#0b0b0c] border border-white/20" title="#0B0B0C" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-[#17171a] border border-white/10" title="#17171A" />
                     </div>
                   </div>
 
                   {/* Micro-interaction interactive preview */}
-                  <div className="p-4 rounded-xl bg-gradient-to-r from-blue-950/30 to-purple-950/30 border border-blue-500/20 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-gradient-to-r from-blue-950/30 to-purple-950/30 border border-blue-500/20 flex items-center justify-between">
                     <div>
                       <p className="text-xs font-semibold text-white">Dynamic Glass Card</p>
                       <p className="text-[11px] text-zinc-400 font-[var(--font-mono)] mt-0.5">
@@ -520,7 +545,7 @@ export default function WhatIDo() {
                     </div>
                     <button
                       type="button"
-                      className="px-3.5 py-1.5 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-semibold shadow-[0_0_15px_rgba(76,141,255,0.5)] transition-all duration-300 flex items-center gap-1 group"
+                      className="px-3 py-1.5 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-semibold shadow-[0_0_15px_rgba(76,141,255,0.5)] transition-all duration-300 flex items-center gap-1 group"
                     >
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
@@ -538,6 +563,94 @@ export default function WhatIDo() {
                   </span>
                   <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">
                     Responsive Breakpoints
+                  </span>
+                </div>
+              </div>
+
+              {/* CARD 4: Mobile-First & Applications Cross-Platform */}
+              <div
+                className={cn(
+                  "absolute inset-0 w-full h-full rounded-2xl bg-[rgba(19,19,22,0.85)] border border-white/10 backdrop-blur-xl p-4 sm:p-5 md:p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(76,141,255,0.15)] transition-all duration-500",
+                  isCard4
+                    ? "opacity-100 scale-100 pointer-events-auto z-10"
+                    : "opacity-0 scale-95 pointer-events-none z-0",
+                )}
+              >
+                {/* Mobile Window Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                    <span className="ml-2 font-[var(--font-mono)] text-xs text-zinc-400">
+                      MobileApp.dart — 120 FPS
+                    </span>
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[11px] font-[var(--font-mono)] text-cyan-300">
+                    <Smartphone className="w-3 h-3 text-cyan-300" />
+                    Flutter & Dart
+                  </div>
+                </div>
+
+                {/* Simulated Sleek Mobile Device Screen */}
+                <div className="relative my-2 p-3 sm:p-3.5 rounded-xl bg-[#09090b]/90 border border-white/5 flex flex-col justify-between overflow-hidden">
+                  {/* Status Bar */}
+                  <div className="flex items-center justify-between text-[10px] text-zinc-500 font-[var(--font-mono)] mb-2 px-1 border-b border-white/5 pb-1">
+                    <span className="text-zinc-400 font-semibold">09:41</span>
+                    <div className="w-14 h-1.5 rounded-full bg-white/10 mx-auto" />
+                    <span className="text-cyan-400 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      5G · 100%
+                    </span>
+                  </div>
+
+                  {/* App Screen Content Preview */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between p-2 sm:p-2.5 rounded-lg bg-white/[0.04] border border-white/5">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-[0_0_12px_rgba(6,182,212,0.4)]">
+                          <Smartphone className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-white">Cross-Platform Engine</p>
+                          <p className="text-[10px] text-zinc-400 font-[var(--font-mono)]">iOS & Android Native Compilation</p>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-[var(--font-mono)] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        120 Hz
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5">
+                        <div className="text-[10px] text-zinc-500 font-[var(--font-mono)]">Frame Drops</div>
+                        <div className="text-xs sm:text-sm font-bold text-emerald-400 font-[var(--font-mono)] flex items-center gap-1 mt-0.5">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-400" /> 0 dropped
+                        </div>
+                      </div>
+                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5">
+                        <div className="text-[10px] text-zinc-500 font-[var(--font-mono)]">Architecture</div>
+                        <div className="text-xs sm:text-sm font-bold text-cyan-300 font-[var(--font-mono)] truncate mt-0.5">
+                          BLoC / Clean Arch
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Tech Pills */}
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+                  <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300 flex items-center gap-1.5">
+                    <Smartphone className="w-3.5 h-3.5 text-cyan-400" /> Flutter 3.x
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">
+                    Dart & Skia Engine
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">
+                    Cross-Platform
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">
+                    Offline First
                   </span>
                 </div>
               </div>

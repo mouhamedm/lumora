@@ -12,7 +12,7 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../lib/utils";
-import TextReveal from "./ui/TextReveal";
+import TextReveal from "./TextReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -234,6 +234,9 @@ export default function Experience() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const progressLineRef = useRef<HTMLDivElement>(null);
+  const progressLineMobileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -258,6 +261,42 @@ export default function Experience() {
           },
         },
       );
+
+      // Scroll-driven timeline line fill
+      if (timelineRef.current && progressLineRef.current) {
+        gsap.fromTo(
+          progressLineRef.current,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            transformOrigin: "top center",
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: "top 80%",
+              end: "bottom 20%",
+              scrub: 0.6,
+            },
+          },
+        );
+      }
+      if (timelineRef.current && progressLineMobileRef.current) {
+        gsap.fromTo(
+          progressLineMobileRef.current,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            transformOrigin: "top center",
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: "top 80%",
+              end: "bottom 20%",
+              scrub: 0.6,
+            },
+          },
+        );
+      }
 
       // Animate each timeline row as it scrolls into view
       const rows = section.querySelectorAll<HTMLElement>(".experience-row");
@@ -364,19 +403,27 @@ export default function Experience() {
         </div>
 
         {/* High-Tech Laser Beam Timeline Layout */}
-        <div className="relative w-full max-w-5xl mx-auto">
+        <div className="relative w-full max-w-5xl mx-auto" ref={timelineRef}>
           {/* Central Vertical Energy Beam Line (Desktop) */}
-          <div className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px]">
-            {/* Ambient track */}
-            <div className="w-full h-full bg-gradient-to-b from-transparent via-white/15 to-transparent" />
-            {/* Pulsing laser energy beam */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent)] via-cyan-400 to-[#1A6FE8] opacity-70 shadow-[0_0_15px_#4c8dff]" />
+          <div className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] overflow-hidden">
+            {/* Static ambient track */}
+            <div className="w-full h-full bg-white/10" />
+            {/* Scroll-driven colored fill */}
+            <div
+              ref={progressLineRef}
+              className="absolute inset-0 origin-top bg-gradient-to-b from-[var(--accent)] via-cyan-400 to-[#1A6FE8] opacity-90 shadow-[0_0_15px_#4c8dff]"
+              style={{ transform: "scaleY(0)" }}
+            />
           </div>
 
           {/* Left Line for Mobile & Tablets */}
-          <div className="block lg:hidden absolute top-0 bottom-0 left-4 sm:left-6 w-[2px]">
+          <div className="block lg:hidden absolute top-0 bottom-0 left-4 sm:left-6 w-[2px] overflow-hidden">
             <div className="w-full h-full bg-white/10" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent)] via-cyan-400 to-[#1A6FE8] opacity-70 shadow-[0_0_15px_#4c8dff]" />
+            <div
+              ref={progressLineMobileRef}
+              className="absolute inset-0 origin-top bg-gradient-to-b from-[var(--accent)] via-cyan-400 to-[#1A6FE8] opacity-90 shadow-[0_0_15px_#4c8dff]"
+              style={{ transform: "scaleY(0)" }}
+            />
           </div>
 
           {/* Timeline Items */}

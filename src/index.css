@@ -911,3 +911,49 @@
     0 0 20px rgba(76, 141, 255, 0.2);
   color: #ffffff;
 }
+
+/* ============================================================
+   CANOPY MARQUEE ANIMATIONS (Logo Cloud Marquee)
+   ============================================================ */
+@keyframes canopy-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 16px)));
+  }
+}
+
+@keyframes canopy-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 16px)));
+  }
+}
+
+.animate-canopy-horizontal {
+  animation: canopy-x var(--duration, 20s) infinite linear;
+}
+
+.animate-canopy-vertical {
+  animation: canopy-y var(--duration, 20s) linear infinite;
+}
+
+.direction-reverse {
+  animation-direction: reverse;
+}
+
+.direction-reverse.animate-canopy-horizontal {
+  animation-direction: reverse;
+}
+
+.direction-reverse.animate-canopy-vertical {
+  animation-direction: reverse;
+}
+
+.group:hover .group-hover\:paused {
+  animation-play-state: paused;
+}
+

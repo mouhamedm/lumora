@@ -8,11 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../lib/utils";
 import idconsultImg from "../assets/images/idconsult.webp";
 import strideImg from "../assets/images/stride.webp";
-import prestigeDiningImg from "../assets/images/prestige-dining.webp";
-import mokaNoirImg from "../assets/images/moka-noir.webp";
+import ghostImg from "../assets/images/ghost.png";
 import pulseImg from "../assets/images/pulse.webp";
 import inadiaImg from "../assets/images/inadia.webp";
-import TextReveal from "./ui/TextReveal";
+import TextReveal from "./TextReveal";
 
 // Register ScrollTrigger safely
 if (typeof window !== "undefined") {
@@ -286,9 +285,11 @@ export const ProjectShowcase = ({
   };
 
   const calculateGap = (width: number) => {
-    if (width <= 1024) return 24;
-    if (width >= 1456) return 56;
-    return 40;
+    if (width <= 768) return 24;
+    if (width <= 1024) return 32;
+    if (width <= 1280) return 72;
+    if (width <= 1536) return 88;
+    return 100;
   };
 
   const currentProject = testimonials[active] || testimonials[0];
@@ -385,24 +386,10 @@ export const ProjectShowcase = ({
               </div>
             )}
 
-            {/* Word-by-Word Description */}
-            <motion.p className="font-body text-xs sm:text-sm md:text-base leading-relaxed text-[var(--text-secondary)] mb-5 sm:mb-8 md:mb-10 max-w-xl">
-              {currentProject.quote.split(" ").map((word, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ filter: "blur(6px)", opacity: 0, y: 4 }}
-                  animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.2,
-                    ease: "easeInOut",
-                    delay: 0.012 * index,
-                  }}
-                  className="inline-block"
-                >
-                  {word}&nbsp;
-                </motion.span>
-              ))}
-            </motion.p>
+            {/* Project Description */}
+            <p className="font-body text-xs sm:text-sm md:text-base leading-relaxed text-[var(--text-secondary)] mb-5 sm:mb-8 md:mb-10 max-w-xl">
+              {currentProject.quote}
+            </p>
           </motion.div>
 
           {/* Navigation & Action Buttons */}
@@ -520,16 +507,9 @@ export default function Projects() {
     {
       name: t("projects.p3_title"),
       quote: t("projects.p3_desc"),
-      tags: ["HTML5", "CSS3", "JavaScript", "GSAP"],
-      src: prestigeDiningImg,
-      link: "https://prestige-dining.vercel.app/",
-    },
-    {
-      name: t("projects.p4_title"),
-      quote: t("projects.p4_desc"),
-      tags: ["HTML5", "CSS3", "JavaScript", "GSAP"],
-      src: mokaNoirImg,
-      link: "https://moka-noir.vercel.app/",
+      tags: ["Next.js", "TypeScript", "Tailwind", "GSAP"],
+      src: ghostImg,
+      link: "https://ghost-div.netlify.app/",
     },
     {
       name: t("projects.p5_title"),

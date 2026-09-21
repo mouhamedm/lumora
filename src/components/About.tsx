@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkles, ArrowRight } from "lucide-react";
 import aboutImg from "../assets/images/about-img.webp";
-import TextReveal from "./ui/TextReveal";
+import TextReveal from "./TextReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -194,7 +194,7 @@ export default function About() {
 
   return (
     <section
-      className="relative py-16 md:py-32 px-4 sm:px-6 md:px-12 max-w-7xl w-full mx-auto min-h-[80vh] flex items-center justify-center z-2 overflow-x-clip"
+      className="relative py-16 md:py-32 px-4 sm:px-6 md:px-12 max-w-7xl w-full mx-auto min-h-[80vh] flex items-center justify-center z-2 overflow-hidden"
       id="about"
       ref={sectionRef}
     >
@@ -205,13 +205,13 @@ export default function About() {
             className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] aspect-[4/5] transform-3d will-change-transform"
             ref={imageWrapperRef}
           >
-            {/* Glow orb */}
+            {/* Glow orb — contained within image bounds */}
             <div
-              className="about-glow-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-35 z-[-1] rounded-full pointer-events-none"
+              className="about-glow-orb absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] opacity-30 z-[-1] rounded-full pointer-events-none"
               style={{
                 background:
                   "conic-gradient(from 0deg, var(--accent) 0%, transparent 25%, var(--accent-hover) 50%, transparent 75%, var(--accent) 100%)",
-                filter: "blur(60px)",
+                filter: "blur(45px)",
               }}
             />
 

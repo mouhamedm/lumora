@@ -58,10 +58,8 @@
     "p1_desc": "Site vitrine moderne pour une agence de conseil, intégrant un catalogue de certifications ISO et un système interactif et animé de demande de devis. L'architecture met l'accent sur la crédibilité de la marque et la conversion rapide des prospects.",
     "p2_title": "Stride",
     "p2_desc": "Expérience 3D interactive de sneaker, développée avec Next.js, Three.js et GSAP pour une présentation produit immersive. L'utilisateur peut manipuler le modèle sous tous les angles et explorer chaque détail technique en temps réel.",
-    "p3_title": "Prestige Dining",
-    "p3_desc": "Une expérience web immersive et raffinée conçue pour un établissement gastronomique, mettant en valeur l'art culinaire à travers des animations subtiles. Chaque interaction évoque le luxe et l'élégance pour inviter les convives à réserver une table d'exception.",
-    "p4_title": "MokaNoir",
-    "p4_desc": "Boutique en ligne moderne pour un torréfacteur artisanal, offrant une expérience fluide de sélection de café et un panier dynamique interactif. Une interface chaleureuse valorisant le savoir-faire artisanal tout en optimisant chaque étape de la commande.",
+    "p3_title": "Ghost",
+    "p3_desc": "Vitrine de drops streetwear conçue avec Next.js, TypeScript et GSAP ScrollTrigger, intégrant des effets glitch UI, un curseur personnalisé et une architecture multi-pages complète.",
     "p5_title": "Pulse",
     "p5_desc": "Page produit de smartwatch, combinant un carousel immersif, un curseur personnalisé et une narration animée avec GSAP. Une mise en scène futuriste conçue pour captiver le visiteur et révéler toute la puissance des fonctionnalités connectées."
   },
@@ -110,7 +108,10 @@
     "p2_desc": "Développement d'applications ultra-rapides notées 100/100 sur Lighthouse, avec synchronisation de données en temps réel, API optimisées et code maintenable.",
     "p3_number": "03",
     "p3_title": "Design Systems & UI/UX Immersif",
-    "p3_desc": "Élaboration de design systems robustes, composants réutilisables au pixel-près et micro-interactions sur-mesure pour une expérience utilisateur mémorable."
+    "p3_desc": "Élaboration de design systems robustes, composants réutilisables au pixel-près et micro-interactions sur-mesure pour une expérience utilisateur mémorable.",
+    "p4_number": "04",
+    "p4_title": "Mobile-First & Applications Cross-Platform",
+    "p4_desc": "Développement d'applications mobiles performantes avec Flutter, offrant une expérience native fluide sur iOS et Android à partir d'une seule base de code."
   },
   "experience": {
     "eyebrow": "Parcours",
@@ -122,7 +123,7 @@
     "freelance_period": "2023 — Présent",
     "freelance_role": "Développeur Frontend & Web Créatif",
     "freelance_org": "Freelance / Indépendant",
-    "freelance_desc": "Conception et livraison de plateformes web haut de gamme pour diverses marques et agences (ID Consult, Inadia Shop, Stride 3D Sneakers, Prestige Dining, etc.). Optimisation des performances, animations interactives et intégrations temps réel.",
+    "freelance_desc": "Conception et livraison de plateformes web haut de gamme pour diverses marques et agences (ID Consult, Inadia Shop, Stride 3D Sneakers, Ghost, etc.). Optimisation des performances, animations interactives et intégrations temps réel.",
     "kabakoo_period": "2022 — 2023",
     "kabakoo_role": "Développeur Digital & Web Avancé",
     "kabakoo_org": "Kabakoo Academies",
