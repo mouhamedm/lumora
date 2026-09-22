@@ -633,8 +633,12 @@ export default function Projects() {
     >
       <style>{PROJECTS_STYLES}</style>
 
-      {/* Multi-viewport scroll container for smooth, native CSS sticky scroll on all devices */}
-      <div className="relative w-full h-[320vh] sm:h-[340vh] lg:h-[360vh]">
+      {/* Multi-viewport scroll container for smooth, native CSS sticky scroll on all devices.
+          svh (small viewport height, fixed) instead of vh/dvh: this drives the
+          scroll-linked progress for a sticky element pinned the whole way
+          through, so a dynamic unit here would keep resizing the scrollable
+          range itself as Safari's toolbar hides/shows mid-scroll. */}
+      <div className="relative w-full h-[320svh] sm:h-[340svh] lg:h-[360svh]">
         {/* Pinned Viewport Container via CSS Sticky */}
         <div
           ref={containerRef}
@@ -646,7 +650,19 @@ export default function Projects() {
           // suddenly "pops in" — exactly what happens between Experience
           // and Projects on iOS Safari, and only on the very first scroll
           // down since the layer isn't established yet.
-          className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden translate-z-0"
+          //
+          // h-[100svh] instead of dvh: this element is pinned via `sticky`
+          // for the entire ~320-360svh scroll range, so with dvh its height
+          // keeps being recomputed every time Safari's address bar hides or
+          // reappears mid-scroll — a synchronous layout recalculation on a
+          // large, shadow- and blur-heavy element, right where the user is
+          // actively scrolling. svh is fixed, so it never re-triggers layout
+          // for that reason. If the toolbar hides mid-scroll, this container
+          // stays at the (slightly smaller) svh size instead of growing to
+          // fill the freed space — but the Projects section now has an
+          // explicit solid background behind it, so any such gap is an
+          // invisible continuation of the same color, not a visible seam.
+          className="sticky top-0 w-full h-[100svh] max-h-[100svh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden translate-z-0"
         >
           {/* Header */}
           <div className="mb-2 sm:mb-6 md:mb-8 max-w-2xl">
