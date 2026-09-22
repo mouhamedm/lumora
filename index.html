@@ -7,10 +7,35 @@
     <title>MMD.Dev</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Loaded as a non-render-blocking preload instead of a plain stylesheet
+      link. A plain <link rel="stylesheet"> to an external, third-party host
+      blocks first paint until that request (and, transitively, the font
+      files it references) resolves — on a slow connection this alone can
+      hold the page at a blank screen for seconds, delaying even the
+      preloader. The `onload` swap applies it as a real stylesheet once it
+      arrives, and `display=swap` in the URL still lets any already-visible
+      text use its fallback font until then, so the end result (fonts,
+      weights, final look) is identical — only first paint is no longer
+      gated on this request.
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

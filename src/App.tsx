@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, lazy, Suspense } from "react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import gsap from "gsap";
@@ -6,17 +6,28 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import HeroMarquee from "./components/HeroMarquee";
-import WhatIDo from "./components/WhatIDo";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import About from "./components/About";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
+
+// Everything below the fold is code-split into its own chunk. None of it is
+// needed to paint the preloader, the navbar or the Hero — but until now it
+// was all bundled into the same ~700KB entry file, so the browser had to
+// download, parse and execute all of it (Projects' scroll-driven deck,
+// Experience's timeline, every other section) before React could mount
+// anything at all, including the preloader itself. Splitting it out means
+// the critical first paint only waits on the code that's actually on
+// screen first; this chunk loads in parallel right behind it and is ready
+// long before the preloader/Hero entrance sequence finishes, so nothing
+// about what renders or when it becomes visible on scroll changes.
+const WhatIDo = lazy(() => import("./components/WhatIDo"));
+const Experience = lazy(() => import("./components/Experience"));
+const Projects = lazy(() => import("./components/Projects"));
+const Skills = lazy(() => import("./components/Skills"));
+const About = lazy(() => import("./components/About"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -173,14 +184,21 @@ function App() {
       />
       <Hero isLoaded={isLoaded} />
       <HeroMarquee />
-      <WhatIDo />
-      <Experience />
-      <Projects />
-      <Skills />
-      <About />
-      <Testimonials />
-      <Contact />
-      <Footer />
+      {/* fallback={null}: these sections are below the fold and this chunk
+          is expected to finish loading well before the preloader/Hero
+          entrance does, so there's nothing meaningful to show in the gap —
+          this just avoids blocking on their code to paint what's already
+          on screen. */}
+      <Suspense fallback={null}>
+        <WhatIDo />
+        <Experience />
+        <Projects />
+        <Skills />
+        <About />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </Suspense>
     </>
   );
 }
