@@ -1,24 +1,101 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="fr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MMD.Dev</title>
+    <title>MMD.Dev - Développeur Frontend | Mouhamed Mourtada Dicko</title>
+    <meta name="title" content="MMD.Dev - Développeur Frontend | Mouhamed Mourtada Dicko" />
+    <meta
+      name="description"
+      content="Portfolio officiel de Mouhamed Mourtada Dicko (MMD.Dev) — Développeur Front-End & Creative Developer. Spécialisé en React, Next.js, TypeScript, Tailwind CSS et GSAP. Création d'expériences web modernes, interactives et performantes."
+    />
+    <meta
+      name="keywords"
+      content="Mouhamed Mourtada Dicko, MMD.Dev, MMD Dev, Mouhamed Dicko, Développeur Frontend, Développeur Front-End, Frontend Developer, Creative Developer, React, Next.js, TypeScript, Tailwind CSS, GSAP, Framer Motion, JavaScript, Flutter, Portfolio Développeur, Web Design, UI/UX"
+    />
+    <meta name="author" content="Mouhamed Mourtada Dicko (MMD.Dev)" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#0B0B0C" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MMD.Dev" />
+    <meta property="og:title" content="MMD.Dev — Développeur Frontend | Mouhamed Mourtada Dicko" />
+    <meta
+      property="og:description"
+      content="Portfolio officiel de Mouhamed Mourtada Dicko (MMD.Dev) — Développeur Front-End spécialisé en React, Next.js, TypeScript, Tailwind CSS et animations GSAP. Découvrez mes projets et réalisations."
+    />
+    <meta property="og:image" content="/favicon-logo.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MMD.Dev — Développeur Frontend | Mouhamed Mourtada Dicko" />
+    <meta
+      name="twitter:description"
+      content="Portfolio officiel de Mouhamed Mourtada Dicko (MMD.Dev) — Développeur Front-End & Creative Developer (React, Next.js, TypeScript, GSAP)."
+    />
+    <meta name="twitter:image" content="/favicon-logo.png" />
+
+    <!-- Mobile App Settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MMD.Dev" />
+
+    <!-- Structured Data for Google Search Console -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "#person",
+            "name": "Mouhamed Mourtada Dicko",
+            "alternateName": ["MMD.Dev", "MMD Dev", "Mouhamed Dicko"],
+            "jobTitle": "Développeur Front-End & Creative Developer",
+            "description": "Développeur Front-End & Creative Developer spécialisé en React, Next.js, TypeScript, Tailwind CSS et GSAP.",
+            "image": "/favicon-logo.png",
+            "email": "mailto:mmddev310@gmail.com",
+            "sameAs": [
+              "https://github.com/mouhamedm",
+              "https://www.linkedin.com/in/mouhamedm/"
+            ],
+            "knowsAbout": [
+              "React",
+              "Next.js",
+              "TypeScript",
+              "JavaScript",
+              "Tailwind CSS",
+              "GSAP",
+              "Framer Motion",
+              "Flutter",
+              "Node.js",
+              "Front-End Web Development",
+              "Creative Web Development",
+              "UI/UX Design",
+              "Web Performance Optimization"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "#website",
+            "name": "MMD.Dev",
+            "alternateName": ["Portfolio Mouhamed Mourtada Dicko", "MMD Dev"],
+            "description": "Portfolio officiel de Mouhamed Mourtada Dicko (MMD.Dev), Développeur Front-End & Creative Developer.",
+            "publisher": {
+              "@id": "#person"
+            },
+            "inLanguage": ["fr", "en"]
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!--
-      Loaded as a non-render-blocking preload instead of a plain stylesheet
-      link. A plain <link rel="stylesheet"> to an external, third-party host
-      blocks first paint until that request (and, transitively, the font
-      files it references) resolves — on a slow connection this alone can
-      hold the page at a blank screen for seconds, delaying even the
-      preloader. The `onload` swap applies it as a real stylesheet once it
-      arrives, and `display=swap` in the URL still lets any already-visible
-      text use its fallback font until then, so the end result (fonts,
-      weights, final look) is identical — only first paint is no longer
-      gated on this request.
-    -->
     <link
       rel="preload"
       as="style"

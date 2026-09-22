@@ -1,0 +1,6 @@
+# robots.txt for MMD.Dev
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: /sitemap.xml

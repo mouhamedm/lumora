@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef, lazy, Suspense } from "react";
+import { useTranslation } from "react-i18next";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import gsap from "gsap";
@@ -30,6 +31,7 @@ const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
+  const { i18n } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,6 +39,15 @@ function App() {
   const preloaderStartedRef = useRef(false);
   const fontsReadyRef = useRef(false);
   const lenisRef = useRef<Lenis | null>(null);
+
+  // Synchronize document title and lang attribute on language toggle
+  useEffect(() => {
+    const isEn = i18n.language && i18n.language.startsWith("en");
+    document.title = isEn
+      ? "MMD.Dev — Frontend Developer | Mouhamed Mourtada Dicko"
+      : "MMD.Dev — Développeur Frontend | Mouhamed Mourtada Dicko";
+    document.documentElement.lang = isEn ? "en" : "fr";
+  }, [i18n.language]);
 
   // Smooth scroll with Lenis on desktop; 100% native smooth scroll on touch/mobile
   useEffect(() => {
