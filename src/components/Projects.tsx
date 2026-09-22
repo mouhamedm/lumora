@@ -757,8 +757,19 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* 3D Showcase Deck Driven by Scroll */}
-          <div className="projects-deck-wrapper w-full">
+          {/* 3D Showcase Deck Driven by Scroll.
+              translate-z-0 keeps this wrapper on its own GPU compositing
+              layer for its whole lifetime (not just during the entrance).
+              It wraps several backdrop-blur elements (the tag pills and the
+              glass-pill nav buttons), and animating opacity/scale/y on an
+              ancestor of backdrop-filter content forces WebKit to resample
+              the blur every single frame of the tween unless that ancestor
+              is already its own layer — in which case the blurred content
+              is rasterized once and the compositor just cheaply
+              transforms/fades the whole layer instead. Same technique
+              already used on the Hero cards, Experience glows and the
+              Projects sticky container itself. */}
+          <div className="projects-deck-wrapper w-full translate-z-0">
             <ProjectShowcase
               testimonials={projectsData}
               active={active}
