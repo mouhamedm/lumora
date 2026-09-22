@@ -620,7 +620,17 @@ export default function Projects() {
   }, [active, totalProjects]);
 
   return (
-    <section ref={sectionRef} className="relative w-full z-10" id="projects">
+    <section
+      ref={sectionRef}
+      // Explicit opaque background, matching the WhatIDo/Experience
+      // convention. Without it this section (and its tall scroll spacer
+      // below) are fully transparent, which is invisible in normal
+      // operation since the sticky content always fills the viewport —
+      // but it means the fixed, page-wide Hero aurora orbs are only ever
+      // one dropped repaint away from showing through underneath.
+      className="relative w-full z-10 bg-[var(--color-bg-base)]"
+      id="projects"
+    >
       <style>{PROJECTS_STYLES}</style>
 
       {/* Multi-viewport scroll container for smooth, native CSS sticky scroll on all devices */}
@@ -628,7 +638,15 @@ export default function Projects() {
         {/* Pinned Viewport Container via CSS Sticky */}
         <div
           ref={containerRef}
-          className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden"
+          // translate-z-0 forces this sticky element onto its own GPU
+          // compositing layer. Without it, WebKit sometimes fails to repaint
+          // a `position: sticky` element promptly on a fast first scroll
+          // into view (it keeps showing stale/background content until a
+          // forced repaint catches up), which shows up as a blank gap that
+          // suddenly "pops in" — exactly what happens between Experience
+          // and Projects on iOS Safari, and only on the very first scroll
+          // down since the layer isn't established yet.
+          className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden translate-z-0"
         >
           {/* Header */}
           <div className="mb-2 sm:mb-6 md:mb-8 max-w-2xl">
