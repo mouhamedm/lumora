@@ -15,6 +15,9 @@ interface Testimonial {
   year: string;
 }
 
+const CURRENT_YEAR = new Date().getFullYear();
+const PREV_YEAR = CURRENT_YEAR - 1;
+
 const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
@@ -23,7 +26,7 @@ const TESTIMONIALS: Testimonial[] = [
     author: "Elena Rostova",
     role: "Directrice Créative Globale",
     company: "Vortex Sound & Acoustic",
-    year: "2026",
+    year: `${CURRENT_YEAR}`,
   },
   {
     id: 2,
@@ -32,7 +35,7 @@ const TESTIMONIALS: Testimonial[] = [
     author: "Marcus Vance",
     role: "VP Digital Experience",
     company: "Polestar Mobility",
-    year: "2025",
+    year: `${PREV_YEAR}`,
   },
   {
     id: 3,
@@ -41,7 +44,7 @@ const TESTIMONIALS: Testimonial[] = [
     author: "Clara d'Orsay",
     role: "Directrice de l'Innovation",
     company: "Zenith Horlogerie",
-    year: "2026",
+    year: `${CURRENT_YEAR}`,
   },
 ];
 

@@ -20,6 +20,9 @@ interface Project {
 
 const CATEGORIES = ["TOUS", "BRANDING", "DIGITAL 3D", "E-COMMERCE", "SPATIAL"] as const;
 
+const CURRENT_YEAR = new Date().getFullYear();
+const PREV_YEAR = CURRENT_YEAR - 1;
+
 const PROJECTS: Project[] = [
   {
     id: "aura-kinetics",
@@ -27,11 +30,10 @@ const PROJECTS: Project[] = [
     category: "DIGITAL 3D",
     categoryLabel: "Interface 3D & Audio Spatial",
     client: "Teenage Engineering Labs",
-    year: "2026",
+    year: `${CURRENT_YEAR}`,
     description: "Système de synthèse sonore interactif explorant la physique de résonance haptique en temps réel.",
     tags: ["Creative Dev", "WebGL", "Audio Reactive"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/images/project-aura-kinetics.jpg",
     aspect: "landscape",
   },
   {
@@ -40,11 +42,10 @@ const PROJECTS: Project[] = [
     category: "E-COMMERCE",
     categoryLabel: "Horlogerie Expérimentale",
     client: "Zenith Chronometry",
-    year: "2025",
+    year: `${PREV_YEAR}`,
     description: "Plateforme e-commerce cinématique réinventant l'art de la haute horlogerie contemporaine.",
     tags: ["Art Direction", "Next.js", "Design System"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/images/project-chronos-polaris.jpg",
     aspect: "portrait",
   },
   {
@@ -53,11 +54,10 @@ const PROJECTS: Project[] = [
     category: "SPATIAL",
     categoryLabel: "Expérience Électrique Conectée",
     client: "Polestar Mobility",
-    year: "2026",
+    year: `${CURRENT_YEAR}`,
     description: "Cockpit numérique épuré et visualisations télémétriques 3D pour véhicules autonomes.",
     tags: ["Spatial UI", "Three.js", "Human-Machine Interface"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/images/project-neura-spatial.jpg",
     aspect: "portrait",
   },
   {
@@ -66,11 +66,10 @@ const PROJECTS: Project[] = [
     category: "BRANDING",
     categoryLabel: "Identité & Typographie Radicale",
     client: "Fondation d'Art Moderne",
-    year: "2025",
+    year: `${PREV_YEAR}`,
     description: "Caractère typographique sur mesure et système d'archives pour collections d'avant-garde.",
     tags: ["Custom Typeface", "Visual Identity", "Editorial"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/images/project-solaris-archive.jpg",
     aspect: "landscape",
   },
   {
@@ -79,11 +78,10 @@ const PROJECTS: Project[] = [
     category: "DIGITAL 3D",
     categoryLabel: "Hardware & Expérience Tactile",
     client: "Bang & Olufsen Acoustic",
-    year: "2026",
+    year: `${CURRENT_YEAR}`,
     description: "Enceinte sculpturale connectée et compagnon logiciel avec contrôle gyroscopique fluide.",
     tags: ["Industrial UI", "Motion 3D", "Micro-Interactions"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/images/project-vortex-audio.jpg",
     aspect: "landscape",
   },
   {
@@ -92,11 +90,10 @@ const PROJECTS: Project[] = [
     category: "SPATIAL",
     categoryLabel: "Installation Architecturale Vivante",
     client: "Biennale d'Architecture",
-    year: "2025",
+    year: `${PREV_YEAR}`,
     description: "Structure cinétique réagissant en temps réel aux flux thermiques et sonores des visiteurs.",
     tags: ["Generative Art", "Sensors", "Physical Computing"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/assets/images/project-kinetic-pavilion.jpg",
     aspect: "portrait",
   },
 ];

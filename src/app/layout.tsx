@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LUMORA — Studio Créatif, Direction Artistique & Ingénierie Digitale",
+  title: "LUMORA - Studio Créatif, Direction Artistique & Ingénierie Digitale",
   description:
     "LUMORA est un studio créatif d'avant-garde. Nous sculptons des identités magnétiques, des expériences web immersives et des artefacts digitaux inoubliables.",
   keywords: [
@@ -28,13 +28,18 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "LUMORA Studio" }],
   openGraph: {
-    title: "LUMORA — Studio Créatif & Direction Artistique",
+    title: "LUMORA - Studio Créatif & Direction Artistique",
     description:
       "Design radical, identités souveraines et ingénierie créative sans compromis.",
     url: "https://lumora.studio",
     siteName: "LUMORA",
     locale: "fr_FR",
     type: "website",
+  },
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
   },
 };
 

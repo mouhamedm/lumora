@@ -60,7 +60,7 @@ export default function Navbar() {
                 <span className="inline-block w-2 h-2 rounded-full bg-[#FF3B1D] ml-1 mb-1 animate-pulse" />
               </span>
               <span className="hidden lg:inline-block text-[10px] font-mono font-medium tracking-widest text-[#6E6E6A] px-2 py-0.5 rounded-full border border-[#111110]/10 ml-2">
-                EDITION 2026
+                EDITION {new Date().getFullYear()}
               </span>
             </a>
           </Magnetic>

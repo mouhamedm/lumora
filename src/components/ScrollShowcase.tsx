@@ -63,7 +63,7 @@ export default function ScrollShowcase() {
               style={{
                 scale: imageScale,
                 backgroundImage:
-                  "radial-gradient(circle at center, rgba(255, 59, 29, 0.25) 0%, rgba(17, 17, 16, 0.85) 75%), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80')",
+                  "radial-gradient(circle at center, rgba(255, 59, 29, 0.25) 0%, rgba(17, 17, 16, 0.85) 75%), url('/assets/images/showcase-architecture.jpg')",
               }}
               className="absolute inset-0 bg-cover bg-center"
             >
@@ -78,7 +78,7 @@ export default function ScrollShowcase() {
                   <span>SHOWREEL // LUMORA STUDIOS</span>
                 </div>
                 <span className="text-xs font-mono tracking-widest text-white/70">
-                  REF. 2026-X
+                  REF. {new Date().getFullYear()}-X
                 </span>
               </div>
 
