@@ -523,6 +523,51 @@ export default function Projects() {
 
   const totalProjects = projectsData.length;
 
+  // Warm the browser's image cache for all 5 project images well before the
+  // user scrolls anywhere near this section. All 5 are mounted at once in
+  // the AnimatePresence stack (the "peeking behind" cards are part of the
+  // design), but each <img> is loading="lazy" so none of them actually
+  // starts fetching/decoding until the section first scrolls into view —
+  // which means, on a first visit, up to 5 images can start decoding
+  // simultaneously at the exact moment this section (and its GSAP
+  // scroll-triggered entrance fade) becomes active. On a slower mobile CPU
+  // that simultaneous decode is enough to stall the main thread for a
+  // fraction of a second, which delays the `once: true` entrance
+  // ScrollTrigger from firing on time — the content stays invisible until
+  // it catches up, then pops in all at once. Since it only ever fires once,
+  // revisiting the section afterwards looks completely normal. Pre-warming
+  // the cache during idle time (well after the Hero's own entrance
+  // animation has priority) means the images are already decoded by the
+  // time the lazy <img> tags actually need them, removing that burst
+  // entirely without changing what's loaded or how it's displayed.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
+    if (nav.connection?.saveData) return;
+
+    const sources = [idconsultImg, inadiaImg, strideImg, ghostImg, pulseImg];
+
+    const warm = () => {
+      sources.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+        img.decode?.().catch(() => {});
+      });
+    };
+
+    const ric = (window as typeof window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+    }).requestIdleCallback;
+
+    if (ric) {
+      const id = ric(warm, { timeout: 3000 });
+      return () => (window as typeof window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id);
+    }
+
+    const id = window.setTimeout(warm, 1500);
+    return () => window.clearTimeout(id);
+  }, []);
+
   // Track scroll progress with native Framer Motion / Motion useScroll (buttery smooth with Lenis, zero pinning glitches)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
