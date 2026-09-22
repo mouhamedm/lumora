@@ -25,6 +25,8 @@ export default function About() {
     const btn = btnRef.current;
     if (!section) return;
 
+    let visibilityObserver: IntersectionObserver | null = null;
+
     const ctx = gsap.context(() => {
       const content = section.querySelector(".about__content");
       const lines = linesRef.current.filter(Boolean);
@@ -118,7 +120,7 @@ export default function About() {
 
       // 5. Floating badges infinite gentle hover
       const badges = badgeRefs.current.filter(Boolean);
-      badges.forEach((badge, index) => {
+      const badgeTweens = badges.map((badge, index) =>
         gsap.to(badge, {
           y: "+=10",
           rotation: index % 2 === 0 ? 4 : -4,
@@ -126,8 +128,27 @@ export default function About() {
           ease: "sine.inOut",
           yoyo: true,
           repeat: -1,
-        });
-      });
+        }),
+      );
+
+      // Pause the glow orb's rotation (CSS) and the badges' float tweens
+      // (GSAP) whenever the About section is scrolled out of view. Both
+      // loop forever with no fixed timing dependency, so pausing them
+      // off-screen and resuming on return is visually identical, while
+      // avoiding a rotating blur(45px) layer and two backdrop-blur badges
+      // animating for the entire remaining scroll session.
+      if (typeof IntersectionObserver !== "undefined") {
+        visibilityObserver = new IntersectionObserver(
+          ([entry]) => {
+            section.classList.toggle("about--offscreen", !entry.isIntersecting);
+            badgeTweens.forEach((tween) =>
+              entry.isIntersecting ? tween.play() : tween.pause(),
+            );
+          },
+          { rootMargin: "200px 0px" },
+        );
+        visibilityObserver.observe(section);
+      }
     }, section);
 
     // 6. Interactive 3D tilt on imageInner
@@ -161,11 +182,15 @@ export default function About() {
       return () => {
         imageWrapper.removeEventListener("mousemove", handleMouseMove);
         imageWrapper.removeEventListener("mouseleave", handleMouseLeave);
+        visibilityObserver?.disconnect();
         ctx.revert();
       };
     }
 
-    return () => ctx.revert();
+    return () => {
+      visibilityObserver?.disconnect();
+      ctx.revert();
+    };
   }, []);
 
   // Magnetic button hover effect

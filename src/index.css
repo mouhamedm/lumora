@@ -614,6 +614,12 @@
     animation: rotateGlow 15s linear infinite;
   }
 
+  /* Paused (via IntersectionObserver in About.tsx) once the section is
+     scrolled out of view — see .hero--offscreen for the same pattern. */
+  .about--offscreen .about-glow-orb {
+    animation-play-state: paused;
+  }
+
   /* ---- Hero grid mask ---- */
   .hero-grid {
     background-image:
@@ -678,6 +684,17 @@
     animation-delay: -8s;
     animation-duration: 16s;
     opacity: 0.12;
+  }
+
+  /* Pause the blurred, transform-animating aurora orbs (and the hero
+     scene's glow pseudo-element) once the Hero section is scrolled out of
+     view. They loop forever with no timing relationship to anything else,
+     so freezing them off-screen is visually identical to letting them run,
+     but avoids continuously re-rastering large blur(80px) layers on iOS
+     Safari for the rest of the scroll session. */
+  .hero--offscreen .hero__orb,
+  .hero--offscreen .hero__scene::before {
+    animation-play-state: paused;
   }
 
   .hero__grid {
@@ -952,6 +969,17 @@
 }
 
 .group:hover .group-hover\:paused {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   OFF-SCREEN AMBIENT ANIMATION GATING (WhatIDo card stack)
+   Placed outside any @layer so it always wins the cascade over the
+   Tailwind utilities layer, without needing !important.
+   ============================================================ */
+.whatido--offscreen .wid-spin,
+.whatido--offscreen .wid-ping,
+.whatido--offscreen .wid-pulse {
   animation-play-state: paused;
 }
 

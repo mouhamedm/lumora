@@ -216,6 +216,27 @@ export default function WhatIDo() {
     return () => ctx.revert();
   }, []);
 
+  // Pause the decorative always-looping animations (rotating SVG wireframe,
+  // "ping" and "pulse" status dots) inside the card stack once the whole
+  // section is scrolled out of view. They're purely ambient with no fixed
+  // timing dependency on anything else, so pausing/resuming off-screen is
+  // visually identical to letting them run forever, but it stops three
+  // infinite animations living inside backdrop-blur-xl cards from costing
+  // frames for the rest of the scroll session once the user has moved on.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        container.classList.toggle("whatido--offscreen", !entry.isIntersecting);
+      },
+      { rootMargin: "200px 0px" },
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   const isCard1 = scrollProgress <= 0.25;
   const isCard2 = scrollProgress > 0.25 && scrollProgress <= 0.5;
   const isCard3 = scrollProgress > 0.5 && scrollProgress <= 0.75;
@@ -354,7 +375,7 @@ export default function WhatIDo() {
                 <div className="relative my-3 flex-1 flex flex-col justify-center rounded-xl bg-[#09090b]/80 border border-white/5 p-3.5 font-[var(--font-mono)] text-xs overflow-hidden">
                   {/* Rotating 3D wireframe polygon visual in background */}
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 w-40 h-40 opacity-25 pointer-events-none">
-                    <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_12s_linear_infinite]">
+                    <svg viewBox="0 0 100 100" className="wid-spin w-full h-full animate-[spin_12s_linear_infinite]">
                       <polygon
                         points="50,5 90,25 90,75 50,95 10,75 10,25"
                         fill="none"
@@ -439,7 +460,7 @@ export default function WhatIDo() {
                 {/* Dashboard Header */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                    <div className="wid-ping w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
                     <div className="w-2 h-2 rounded-full bg-emerald-400" />
                     <span className="font-[var(--font-mono)] text-xs text-white font-semibold">
                       Production Cluster Active
@@ -604,7 +625,7 @@ export default function WhatIDo() {
                     <span className="text-zinc-400 font-semibold">09:41</span>
                     <div className="w-14 h-1.5 rounded-full bg-white/10 mx-auto" />
                     <span className="text-cyan-400 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="wid-pulse w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       5G · 100%
                     </span>
                   </div>

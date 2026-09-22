@@ -17,6 +17,29 @@ export default function Hero({ isLoaded = false }: HeroProps) {
   const auroraRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
+  // Pause the always-on aurora orbs (blur + transform animation) and the
+  // hero__scene glow pseudo-element whenever the Hero section scrolls out
+  // of view. These animations run on an infinite loop with no fixed timing
+  // dependency, so pausing/resuming them off-screen is visually identical
+  // to letting them run forever, but it removes a large, continuous
+  // filter/compositing cost that otherwise keeps taxing Safari on iOS for
+  // the entire scroll session (blurred layers with an animating transform
+  // must be re-rasterized every frame, even when fully covered by later
+  // sections).
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        hero.classList.toggle("hero--offscreen", !entry.isIntersecting);
+      },
+      { rootMargin: "200px 0px" },
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     const scene = sceneRef.current;
