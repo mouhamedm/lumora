@@ -149,9 +149,9 @@ export default function Navbar({
         {/* Logo */}
         <a
           href="#top"
-          className="nav__logo font-[var(--font-display)] text-[34px] font-semibold tracking-[-0.02em] no-underline text-[var(--text-primary)] inline-flex items-baseline relative transition-opacity duration-[250ms] hover:opacity-85 max-[860px]:text-[24px]"
+          className="nav__logo font-(--font-display) text-[34px] tracking-[-0.02em] no-underline text-[var(--text-primary)] inline-flex items-baseline relative transition-opacity duration-[250ms] hover:opacity-85 max-[860px]:text-[24px]"
         >
-          <span className="text-[var(--text-primary)]">MMD</span>
+          <span className="text-(--text-primary)">MMD</span>
           <span className="text-[var(--accent)]">.</span>
           <span className="logo-dev-text">DEV</span>
         </a>
