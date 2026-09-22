@@ -597,7 +597,8 @@ export default function Projects() {
       const scrollTop = window.scrollY + rect.top;
       const scrollHeight = sectionRef.current.offsetHeight - window.innerHeight;
       if (scrollHeight > 0) {
-        const targetY = scrollTop + (nextIdx / (totalProjects - 1)) * scrollHeight;
+        const targetY =
+          scrollTop + (nextIdx / (totalProjects - 1)) * scrollHeight;
         window.scrollTo({ top: targetY, behavior: "smooth" });
       }
     }
@@ -611,7 +612,8 @@ export default function Projects() {
       const scrollTop = window.scrollY + rect.top;
       const scrollHeight = sectionRef.current.offsetHeight - window.innerHeight;
       if (scrollHeight > 0) {
-        const targetY = scrollTop + (prevIdx / (totalProjects - 1)) * scrollHeight;
+        const targetY =
+          scrollTop + (prevIdx / (totalProjects - 1)) * scrollHeight;
         window.scrollTo({ top: targetY, behavior: "smooth" });
       }
     }
@@ -622,11 +624,11 @@ export default function Projects() {
       <style>{PROJECTS_STYLES}</style>
 
       {/* Multi-viewport scroll container for smooth, native CSS sticky scroll on all devices */}
-      <div className="relative w-full h-[320svh] sm:h-[340svh] lg:h-[360svh]">
+      <div className="relative w-full h-[320vh] sm:h-[340vh] lg:h-[360vh]">
         {/* Pinned Viewport Container via CSS Sticky */}
         <div
           ref={containerRef}
-          className="sticky top-0 w-full h-[100svh] max-h-[100svh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden"
+          className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden"
         >
           {/* Header */}
           <div className="mb-2 sm:mb-6 md:mb-8 max-w-2xl">
