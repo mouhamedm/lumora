@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../lib/utils";
 import idconsultImg from "../assets/images/idconsult.webp";
 import strideImg from "../assets/images/stride.webp";
-import ghostImg from "../assets/images/ghost.png";
+import ghostImg from "../assets/images/ghost.webp";
 import pulseImg from "../assets/images/pulse.webp";
 import inadiaImg from "../assets/images/inadia.webp";
 import TextReveal from "./TextReveal";
