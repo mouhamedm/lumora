@@ -1,8 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export interface TextRevealProps {
   text: string;
@@ -33,9 +30,21 @@ export const TextReveal: React.FC<TextRevealProps> = ({
     if (!units.length) return;
 
     const triggerEl = triggerRef?.current || el;
+    let observer: IntersectionObserver | null = null;
 
+    // Triggered via IntersectionObserver rather than GSAP ScrollTrigger's
+    // `scrollTrigger` config. ScrollTrigger caches each trigger's pixel
+    // position on the page and only recomputes it on an explicit
+    // `.refresh()`; on some devices that cached position can end up stale
+    // (e.g. if it was calculated slightly before layout fully settled),
+    // which leaves a `once: true` reveal never firing at the expected
+    // scroll point — the text stays invisible until something else forces
+    // a refresh. IntersectionObserver has no such cache: it's driven
+    // directly by the browser's own live layout, so it can't go stale.
+    // The tween itself (duration, stagger, easing, offsets) is unchanged —
+    // only the trigger mechanism is.
     const ctx = gsap.context(() => {
-      gsap.fromTo(
+      const tween = gsap.fromTo(
         units,
         {
           yPercent: 110,
@@ -51,18 +60,35 @@ export const TextReveal: React.FC<TextRevealProps> = ({
           delay,
           ease: "power3.out",
           clearProps: "transform,willChange",
-          scrollTrigger: {
-            trigger: triggerEl,
-            start: "top 92%",
-            once: true,
-            fastScrollEnd: true,
-            preventOverlaps: true,
-          },
+          paused: true,
         },
       );
+
+      if (typeof IntersectionObserver === "undefined") {
+        tween.play();
+        return;
+      }
+
+      // rootMargin's negative bottom value shrinks the effective viewport
+      // from the bottom by 8%, approximating ScrollTrigger's previous
+      // "top 92%" start point (the element must scroll up into the top
+      // 92% of the viewport before it's considered "intersecting").
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            tween.play();
+            observer?.disconnect();
+          }
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0 },
+      );
+      observer.observe(triggerEl);
     }, el);
 
-    return () => ctx.revert();
+    return () => {
+      observer?.disconnect();
+      ctx.revert();
+    };
   }, [text, type, delay, triggerRef]);
 
   const trimmed = text.trim();

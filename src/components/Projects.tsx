@@ -583,14 +583,29 @@ export default function Projects() {
     setActive(index);
   });
 
-  // Entrance animations for eyebrow & deck wrapper
+  // Entrance animations for eyebrow & deck wrapper.
+  //
+  // Triggered via IntersectionObserver rather than GSAP ScrollTrigger's
+  // `scrollTrigger` config. ScrollTrigger caches each trigger's pixel
+  // position on the page and only recomputes it on an explicit
+  // `.refresh()`; if that cached position ends up stale on a given device,
+  // a `once: true` reveal can simply never fire at the point the user
+  // actually scrolls past — the eyebrow and the whole project deck stay
+  // invisible (only the plain, unanimated subtitle text shows) until
+  // something else happens to force a refresh. IntersectionObserver reads
+  // the browser's live layout directly, so it can't go stale the same way.
+  // The tweens themselves (duration, easing, offsets) are unchanged — only
+  // the trigger mechanism is.
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
+    if (typeof IntersectionObserver === "undefined") return;
+
+    let observer: IntersectionObserver | null = null;
 
     const ctx = gsap.context(() => {
       // Eyebrow entrance
-      gsap.fromTo(
+      const eyebrowTween = gsap.fromTo(
         ".projects-eyebrow",
         { opacity: 0, y: 20, scale: 0.9 },
         {
@@ -599,17 +614,12 @@ export default function Projects() {
           scale: 1,
           duration: 0.7,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 88%",
-            once: true,
-            fastScrollEnd: true,
-          },
+          paused: true,
         },
       );
 
       // Deck container entrance
-      gsap.fromTo(
+      const deckTween = gsap.fromTo(
         ".projects-deck-wrapper",
         { opacity: 0, y: 45, scale: 0.96 },
         {
@@ -620,17 +630,29 @@ export default function Projects() {
           delay: 0.25,
           ease: "power3.out",
           clearProps: "transform",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 88%",
-            once: true,
-            fastScrollEnd: true,
-          },
+          paused: true,
         },
       );
+
+      // rootMargin's negative bottom value shrinks the effective viewport
+      // from the bottom by 12%, approximating the previous "top 88%" start.
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            eyebrowTween.play();
+            deckTween.play();
+            observer?.disconnect();
+          }
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0 },
+      );
+      observer.observe(section);
     }, section);
 
-    return () => ctx.revert();
+    return () => {
+      observer?.disconnect();
+      ctx.revert();
+    };
   }, []);
 
   // Synchronize manual button clicks with page scroll position
