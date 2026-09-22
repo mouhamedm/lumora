@@ -1,4 +1,4 @@
-# LUMORA — Creative Studio & Digital Direction
+# LUMORA - Creative Studio & Digital Direction
 
 A **high-end, avant-garde creative studio showcase website** built with Next.js 15 (App Router), TypeScript and Tailwind CSS, featuring Motion animations, scroll-driven visual transformations, custom physics-based cursor, magnetic interactions and a fully responsive layout.
 

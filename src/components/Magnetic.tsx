@@ -6,7 +6,7 @@ import { useCursor } from "./CustomCursor";
 
 interface MagneticProps {
   children: React.ReactNode;
-  strength?: number; // Attraction intensity (e.g. 0.35)
+  strength?: number;
   className?: string;
   cursorType?: "pointer" | "project" | "default";
   cursorText?: string;

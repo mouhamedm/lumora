@@ -120,7 +120,7 @@ function CustomCursor({
     <>
       {/* Outer Follower Ring / Pill */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] flex items-center justify-center rounded-full will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 z-9999 flex items-center justify-center rounded-full will-change-transform"
         style={{
           x: smoothX,
           y: smoothY,
@@ -165,7 +165,7 @@ function CustomCursor({
       {/* Center Core Dot */}
       {!isProject && (
         <motion.div
-          className="pointer-events-none fixed top-0 left-0 z-[10000] rounded-full will-change-transform"
+          className="pointer-events-none fixed top-0 left-0 z-10000 rounded-full will-change-transform"
           style={{
             x: dotX,
             y: dotY,

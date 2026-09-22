@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAFAF8] text-[#111110] relative">
+    <main className="min-h-screen flex flex-col bg-lumora-bg text-lumora-dark relative">
       <Navbar />
       <Hero />
       <Marquee />

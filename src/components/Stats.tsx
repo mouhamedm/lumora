@@ -54,29 +54,29 @@ export default function Stats() {
     <section
       id="stats"
       ref={containerRef}
-      className="py-24 sm:py-36 bg-[#111110] text-[#FAFAF8] relative overflow-hidden"
+      className="py-24 sm:py-36 bg-lumora-dark text-lumora-bg relative overflow-hidden"
     >
       {/* Subtle background glow effect */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#FF3B1D]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#FF3B1D]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-lumora-accent/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-lumora-accent/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 pb-8 border-b border-white/10">
           <div>
-            <span className="text-xs font-mono font-bold tracking-widest uppercase text-[#FF3B1D] block mb-4">
+            <span className="text-xs font-mono font-bold tracking-widest uppercase text-lumora-accent block mb-4">
               [ 04 // CHIFFRES CLÉS & RIGUEUR ]
             </span>
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white max-w-2xl leading-[0.95]">
               LA MESURE DE L&apos;EXCELLENCE.
             </h2>
           </div>
-          <p className="text-base sm:text-lg text-[#FAFAF8]/70 max-w-md font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-lumora-bg/70 max-w-md font-normal leading-relaxed">
             Derrière chaque projet iconique se cachent des métriques concrètes d&apos;accélération et de rayonnement mondial.
           </p>
         </div>
 
-        {/* Stats Grid with Animated Numerical Counters */}
+        {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8">
           {STATS_DATA.map((item, index) => (
             <motion.div
@@ -89,7 +89,7 @@ export default function Stats() {
                 delay: index * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-[#FF3B1D]/50 hover:bg-white/[0.05] transition-all duration-300"
+              className="flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-white/3 border border-white/10 hover:border-lumora-accent/50 hover:bg-white/5 transition-all duration-300"
               onMouseEnter={() => setCursor("pointer")}
               onMouseLeave={resetCursor}
             >
@@ -101,19 +101,19 @@ export default function Stats() {
                     decimals={item.decimals}
                     startAnimation={isInView}
                   />
-                  <span className="text-3xl sm:text-4xl text-[#FF3B1D] font-mono">
+                  <span className="text-3xl sm:text-4xl text-lumora-accent font-mono">
                     {item.suffix}
                   </span>
                 </div>
 
-                <div className="h-1 w-10 bg-[#FF3B1D] mb-6 rounded-full" />
+                <div className="h-1 w-10 bg-lumora-accent mb-6 rounded-full" />
 
                 <h3 className="text-sm font-mono font-bold uppercase tracking-wider text-white mb-2">
                   {item.label}
                 </h3>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#FAFAF8]/60 leading-relaxed">
+              <p className="text-xs sm:text-sm text-lumora-bg/60 leading-relaxed">
                 {item.description}
               </p>
             </motion.div>

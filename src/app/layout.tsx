@@ -51,9 +51,9 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased selection:bg-[#FF3B1D] selection:text-white`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased selection:bg-lumora-accent selection:text-white`}
     >
-      <body className="min-h-full flex flex-col bg-[#FAFAF8] text-[#111110]">
+      <body className="min-h-full flex flex-col bg-lumora-bg text-lumora-dark">
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

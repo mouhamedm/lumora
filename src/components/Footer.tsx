@@ -59,16 +59,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="pt-20 pb-10 bg-[#FAFAF8] border-t border-[#111110]/10 overflow-hidden">
+    <footer className="pt-20 pb-10 bg-lumora-bg border-t border-lumora-dark/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Top Info Grid: Clocks & Locations */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-[#111110]/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-lumora-dark/10">
           {/* Studio Description */}
           <div className="md:col-span-4">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#FF3B1D] uppercase block mb-3">
+            <span className="text-xs font-mono font-bold tracking-widest text-lumora-accent uppercase block mb-3">
               [ LUMORA // ATELIER CRÉATIF ]
             </span>
-            <p className="text-sm text-[#6E6E6A] leading-relaxed max-w-sm">
+            <p className="text-sm text-lumora-muted leading-relaxed max-w-sm">
               Studio indépendant de direction artistique, design d&apos;interfaces et technologies créatives. Conçu pour inspirer et marquer l&apos;histoire visuelle.
             </p>
           </div>
@@ -76,37 +76,37 @@ export default function Footer() {
           {/* Live Studio Clocks */}
           <div className="md:col-span-5 grid grid-cols-3 gap-4">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#6E6E6A] block mb-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-lumora-muted block mb-1">
                 PARIS
               </span>
-              <span className="text-sm font-mono font-bold text-[#111110]">
+              <span className="text-sm font-mono font-bold text-lumora-dark">
                 {parisTime || "12:00:00"}
               </span>
-              <span className="text-[10px] font-mono text-[#FF3B1D] block mt-0.5">
+              <span className="text-[10px] font-mono text-lumora-accent block mt-0.5">
                 CET
               </span>
             </div>
 
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#6E6E6A] block mb-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-lumora-muted block mb-1">
                 TOKYO
               </span>
-              <span className="text-sm font-mono font-bold text-[#111110]">
+              <span className="text-sm font-mono font-bold text-lumora-dark">
                 {tokyoTime || "20:00:00"}
               </span>
-              <span className="text-[10px] font-mono text-[#FF3B1D] block mt-0.5">
+              <span className="text-[10px] font-mono text-lumora-accent block mt-0.5">
                 JST
               </span>
             </div>
 
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#6E6E6A] block mb-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-lumora-muted block mb-1">
                 NEW YORK
               </span>
-              <span className="text-sm font-mono font-bold text-[#111110]">
+              <span className="text-sm font-mono font-bold text-lumora-dark">
                 {nyTime || "06:00:00"}
               </span>
-              <span className="text-[10px] font-mono text-[#FF3B1D] block mt-0.5">
+              <span className="text-[10px] font-mono text-lumora-accent block mt-0.5">
                 EST
               </span>
             </div>
@@ -119,11 +119,11 @@ export default function Footer() {
                 onClick={scrollToTop}
                 onMouseEnter={() => setCursor("pointer")}
                 onMouseLeave={resetCursor}
-                className="group flex items-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-[#111110] border border-[#111110]/15 px-5 py-3 rounded-full hover:border-[#111110] transition-colors focus:outline-none"
+                className="group flex items-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-lumora-dark border border-lumora-dark/15 px-5 py-3 rounded-full hover:border-lumora-dark transition-colors focus:outline-none"
               >
                 <span>HAUT DE PAGE</span>
                 <span className="transition-transform duration-300 group-hover:-translate-y-1">
-                  <ArrowUp className="w-3.5 h-3.5 text-[#FF3B1D] stroke-[2.5]" />
+                  <ArrowUp className="w-3.5 h-3.5 text-lumora-accent stroke-[2.5]" />
                 </span>
               </button>
             </Magnetic>
@@ -131,7 +131,7 @@ export default function Footer() {
         </div>
 
         {/* Social Links Bar */}
-        <div className="py-8 border-b border-[#111110]/10 flex flex-wrap items-center justify-between gap-4">
+        <div className="py-8 border-b border-lumora-dark/10 flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-6 sm:gap-8">
             {SOCIAL_LINKS.map((link) => (
               <Magnetic key={link.name} strength={0.25}>
@@ -141,16 +141,16 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   onMouseEnter={() => setCursor("pointer")}
                   onMouseLeave={resetCursor}
-                  className="group relative text-xs font-mono uppercase tracking-wider text-[#111110] hover:text-[#FF3B1D] transition-colors duration-200"
+                  className="group relative text-xs font-mono uppercase tracking-wider text-lumora-dark hover:text-lumora-accent transition-colors duration-200"
                 >
                   <span>{link.name}</span>
-                  <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-[#FF3B1D] transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-lumora-accent transition-all duration-300 group-hover:w-full" />
                 </a>
               </Magnetic>
             ))}
           </div>
 
-          <div className="text-xs font-mono text-[#6E6E6A]">
+          <div className="text-xs font-mono text-lumora-muted">
             © {new Date().getFullYear()} LUMORA STUDIO. TOUS DROITS RÉSERVÉS.
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function Footer() {
             }}
             className="w-full text-center"
           >
-            <h2 className="text-[17vw] font-black uppercase tracking-tighter leading-[0.8] text-[#111110]/95 hover:text-[#FF3B1D] transition-colors duration-700">
+            <h2 className="text-[17vw] font-black uppercase tracking-tighter leading-[0.8] text-lumora-dark/95 hover:text-lumora-accent transition-colors duration-700">
               LUMORA
             </h2>
           </motion.div>
