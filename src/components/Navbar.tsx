@@ -143,16 +143,16 @@ export default function Navbar({
   return (
     <header
       ref={navRef}
-      className="absolute top-0 left-0 right-0 z-[100] py-6 border-b border-transparent"
+      className="absolute top-0 left-0 right-0 z-100 py-6 border-b border-transparent"
     >
-      <div className="nav__inner w-full max-w-[1280px] mx-auto px-12 flex items-center justify-between max-[860px]:px-6">
+      <div className="nav__inner w-full max-w-7xl mx-auto px-12 flex items-center justify-between max-[860px]:px-6">
         {/* Logo */}
         <a
           href="#top"
-          className="nav__logo font-(--font-display) text-[34px] tracking-[-0.02em] no-underline text-[var(--text-primary)] inline-flex items-baseline relative transition-opacity duration-[250ms] hover:opacity-85 max-[860px]:text-[24px]"
+          className="nav__logo font-(--font-display) text-[34px] tracking-[-0.02em] no-underline text-(--text-primary) inline-flex items-baseline relative transition-opacity duration-250 hover:opacity-85 max-[860px]:text-[24px]"
         >
           <span className="text-(--text-primary)">MMD</span>
-          <span className="text-[var(--accent)]">.</span>
+          <span className="text-(--accent)">.</span>
           <span className="logo-dev-text">DEV</span>
         </a>
 
@@ -164,7 +164,7 @@ export default function Navbar({
               href={link.href}
               className="nav__link nav-link-cool no-underline"
             >
-              <span className="relative z-[1]">{t(link.key)}</span>
+              <span className="relative z-1">{t(link.key)}</span>
             </a>
           ))}
         </nav>
@@ -173,7 +173,7 @@ export default function Navbar({
         <div className="nav__actions flex items-center gap-4">
           <button
             type="button"
-            className="font-[var(--font-mono)] text-xs sm:text-[14px] font-bold tracking-[0.08em] text-[var(--text-primary)] bg-white/[0.05] border border-[var(--text-primary)] rounded-md sm:rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2 backdrop-blur-md transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-soft)] hover:shadow-[0_0_20px_rgba(76,141,255,0.3)] hover:-translate-y-0.5 cursor-pointer"
+            className="font-(--font-mono) text-xs sm:text-[14px] tracking-[0.08em] text-(--text-primary) bg-white/5 border border-(--text-primary) rounded-md sm:rounded-lg px-2.5 sm:px-4 py-1.5 sm:py-2 backdrop-blur-md transition-all duration-300 hover:border-(--accent) hover:text-(--accent) hover:bg-(--accent-soft) hover:shadow-[0_0_20px_rgba(76,141,255,0.3)] hover:-translate-y-0.5 cursor-pointer"
             onClick={toggleLanguage}
             aria-label="Changer la langue"
           >
@@ -185,7 +185,7 @@ export default function Navbar({
             type="button"
             className={[
               "hidden max-[860px]:flex flex-col justify-center items-center w-11 h-11",
-              "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-xl z-[130] relative gap-1.5",
+              "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-xl z-130 relative gap-1.5",
               "transition-[background-color,border-color] duration-300",
               "hover:bg-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.15)] cursor-pointer",
             ].join(" ")}
@@ -194,13 +194,13 @@ export default function Navbar({
           >
             <span
               className={[
-                "w-5 h-0.5 bg-[var(--text-primary)] rounded-sm transition-transform duration-[400ms] ease-[cubic-bezier(0.68,-0.6,0.32,1.6)]",
+                "w-5 h-0.5 bg-(--text-primary) rounded-sm transition-transform duration-400 ease-[cubic-bezier(0.68,-0.6,0.32,1.6)]",
                 isMenuOpen ? "translate-y-1 rotate-45" : "",
               ].join(" ")}
             />
             <span
               className={[
-                "w-5 h-0.5 bg-[var(--text-primary)] rounded-sm transition-transform duration-[400ms] ease-[cubic-bezier(0.68,-0.6,0.32,1.6)]",
+                "w-5 h-0.5 bg-(--text-primary) rounded-sm transition-transform duration-400 ease-[cubic-bezier(0.68,-0.6,0.32,1.6)]",
                 isMenuOpen ? "-translate-y-1 -rotate-45" : "",
               ].join(" ")}
             />
@@ -210,7 +210,7 @@ export default function Navbar({
 
       {/* Mobile Overlay Menu */}
       <div
-        className="mobile-nav fixed inset-0 w-full h-[100dvh] z-[120] hidden flex-col justify-center items-center bg-[#0b0b0c] backdrop-blur-[24px] [clip-path:circle(0%_at_90%_10%)] touch-none overscroll-contain"
+        className="mobile-nav fixed inset-0 w-full h-dvh z-120 hidden flex-col justify-center items-center bg-[#0b0b0c] backdrop-blur-xl [clip-path:circle(0%_at_90%_10%)] touch-none overscroll-contain"
         ref={menuRef}
       >
         <div className="flex flex-col items-center gap-12 w-full">
@@ -219,7 +219,7 @@ export default function Navbar({
               <a
                 key={link.href}
                 href={link.href}
-                className="mobile-nav__link mobile-nav-link font-[var(--font-display)] text-[34px] font-bold text-[var(--text-primary)] no-underline text-center transition-transform duration-300 hover:scale-105 hover:text-white"
+                className="mobile-nav__link mobile-nav-link font-(--font-display) text-[34px] text-(--text-primary) no-underline text-center transition-transform duration-300 hover:scale-105 hover:text-white"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>{t(link.key)}</span>

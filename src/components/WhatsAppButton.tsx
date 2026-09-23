@@ -21,7 +21,6 @@ export default function WhatsAppButton({
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show scroll-to-top button after passing Hero section (450px)
       setShowScrollTop(window.scrollY > 450);
     };
 
@@ -44,9 +43,8 @@ export default function WhatsAppButton({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 20 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] flex flex-col items-end gap-3 pointer-events-none"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-60 flex flex-col items-end gap-3 pointer-events-none"
         >
-          {/* Scroll to Top Button (appears directly above WhatsApp button after passing Hero) */}
           <AnimatePresence>
             {showScrollTop && (
               <motion.div
@@ -56,7 +54,6 @@ export default function WhatsAppButton({
                 transition={{ duration: 0.25, ease: "easeOut" }}
                 className="flex items-center gap-2 pointer-events-auto"
               >
-                {/* Tooltip for Scroll to Top */}
                 <AnimatePresence>
                   {isTopHovered && (
                     <motion.div
@@ -77,7 +74,7 @@ export default function WhatsAppButton({
                   onMouseEnter={() => setIsTopHovered(true)}
                   onMouseLeave={() => setIsTopHovered(false)}
                   aria-label={isFr ? "Retourner en haut" : "Scroll to top"}
-                  className="w-11 h-11 rounded-full flex items-center justify-center bg-[rgba(23,23,26,0.85)] border border-white/15 text-white backdrop-blur-xl shadow-[0_10px_25px_rgba(0,0,0,0.5),0_0_15px_rgba(76,141,255,0.15)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_20px_rgba(76,141,255,0.4)] transition-colors cursor-pointer group"
+                  className="w-11 h-11 rounded-full flex items-center justify-center bg-[rgba(23,23,26,0.85)] border border-white/15 text-white backdrop-blur-xl shadow-[0_10px_25px_rgba(0,0,0,0.5),0_0_15px_rgba(76,141,255,0.15)] hover:border-(--accent) hover:text-(--accent) hover:shadow-[0_0_20px_rgba(76,141,255,0.4)] transition-colors cursor-pointer group"
                   whileHover={{ scale: 1.12, y: -2 }}
                   whileTap={{ scale: 0.92 }}
                 >
@@ -87,9 +84,7 @@ export default function WhatsAppButton({
             )}
           </AnimatePresence>
 
-          {/* Floating Animated WhatsApp Button */}
           <div className="flex items-center gap-3 pointer-events-auto">
-            {/* Interactive Tooltip on Hover */}
             <AnimatePresence>
               {isWaHovered && (
                 <motion.div
@@ -114,8 +109,7 @@ export default function WhatsAppButton({
               aria-label="Contacter sur WhatsApp"
               onMouseEnter={() => setIsWaHovered(true)}
               onMouseLeave={() => setIsWaHovered(false)}
-              className="relative group w-14 h-14 rounded-full flex items-center justify-center text-white bg-gradient-to-tr from-[#1EBE5D] via-[#25D366] to-[#40E37C] shadow-[0_10px_30px_rgba(37,211,102,0.4),0_0_20px_rgba(37,211,102,0.3)] cursor-pointer select-none"
-              // Continuous playful floating and periodic wiggles
+              className="relative group w-14 h-14 rounded-full flex items-center justify-center text-white bg-linear-to-tr from-[#1EBE5D] via-[#25D366] to-[#40E37C] shadow-[0_10px_30px_rgba(37,211,102,0.4),0_0_20px_rgba(37,211,102,0.3)] cursor-pointer select-none"
               animate={{
                 y: [0, -7, 0, -4, 0],
                 rotate: [0, 0, -10, 10, -6, 6, 0, 0],
@@ -133,16 +127,10 @@ export default function WhatsAppButton({
               }}
               whileTap={{ scale: 0.92 }}
             >
-              {/* Radar ping ring */}
               <span className="absolute -inset-1 rounded-full bg-[#25D366]/35 animate-ping pointer-events-none" />
-
-              {/* Ambient glow backdrop */}
               <span className="absolute -inset-2 rounded-full bg-[#25D366]/20 blur-md pointer-events-none group-hover:bg-[#25D366]/40 transition-colors" />
-
-              {/* Online Status Beacon */}
               <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-emerald-300 border-2 border-[#0b0b0c] rounded-full shadow-[0_0_8px_#34d399] z-10" />
 
-              {/* Local WhatsApp Icon Asset */}
               <img
                 src={whatsappIcon}
                 alt="WhatsApp"

@@ -11,16 +11,7 @@ import Preloader from "./components/Preloader";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
 
-// Everything below the fold is code-split into its own chunk. None of it is
-// needed to paint the preloader, the navbar or the Hero — but until now it
-// was all bundled into the same ~700KB entry file, so the browser had to
-// download, parse and execute all of it (Projects' scroll-driven deck,
-// Experience's timeline, every other section) before React could mount
-// anything at all, including the preloader itself. Splitting it out means
-// the critical first paint only waits on the code that's actually on
-// screen first; this chunk loads in parallel right behind it and is ready
-// long before the preloader/Hero entrance sequence finishes, so nothing
-// about what renders or when it becomes visible on scroll changes.
+
 const WhatIDo = lazy(() => import("./components/WhatIDo"));
 const Experience = lazy(() => import("./components/Experience"));
 const Projects = lazy(() => import("./components/Projects"));
@@ -40,16 +31,14 @@ function App() {
   const fontsReadyRef = useRef(false);
   const lenisRef = useRef<Lenis | null>(null);
 
-  // Synchronize document title and lang attribute on language toggle
   useEffect(() => {
     const isEn = i18n.language && i18n.language.startsWith("en");
     document.title = isEn
-      ? "MMD.Dev — Frontend Developer | Mouhamed Mourtada Dicko"
-      : "MMD.Dev — Développeur Frontend | Mouhamed Mourtada Dicko";
+      ? "MMD.Dev - Frontend Developer | Mouhamed Mourtada Dicko"
+      : "MMD.Dev - Développeur Frontend | Mouhamed Mourtada Dicko";
     document.documentElement.lang = isEn ? "en" : "fr";
   }, [i18n.language]);
 
-  // Smooth scroll with Lenis on desktop; 100% native smooth scroll on touch/mobile
   useEffect(() => {
     const isTouch =
       "ontouchstart" in window ||
@@ -78,7 +67,6 @@ function App() {
     }
 
 
-    // Smooth navigation on internal anchor clicks
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;
@@ -125,7 +113,6 @@ function App() {
     };
   }, []);
 
-  // Pause Lenis smooth scrolling when mobile overlay menu is open
   useEffect(() => {
     if (!lenisRef.current) return;
     if (isMenuOpen) {
@@ -195,11 +182,6 @@ function App() {
       />
       <Hero isLoaded={isLoaded} />
       <HeroMarquee />
-      {/* fallback={null}: these sections are below the fold and this chunk
-          is expected to finish loading well before the preloader/Hero
-          entrance does, so there's nothing meaningful to show in the gap —
-          this just avoids blocking on their code to paint what's already
-          on screen. */}
       <Suspense fallback={null}>
         <WhatIDo />
         <Experience />

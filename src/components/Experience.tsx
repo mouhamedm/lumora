@@ -99,7 +99,7 @@ const experiences: ExperienceItem[] = [
   },
 ];
 
-// Interactive 3D Tilt Card with Holographic Mouse Spotlight
+// Interactive 3D Tilt Card
 const ExperienceCard: React.FC<{
   item: ExperienceItem;
 }> = ({ item }) => {
@@ -119,7 +119,6 @@ const ExperienceCard: React.FC<{
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    // Subtle, buttery 3D tilt calculation
     const rotX = -((y - centerY) / centerY) * 7;
     const rotY = ((x - centerX) / centerX) * 7;
 
@@ -184,7 +183,7 @@ const ExperienceCard: React.FC<{
             <IconComponent className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-display text-lg md:text-xl font-bold text-white group-hover:text-[var(--accent)] transition-colors duration-300">
+            <h3 className="font-display text-lg md:text-xl font-bold text-white group-hover:text-(--accent) transition-colors duration-300">
               {t(item.roleKey)}
             </h3>
             <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-medium mt-0.5">
@@ -203,7 +202,7 @@ const ExperienceCard: React.FC<{
               {t("experience.present")}
             </span>
           )}
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-[var(--font-mono)] bg-white/5 border border-white/10 text-zinc-300">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-(--font-mono) bg-white/5 border border-white/10 text-zinc-300">
             <Calendar className="w-3.5 h-3.5 text-zinc-500" />
             {t(item.periodKey)}
           </span>
@@ -211,7 +210,7 @@ const ExperienceCard: React.FC<{
       </div>
 
       {/* Description */}
-      <p className="relative z-10 font-[var(--font-body)] text-sm md:text-base text-zinc-300 leading-relaxed mb-6">
+      <p className="relative z-10 font-(--font-body) text-sm md:text-base text-zinc-300 leading-relaxed mb-6">
         {t(item.descKey)}
       </p>
 
@@ -220,7 +219,7 @@ const ExperienceCard: React.FC<{
         {item.technologies.map((tech) => (
           <span
             key={tech}
-            className="px-2.5 py-1 rounded-lg text-xs font-[var(--font-mono)] bg-white/[0.04] hover:bg-white/[0.08] text-zinc-400 hover:text-white border border-white/5 transition-all duration-200"
+            className="px-2.5 py-1 rounded-lg text-xs font-(--font-mono) bg-white/4 hover:bg-white/8 text-zinc-400 hover:text-white border border-white/5 transition-all duration-200"
           >
             {tech}
           </span>
@@ -355,19 +354,19 @@ export default function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative py-16 md:py-32 px-4 sm:px-6 md:px-12 max-w-[1340px] w-full mx-auto overflow-hidden bg-[var(--color-bg-base)]"
+      className="relative py-16 md:py-32 px-4 sm:px-6 md:px-12 max-w-335 w-full mx-auto overflow-hidden bg-(--color-bg-base)"
     >
       {/* Background Decorative Lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-blue-600/10 via-cyan-500/5 to-transparent rounded-full blur-3xl pointer-events-none translate-z-0" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-175 h-125 bg-linear-to-b from-blue-600/10 via-cyan-500/5 to-transparent rounded-full blur-3xl pointer-events-none translate-z-0" />
 
       <div className="relative z-10 w-full flex flex-col items-center">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-16 md:mb-24">
           <div
-            className="experience-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-4 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]"
+            className="experience-eyebrow inline-flex items-center font-(--font-mono) text-xs tracking-widest uppercase text-(--accent) mb-4 px-4 py-1.5 bg-(--accent-soft) border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]"
             aria-hidden="true"
           >
-            <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+            <Sparkles className="w-3.5 h-3.5 mr-2 text-(--accent)" />
             {t("experience.eyebrow")}
           </div>
           <h2 className="font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
@@ -396,7 +395,7 @@ export default function Experience() {
               </>
             ) : null}
           </h2>
-          <div className="font-[var(--font-body)] text-sm md:text-base text-[var(--text-secondary)] max-w-[620px] mx-auto leading-relaxed">
+          <div className="font-(--font-body) text-sm md:text-base text-(--text-secondary) max-w-155 mx-auto leading-relaxed">
             <TextReveal
               text={t("experience.subtitle")}
               type="words"
@@ -406,26 +405,23 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* High-Tech Laser Beam Timeline Layout */}
+        {/* High-Tech */}
         <div className="relative w-full max-w-5xl mx-auto" ref={timelineRef}>
-          {/* Central Vertical Energy Beam Line (Desktop) */}
-          <div className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] overflow-hidden">
-            {/* Static ambient track */}
+          <div className="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 overflow-hidden">
             <div className="w-full h-full bg-white/10" />
-            {/* Scroll-driven colored fill */}
             <div
               ref={progressLineRef}
-              className="absolute inset-0 origin-top bg-gradient-to-b from-[var(--accent)] via-cyan-400 to-[#1A6FE8] opacity-90 shadow-[0_0_15px_#4c8dff]"
+              className="absolute inset-0 origin-top bg-linear-to-b from-(--accent) via-cyan-400 to-[#1A6FE8] opacity-90 shadow-[0_0_15px_#4c8dff]"
               style={{ transform: "scaleY(0)" }}
             />
           </div>
 
           {/* Left Line for Mobile & Tablets */}
-          <div className="block lg:hidden absolute top-0 bottom-0 left-4 sm:left-6 w-[2px] overflow-hidden">
+          <div className="block lg:hidden absolute top-0 bottom-0 left-4 sm:left-6 w-0.5 overflow-hidden">
             <div className="w-full h-full bg-white/10" />
             <div
               ref={progressLineMobileRef}
-              className="absolute inset-0 origin-top bg-gradient-to-b from-[var(--accent)] via-cyan-400 to-[#1A6FE8] opacity-90 shadow-[0_0_15px_#4c8dff]"
+              className="absolute inset-0 origin-top bg-linear-to-b from-(--accent) via-cyan-400 to-[#1A6FE8] opacity-90 shadow-[0_0_15px_#4c8dff]"
               style={{ transform: "scaleY(0)" }}
             />
           </div>
@@ -443,7 +439,9 @@ export default function Experience() {
                   <div
                     className={cn(
                       "experience-card-col w-full lg:w-[calc(50%-48px)]",
-                      isEven ? "experience-col-left lg:order-1" : "experience-col-right lg:order-2",
+                      isEven
+                        ? "experience-col-left lg:order-1"
+                        : "experience-col-right lg:order-2",
                       "pl-9 sm:pl-16 lg:pl-0",
                     )}
                   >
@@ -456,12 +454,12 @@ export default function Experience() {
                       className={cn(
                         "relative w-12 h-12 rounded-full border flex items-center justify-center bg-[#0e1017] transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.8)]",
                         item.isCurrent
-                          ? "border-[var(--accent)] shadow-[0_0_25px_rgba(76,141,255,0.6)]"
-                          : "border-white/20 hover:border-[var(--accent)]",
+                          ? "border-(--accent) shadow-[0_0_25px_rgba(76,141,255,0.6)]"
+                          : "border-white/20 hover:border-(--accent)",
                       )}
                     >
                       {item.isCurrent && (
-                        <div className="absolute inset-0 rounded-full bg-[var(--accent)]/20 animate-ping" />
+                        <div className="absolute inset-0 rounded-full bg-(--accent)/20 animate-ping" />
                       )}
                       <div
                         className="w-3 h-3 rounded-full"
@@ -472,9 +470,7 @@ export default function Experience() {
 
                   {/* Mobile Node */}
                   <div className="experience-node lg:hidden absolute left-4 sm:left-6 -translate-x-1/2 top-7 sm:top-8 z-20">
-                    <div
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[var(--accent)] bg-[#0e1017] flex items-center justify-center shadow-[0_0_15px_rgba(76,141,255,0.5)]"
-                    >
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-(--accent) bg-[#0e1017] flex items-center justify-center shadow-[0_0_15px_rgba(76,141,255,0.5)]">
                       <div
                         className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full"
                         style={{ backgroundColor: item.accentColor }}

@@ -133,20 +133,20 @@ export default function Contact() {
 
   return (
     <section
-      className="relative py-[120px] px-12 max-w-[1280px] w-full mx-auto min-h-[80vh] z-[2] overflow-hidden max-[768px]:py-[100px] max-[768px]:px-6"
+      className="relative py-30 px-12 max-w-7xl w-full mx-auto min-h-[80vh] z-2 overflow-hidden max-[768px]:py-25 max-[768px]:px-6"
       id="contact"
       ref={sectionRef}
     >
-      <div className="grid grid-cols-[1.2fr_0.8fr] gap-20 items-center max-[992px]:grid-cols-1 max-[992px]:gap-[60px]">
-        {/* Left Side: Info */}
+      <div className="grid grid-cols-[1.2fr_0.8fr] gap-20 items-center max-[992px]:grid-cols-1 max-[992px]:gap-15">
+        {/* Left Side */}
         <div className="flex flex-col">
-          <div className="inline-flex items-center self-start font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-6 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
-            <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+          <div className="inline-flex items-center self-start font-(--font-mono) text-xs tracking-widest uppercase text-(--accent) mb-6 px-4 py-1.5 bg-(--accent-soft) border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
+            <Sparkles className="w-3.5 h-3.5 mr-2 text-(--accent)" />
             {t("contact.eyebrow")}
           </div>
 
           <h2
-            className="font-[var(--font-display)] text-[clamp(38px,6vw,80px)] leading-[1.05] font-bold mb-10"
+            className="font-(--font-display) text-[clamp(38px,6vw,80px)] leading-[1.05] mb-10"
             ref={titleRef}
           >
             <span
@@ -188,7 +188,7 @@ export default function Contact() {
                 cardsRef.current[0] = el;
               }}
             >
-              <div className="w-14 h-14 rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.1)] text-[var(--accent)]">
+              <div className="w-14 h-14 rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.1)] text-(--accent)">
                 <svg
                   className="w-6 h-6"
                   viewBox="0 0 24 24"
@@ -203,10 +203,10 @@ export default function Contact() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-[13px] text-[var(--text-muted)] font-[var(--font-mono)] mb-1">
+                <span className="text-[13px] text-(--text-muted) font-(--font-mono) mb-1">
                   {t("contact.email_label")}
                 </span>
-                <span className="text-lg font-semibold text-[var(--text-primary)] font-[var(--font-body)]">
+                <span className="text-lg font-semibold text-(--text-primary)">
                   mmddev310@gmail.com
                 </span>
               </div>
@@ -223,7 +223,7 @@ export default function Contact() {
                 cardsRef.current[1] = el;
               }}
             >
-              <div className="w-14 h-14 rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.1)] text-[var(--accent)]">
+              <div className="w-14 h-14 rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.1)] text-(--accent)">
                 <svg
                   className="w-6 h-6"
                   viewBox="0 0 24 24"
@@ -237,10 +237,10 @@ export default function Contact() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-[13px] text-[var(--text-muted)] font-[var(--font-mono)] mb-1">
+                <span className="text-[13px] text-(--text-muted) font-(--font-mono) mb-1">
                   {t("contact.whatsapp_label")}
                 </span>
-                <span className="text-lg font-semibold text-[var(--text-primary)] font-[var(--font-body)]">
+                <span className="text-lg font-semibold text-(--text-primary)">
                   +225 0719076206
                 </span>
               </div>
@@ -253,7 +253,7 @@ export default function Contact() {
                 cardsRef.current[2] = el;
               }}
             >
-              <div className="w-14 h-14 rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.1)] text-[var(--accent)]">
+              <div className="w-14 h-14 rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 border border-[rgba(255,255,255,0.1)] text-(--accent)">
                 <svg
                   className="w-6 h-6"
                   viewBox="0 0 24 24"
@@ -268,10 +268,10 @@ export default function Contact() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-[13px] text-[var(--text-muted)] font-[var(--font-mono)] mb-1">
+                <span className="text-[13px] text-(--text-muted) font-(--font-mono) mb-1">
                   {t("contact.location_label")}
                 </span>
-                <span className="text-lg font-semibold text-[var(--text-primary)] font-[var(--font-body)]">
+                <span className="text-lg text-(--text-primary)">
                   {t("contact.location_val")}
                 </span>
               </div>
@@ -279,9 +279,9 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right Side: Form */}
+        {/* Right Side */}
         <div
-          className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] backdrop-blur-[20px] rounded-[32px] p-12 shadow-[0_30px_60px_rgba(0,0,0,0.2)] max-[768px]:p-6 max-[768px]:px-6"
+          className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] backdrop-blur-[20px] rounded-4xl p-12 shadow-[0_30px_60px_rgba(0,0,0,0.2)] max-[768px]:p-6 max-[768px]:px-6"
           ref={formRef}
         >
           <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
@@ -303,7 +303,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 name="message"
-                className="form-input resize-none min-h-[120px]"
+                className="form-input resize-none min-h-30"
                 placeholder=" "
                 required
               ></textarea>
@@ -314,7 +314,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="mt-4 px-8 py-4 rounded-[100px] bg-white text-black font-[var(--font-body)] text-base font-bold border-none self-start inline-flex items-center gap-3 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] disabled:opacity-60"
+              className="mt-4 px-8 py-4 rounded-[100px] bg-white text-black font-(--font-body) text-base border-none self-start inline-flex items-center gap-3 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] disabled:opacity-60"
               disabled={status === "LOADING"}
             >
               {status === "LOADING"

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: /sitemap.xml
+Sitemap: https://www.mmddev.app/sitemap.xml

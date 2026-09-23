@@ -32,17 +32,6 @@ export const TextReveal: React.FC<TextRevealProps> = ({
     const triggerEl = triggerRef?.current || el;
     let observer: IntersectionObserver | null = null;
 
-    // Triggered via IntersectionObserver rather than GSAP ScrollTrigger's
-    // `scrollTrigger` config. ScrollTrigger caches each trigger's pixel
-    // position on the page and only recomputes it on an explicit
-    // `.refresh()`; on some devices that cached position can end up stale
-    // (e.g. if it was calculated slightly before layout fully settled),
-    // which leaves a `once: true` reveal never firing at the expected
-    // scroll point — the text stays invisible until something else forces
-    // a refresh. IntersectionObserver has no such cache: it's driven
-    // directly by the browser's own live layout, so it can't go stale.
-    // The tween itself (duration, stagger, easing, offsets) is unchanged —
-    // only the trigger mechanism is.
     const ctx = gsap.context(() => {
       const tween = gsap.fromTo(
         units,
@@ -69,10 +58,6 @@ export const TextReveal: React.FC<TextRevealProps> = ({
         return;
       }
 
-      // rootMargin's negative bottom value shrinks the effective viewport
-      // from the bottom by 8%, approximating ScrollTrigger's previous
-      // "top 92%" start point (the element must scroll up into the top
-      // 92% of the viewport before it's considered "intersecting").
       observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {

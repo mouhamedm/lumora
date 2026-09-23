@@ -86,7 +86,6 @@ export default function Preloader({ onStart, onComplete }: PreloaderProps) {
         ease: 'power2.out',
       }, '-=0.15');
 
-      // Let the pulsating dots animation run smoothly
       tl.to({}, {
         duration: 1.2,
       });

@@ -31,7 +31,7 @@ export default function About() {
       const content = section.querySelector(".about__content");
       const lines = linesRef.current.filter(Boolean);
 
-      // 1. Eyebrow badge entrance
+      // Eyebrow badge entrance
       gsap.fromTo(
         ".about-eyebrow",
         { opacity: 0, y: 20, scale: 0.9 },
@@ -50,7 +50,7 @@ export default function About() {
         },
       );
 
-      // 2. Paragraphs smooth stagger (no blur filter to avoid clipping/glitches)
+      // Paragraphs smooth stagger
       if (lines.length > 0) {
         gsap.fromTo(
           lines,
@@ -73,7 +73,7 @@ export default function About() {
         );
       }
 
-      // 3. CTA button entrance
+      // CTA button entrance
       if (btn) {
         gsap.fromTo(
           btn,
@@ -96,7 +96,7 @@ export default function About() {
         );
       }
 
-      // 4. Image entrance animation (smooth, no clipping)
+      // Image entrance animation
       if (imageWrapper) {
         gsap.fromTo(
           imageWrapper,
@@ -118,7 +118,7 @@ export default function About() {
         );
       }
 
-      // 5. Floating badges infinite gentle hover
+      // Floating badges infinite gentle hover
       const badges = badgeRefs.current.filter(Boolean);
       const badgeTweens = badges.map((badge, index) =>
         gsap.to(badge, {
@@ -131,12 +131,6 @@ export default function About() {
         }),
       );
 
-      // Pause the glow orb's rotation (CSS) and the badges' float tweens
-      // (GSAP) whenever the About section is scrolled out of view. Both
-      // loop forever with no fixed timing dependency, so pausing them
-      // off-screen and resuming on return is visually identical, while
-      // avoiding a rotating blur(45px) layer and two backdrop-blur badges
-      // animating for the entire remaining scroll session.
       if (typeof IntersectionObserver !== "undefined") {
         visibilityObserver = new IntersectionObserver(
           ([entry]) => {
@@ -151,7 +145,7 @@ export default function About() {
       }
     }, section);
 
-    // 6. Interactive 3D tilt on imageInner
+    // Interactive 3D tilt on imageInner
     if (imageWrapper && imageInner) {
       const xTo = gsap.quickTo(imageInner, "rotationY", {
         duration: 0.4,
@@ -230,14 +224,14 @@ export default function About() {
       id="about"
       ref={sectionRef}
     >
-      <div className="w-full max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center justify-center">
-        {/* LEFT COLUMN: Image & 3D Interactive Visual Card */}
-        <div className="relative perspective-[1200px] flex justify-center lg:justify-end items-center w-full">
+      <div className="w-full max-w-310 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center justify-center">
+        {/* LEFT COLUMN */}
+        <div className="relative perspective-distant flex justify-center lg:justify-end items-center w-full">
           <div
-            className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] aspect-[4/5] transform-3d"
+            className="relative w-full max-w-85 sm:max-w-100 lg:max-w-110 aspect-4/5 transform-3d"
             ref={imageWrapperRef}
           >
-            {/* Glow orb — contained within image bounds */}
+            {/* Glow orb */}
             <div
               className="about-glow-orb absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] opacity-30 z-[-1] rounded-full pointer-events-none"
               style={{
@@ -247,7 +241,7 @@ export default function About() {
               }}
             />
 
-            {/* Image inner */}
+            {/* Image */}
             <div
               className="relative w-full h-full rounded-3xl overflow-hidden bg-[rgba(23,23,26,0.7)] backdrop-blur-md border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] transition-transform duration-150 ease-out"
               ref={imageInnerRef}
@@ -261,7 +255,7 @@ export default function About() {
               />
             </div>
 
-            {/* Floating Badge 1 - Top Right */}
+            {/* Badge 1 */}
             <div
               className="absolute top-[8%] -right-2.5 sm:-right-4 md:-right-7 bg-[rgba(23,23,26,0.85)] backdrop-blur-xl border border-white/15 rounded-2xl p-2.5 sm:p-3.5 flex items-center justify-center shadow-[0_12px_28px_rgba(0,0,0,0.5)] z-20 select-none"
               ref={(el) => {
@@ -275,14 +269,14 @@ export default function About() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--accent)]"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-(--accent)"
               >
                 <polyline points="16 18 22 12 16 6" />
                 <polyline points="8 6 2 12 8 18" />
               </svg>
             </div>
 
-            {/* Floating Badge 2 - Bottom Left */}
+            {/* Badge 2 */}
             <div
               className="absolute bottom-[16%] -left-2.5 sm:-left-4 md:-left-7 bg-[rgba(23,23,26,0.85)] backdrop-blur-xl border border-white/15 rounded-2xl p-2.5 sm:p-3.5 flex items-center justify-center shadow-[0_12px_28px_rgba(0,0,0,0.5)] z-20 select-none"
               ref={(el) => {
@@ -304,15 +298,15 @@ export default function About() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Content */}
-        <div className="about__content flex flex-col items-center text-center mx-auto lg:items-start lg:text-left lg:mx-0 max-w-[540px] lg:max-w-[560px] w-full">
+        {/* RIGHT COLUMN */}
+        <div className="about__content flex flex-col items-center text-center mx-auto lg:items-start lg:text-left lg:mx-0 max-w-135 lg:max-w-140 w-full">
           {/* Eyebrow Badge */}
-          <div className="about-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-4 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
-            <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+          <div className="about-eyebrow inline-flex items-center font-(--font-mono) text-xs tracking-widest uppercase text-(--accent) mb-4 px-4 py-1.5 bg-(--accent-soft) border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
+            <Sparkles className="w-3.5 h-3.5 mr-2 text-(--accent)" />
             {t("about.eyebrow")}
           </div>
 
-          {/* Section Title with Kinetic Reveal */}
+          {/* Section Title */}
           <h2
             className="about__title font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.15] font-bold mb-6 text-white text-center lg:text-left"
             ref={titleRef}
@@ -344,7 +338,7 @@ export default function About() {
           </h2>
 
           {/* Descriptive Text Lines */}
-          <div className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed mb-8 flex flex-col gap-4">
+          <div className="text-sm md:text-base text-(--text-secondary) leading-relaxed mb-8 flex flex-col gap-4">
             <p
               className=""
               ref={(el) => {
@@ -371,17 +365,17 @@ export default function About() {
             </p>
           </div>
 
-          {/* Magnetic CTA Link */}
+          {/* CTA Link */}
           <div>
             <a
               href="https://wa.me/2250719076206"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-magnetic inline-flex items-center gap-3 px-8 py-3.5 bg-white/5 hover:bg-[var(--accent-soft)] border border-white/15 hover:border-[rgba(76,141,255,0.3)] rounded-full text-white text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(76,141,255,0.18)] group"
+              className="btn-magnetic inline-flex items-center gap-3 px-8 py-3.5 bg-white/5 hover:bg-(--accent-soft) border border-white/15 hover:border-[rgba(76,141,255,0.3)] rounded-full text-white text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(76,141,255,0.18)] group"
               ref={btnRef}
             >
               <span>{t("about.cta")}</span>
-              <ArrowRight className="w-4 h-4 text-[var(--accent)] transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 text-(--accent) transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
         </div>

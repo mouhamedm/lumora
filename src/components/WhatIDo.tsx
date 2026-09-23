@@ -70,9 +70,9 @@ const PointItem: React.FC<PointItemProps> = ({
       <div className="flex items-center gap-3 mb-2.5">
         <div
           className={cn(
-            "w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl flex items-center justify-center text-xs sm:text-[13px] font-[var(--font-mono)] font-bold transition-all duration-300 shrink-0",
+            "w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-xl flex items-center justify-center text-xs sm:text-[13px] font-(--font-mono) transition-all duration-300 shrink-0",
             isActive
-              ? "bg-[var(--accent)] text-white shadow-[0_0_18px_rgba(76,141,255,0.4)]"
+              ? "bg-(--accent) text-white shadow-[0_0_18px_rgba(76,141,255,0.4)]"
               : "bg-white/5 text-zinc-500 border border-white/10",
           )}
         >
@@ -82,7 +82,7 @@ const PointItem: React.FC<PointItemProps> = ({
           className={cn(
             "inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-medium transition-all duration-300",
             isCurrent
-              ? "bg-[var(--accent-soft)] text-[var(--accent)] border border-[rgba(76,141,255,0.3)] shadow-[0_0_14px_rgba(76,141,255,0.2)]"
+              ? "bg-(--accent-soft) text-(--accent) border border-[rgba(76,141,255,0.3)] shadow-[0_0_14px_rgba(76,141,255,0.2)]"
               : "bg-white/5 text-zinc-400 border border-white/5",
           )}
         >
@@ -93,12 +93,10 @@ const PointItem: React.FC<PointItemProps> = ({
 
       {/* Progress track & Content */}
       <div className="w-full flex pl-1 sm:pl-2">
-        <div className="w-[28px] sm:w-[32px] flex items-start justify-center relative shrink-0">
-          {/* Base track line */}
-          <div className="h-full w-[2px] bg-white/10 absolute top-0 left-1/2 -translate-x-1/2 rounded-full" />
-          {/* Active filled line */}
+        <div className="w-7 sm:w-8 flex items-start justify-center relative shrink-0">
+          <div className="h-full w-0.5 bg-white/10 absolute top-0 left-1/2 -translate-x-1/2 rounded-full" />
           <div
-            className="w-[2px] bg-gradient-to-b from-[#6ea1ff] via-[var(--accent)] to-[#1A6FE8] absolute top-0 left-1/2 -translate-x-1/2 rounded-full shadow-[0_0_12px_rgba(76,141,255,0.8)] transition-all duration-100"
+            className="w-0.5 bg-linear-to-b from-accent-hover via-(--accent) to-[#1A6FE8] absolute top-0 left-1/2 -translate-x-1/2 rounded-full shadow-[0_0_12px_rgba(76,141,255,0.8)] transition-all duration-100"
             style={{ height: `${barHeightPercentage}%` }}
           />
         </div>
@@ -114,7 +112,7 @@ const PointItem: React.FC<PointItemProps> = ({
           </h3>
           <p
             className={cn(
-              "font-[var(--font-body)] text-sm md:text-[15px] leading-relaxed max-w-[480px] transition-colors duration-300",
+              "font-(--font-body) text-sm md:text-[15px] leading-relaxed max-w-120 transition-colors duration-300",
               isActive ? "text-zinc-300" : "text-zinc-500",
             )}
           >
@@ -189,7 +187,7 @@ export default function WhatIDo() {
         );
       }
 
-      // Right column cards container reveal
+      // Right column cards
       if (rightColRef.current) {
         gsap.fromTo(
           rightColRef.current,
@@ -216,13 +214,6 @@ export default function WhatIDo() {
     return () => ctx.revert();
   }, []);
 
-  // Pause the decorative always-looping animations (rotating SVG wireframe,
-  // "ping" and "pulse" status dots) inside the card stack once the whole
-  // section is scrolled out of view. They're purely ambient with no fixed
-  // timing dependency on anything else, so pausing/resuming off-screen is
-  // visually identical to letting them run forever, but it stops three
-  // infinite animations living inside backdrop-blur-xl cards from costing
-  // frames for the rest of the scroll session once the user has moved on.
   useEffect(() => {
     const container = containerRef.current;
     if (!container || typeof IntersectionObserver === "undefined") return;
@@ -246,18 +237,17 @@ export default function WhatIDo() {
     <section
       id="what-i-do"
       ref={containerRef}
-      className="relative w-full bg-[var(--color-bg-base)] pt-12 sm:pt-16 md:pt-20 lg:pt-16 mb-16 md:mb-28 lg:mb-32"
+      className="relative w-full bg-(--color-bg-base) pt-12 sm:pt-16 md:pt-20 lg:pt-16 mb-16 md:mb-28 lg:mb-32"
     >
-      {/* Scrollable multi-viewport container to drive the sticky reveal on desktop, natural flow on mobile */}
       <div className="relative w-full h-auto lg:h-[400vh]">
-        <div className="relative static h-auto min-h-0 w-full flex flex-col justify-center py-8 px-4 sm:px-6 md:px-12 max-w-[1340px] mx-auto z-20 lg:sticky lg:top-0 lg:h-screen lg:max-h-screen lg:py-8">
+        <div className="static h-auto min-h-0 w-full flex flex-col justify-center py-8 px-4 sm:px-6 md:px-12 max-w-335 mx-auto z-20 lg:sticky lg:top-0 lg:h-screen lg:max-h-screen lg:py-8">
           {/* Section Header */}
           <div ref={headerRef} className="text-center mb-5 lg:mb-7 shrink-0">
             <div
-              className="whatido-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-2.5 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_16px_rgba(76,141,255,0.12)]"
+              className="whatido-eyebrow inline-flex items-center font-(--font-mono) text-xs tracking-widest uppercase text-(--accent) mb-2.5 px-4 py-1.5 bg-(--accent-soft) border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_16px_rgba(76,141,255,0.12)]"
               aria-hidden="true"
             >
-              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[var(--accent)]" />
+              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-(--accent)" />
               {t("whatido.eyebrow")}
             </div>
             <h2 className="font-display text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.15] font-bold text-white mb-4">
@@ -286,7 +276,7 @@ export default function WhatIDo() {
                 </>
               ) : null}
             </h2>
-            <div className="font-[var(--font-body)] text-sm sm:text-base text-[var(--text-secondary)] max-w-[580px] mx-auto leading-relaxed">
+            <div className="font-(--font-body) text-sm sm:text-base text-(--text-secondary) max-w-145 mx-auto leading-relaxed">
               <TextReveal
                 text={t("whatido.subtitle")}
                 type="words"
@@ -296,9 +286,9 @@ export default function WhatIDo() {
             </div>
           </div>
 
-          {/* Grid Layout: Left Progress Points & Right Dynamic Visual Cards */}
+          {/* Grid Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-            {/* Left Column: Vertical Reveal Items */}
+            {/* Left Column */}
             <div ref={leftColRef} className="lg:col-span-6 flex flex-col justify-center space-y-1 sm:space-y-1.5">
               <PointItem
                 number={t("whatido.p1_number")}
@@ -338,13 +328,13 @@ export default function WhatIDo() {
               />
             </div>
 
-            {/* Right Column: Dynamic Interactive Visual Cards (NO external images) */}
+            {/* Right Column */}
             <div
               ref={rightColRef}
-              className="lg:col-span-6 relative w-full h-[480px] sm:h-[500px] md:h-[520px] lg:h-[460px] flex items-center justify-center mt-8 lg:mt-0"
+              className="lg:col-span-6 relative w-full h-120 sm:h-125 md:h-130 lg:h-115 flex items-center justify-center mt-8 lg:mt-0"
             >
               {/* Subtle ambient backglow */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-3xl blur-3xl opacity-60 pointer-events-none translate-z-0" />
+              <div className="absolute -inset-4 bg-linear-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-3xl blur-3xl opacity-60 pointer-events-none translate-z-0" />
 
               {/* CARD 1: Creative 3D & WebGL Canvas Preview */}
               <div
@@ -361,18 +351,18 @@ export default function WhatIDo() {
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-                    <span className="ml-2 font-[var(--font-mono)] text-xs text-zinc-400">
+                    <span className="ml-2 font-(--font-mono) text-xs text-zinc-400">
                       WebGLCanvas.tsx — 60 FPS
                     </span>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[11px] font-[var(--font-mono)] text-blue-400">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[11px] font-(--font-mono) text-blue-400">
                     <Zap className="w-3 h-3 text-blue-400" />
                     GSAP + Three.js
                   </div>
                 </div>
 
                 {/* Animated Simulated Visualizer & Code */}
-                <div className="relative my-3 flex-1 flex flex-col justify-center rounded-xl bg-[#09090b]/80 border border-white/5 p-3.5 font-[var(--font-mono)] text-xs overflow-hidden">
+                <div className="relative my-3 flex-1 flex flex-col justify-center rounded-xl bg-[#09090b]/80 border border-white/5 p-3.5 font-(--font-mono) text-xs overflow-hidden">
                   {/* Rotating 3D wireframe polygon visual in background */}
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 w-40 h-40 opacity-25 pointer-events-none">
                     <svg viewBox="0 0 100 100" className="wid-spin w-full h-full animate-[spin_12s_linear_infinite]">
@@ -462,11 +452,11 @@ export default function WhatIDo() {
                   <div className="flex items-center gap-2">
                     <div className="wid-ping w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
                     <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                    <span className="font-[var(--font-mono)] text-xs text-white font-semibold">
+                    <span className="text-xs text-white font-semibold">
                       Production Cluster Active
                     </span>
                   </div>
-                  <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-[var(--font-mono)] text-emerald-400">
+                  <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-(--font-mono) text-emerald-400">
                     <Gauge className="w-3 h-3" />
                     100/100 Lighthouse
                   </div>
@@ -482,7 +472,7 @@ export default function WhatIDo() {
                   ].map((metric) => (
                     <div
                       key={metric.label}
-                      className="p-1.5 sm:p-2 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col items-center justify-center gap-1"
+                      className="p-1.5 sm:p-2 rounded-xl bg-white/3 border border-white/5 flex flex-col items-center justify-center gap-1"
                     >
                       <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-emerald-400/80 bg-emerald-500/10 flex items-center justify-center text-[11px] sm:text-xs font-bold text-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.3)]">
                         {metric.score}
@@ -495,7 +485,7 @@ export default function WhatIDo() {
                 </div>
 
                 {/* Realtime API / Data status metrics */}
-                <div className="space-y-1.5 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-[var(--font-mono)]">
+                <div className="space-y-1.5 p-2.5 rounded-xl bg-white/2 border border-white/5 text-xs font-(--font-mono)">
                   <div className="flex justify-between items-center text-zinc-300">
                     <span className="text-zinc-500">Firebase Sync:</span>
                     <span className="text-emerald-400 flex items-center gap-1">
@@ -539,11 +529,11 @@ export default function WhatIDo() {
                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-blue-400" />
-                    <span className="font-[var(--font-mono)] text-xs text-white font-semibold">
+                    <span className="text-xs text-white font-semibold">
                       DesignSystem.tokens.css
                     </span>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[11px] font-[var(--font-mono)] text-purple-300">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[11px] text-purple-300">
                     Pixel-Perfect AA+
                   </div>
                 </div>
@@ -551,8 +541,8 @@ export default function WhatIDo() {
                 {/* Design System Interactive Tokens & UI Elements */}
                 <div className="space-y-2 my-1.5">
                   {/* Swatches */}
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                    <span className="text-xs text-zinc-400 font-[var(--font-mono)]">Color Tokens</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/3 border border-white/5">
+                    <span className="text-xs text-zinc-400 font-(--font-mono)">Color Tokens</span>
                     <div className="flex items-center gap-2">
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-[#4c8dff] shadow-[0_0_8px_#4c8dff]" title="#4C8DFF" />
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-[#1a6fe8]" title="#1A6FE8" />
@@ -562,16 +552,16 @@ export default function WhatIDo() {
                   </div>
 
                   {/* Micro-interaction interactive preview */}
-                  <div className="p-3 rounded-xl bg-gradient-to-r from-blue-950/30 to-purple-950/30 border border-blue-500/20 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-linear-to-r from-blue-950/30 to-purple-950/30 border border-blue-500/20 flex items-center justify-between">
                     <div>
                       <p className="text-xs font-semibold text-white">Dynamic Glass Card</p>
-                      <p className="text-[11px] text-zinc-400 font-[var(--font-mono)] mt-0.5">
+                      <p className="text-[11px] text-zinc-400 font-(--font-mono) mt-0.5">
                         stiffness: 300 · damping: 24
                       </p>
                     </div>
                     <button
                       type="button"
-                      className="px-3 py-1.5 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-semibold shadow-[0_0_15px_rgba(76,141,255,0.5)] transition-all duration-300 flex items-center gap-1 group"
+                      className="px-3 py-1.5 rounded-xl bg-(--accent) hover:bg-(--accent-hover) text-white text-xs font-semibold shadow-[0_0_15px_rgba(76,141,255,0.5)] transition-all duration-300 flex items-center gap-1 group"
                     >
                       <span>Explore</span>
                       <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
@@ -608,11 +598,11 @@ export default function WhatIDo() {
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-                    <span className="ml-2 font-[var(--font-mono)] text-xs text-zinc-400">
+                    <span className="ml-2 font-(--font-mono) text-xs text-zinc-400">
                       MobileApp.dart — 120 FPS
                     </span>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[11px] font-[var(--font-mono)] text-cyan-300">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[11px] font-(--font-mono) text-cyan-300">
                     <Smartphone className="w-3 h-3 text-cyan-300" />
                     Flutter & Dart
                   </div>
@@ -621,7 +611,7 @@ export default function WhatIDo() {
                 {/* Simulated Sleek Mobile Device Screen */}
                 <div className="relative my-2 p-3 sm:p-3.5 rounded-xl bg-[#09090b]/90 border border-white/5 flex flex-col justify-between overflow-hidden">
                   {/* Status Bar */}
-                  <div className="flex items-center justify-between text-[10px] text-zinc-500 font-[var(--font-mono)] mb-2 px-1 border-b border-white/5 pb-1">
+                  <div className="flex items-center justify-between text-[10px] text-zinc-500 font-(--font-mono) mb-2 px-1 border-b border-white/5 pb-1">
                     <span className="text-zinc-400 font-semibold">09:41</span>
                     <div className="w-14 h-1.5 rounded-full bg-white/10 mx-auto" />
                     <span className="text-cyan-400 flex items-center gap-1">
@@ -632,31 +622,31 @@ export default function WhatIDo() {
 
                   {/* App Screen Content Preview */}
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between p-2 sm:p-2.5 rounded-lg bg-white/[0.04] border border-white/5">
+                    <div className="flex items-center justify-between p-2 sm:p-2.5 rounded-lg bg-white/4 border border-white/5">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-[0_0_12px_rgba(6,182,212,0.4)]">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-linear-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-[0_0_12px_rgba(6,182,212,0.4)]">
                           <Smartphone className="w-4 h-4" />
                         </div>
                         <div>
                           <p className="text-xs font-semibold text-white">Cross-Platform Engine</p>
-                          <p className="text-[10px] text-zinc-400 font-[var(--font-mono)]">iOS & Android Native Compilation</p>
+                          <p className="text-[10px] text-zinc-400 font-(--font-mono)">iOS & Android Native Compilation</p>
                         </div>
                       </div>
-                      <span className="text-[10px] font-[var(--font-mono)] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="text-[10px] font-(--font-mono) px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                         120 Hz
                       </span>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5">
-                        <div className="text-[10px] text-zinc-500 font-[var(--font-mono)]">Frame Drops</div>
-                        <div className="text-xs sm:text-sm font-bold text-emerald-400 font-[var(--font-mono)] flex items-center gap-1 mt-0.5">
+                      <div className="p-2 rounded-lg bg-white/2 border border-white/5">
+                        <div className="text-[10px] text-zinc-500 font-(--font-mono)">Frame Drops</div>
+                        <div className="text-xs sm:text-sm font-bold text-emerald-400 flex items-center gap-1 mt-0.5">
                           <CheckCircle2 className="w-3 h-3 text-emerald-400" /> 0 dropped
                         </div>
                       </div>
-                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5">
-                        <div className="text-[10px] text-zinc-500 font-[var(--font-mono)]">Architecture</div>
-                        <div className="text-xs sm:text-sm font-bold text-cyan-300 font-[var(--font-mono)] truncate mt-0.5">
+                      <div className="p-2 rounded-lg bg-white/2 border border-white/5">
+                        <div className="text-[10px] text-zinc-500 font-(--font-mono)">Architecture</div>
+                        <div className="text-xs sm:text-sm font-bold text-cyan-300 truncate mt-0.5">
                           BLoC / Clean Arch
                         </div>
                       </div>

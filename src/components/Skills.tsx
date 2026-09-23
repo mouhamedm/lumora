@@ -142,16 +142,16 @@ export default function Skills() {
         {/* Eyebrow Badge */}
         <div className="flex justify-center mb-5">
           <div
-            className="inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)] select-none"
+            className="inline-flex items-center font-(--font-mono) text-xs tracking-widest uppercase text-(--accent) px-4 py-1.5 bg-(--accent-soft) border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)] select-none"
             aria-hidden="true"
           >
-            <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+            <Sparkles className="w-3.5 h-3.5 mr-2 text-(--accent)" />
             {t("skills.eyebrow")}
           </div>
         </div>
 
         {/* Title */}
-        <h2 className="relative z-10 mx-auto max-w-4xl text-center font-[var(--font-display)] text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.1] font-bold tracking-tight mb-4">
+        <h2 className="relative z-10 mx-auto max-w-4xl text-center font-(--font-display) text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.1] tracking-tight mb-4">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -183,7 +183,7 @@ export default function Skills() {
           {t("skills.subtitle")}
         </motion.p>
 
-        {/* Flowing Marquee Track with Edge Blur Masks */}
+        {/* Flowing Marquee Track */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

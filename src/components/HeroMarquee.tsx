@@ -47,7 +47,7 @@ export default function HeroMarquee() {
             {item}
           </span>
           <span
-            className="text-[var(--accent)] text-xl md:text-3xl drop-shadow-[0_0_12px_#4c8dff] select-none"
+            className="text-(--accent) text-xl md:text-3xl drop-shadow-[0_0_12px_#4c8dff] select-none"
             aria-hidden="true"
           >
             ✦
@@ -61,15 +61,15 @@ export default function HeroMarquee() {
     <div className="relative w-full overflow-hidden py-6 md:py-10 mt-6 md:mt-10 mb-20 sm:mb-28 md:mb-36 lg:mb-44 z-10 select-none">
       <style>{HERO_MARQUEE_STYLES}</style>
 
-      {/* Horizontal banner wrapper with tall height, glassmorphism & accent glows */}
-      <div className="relative w-full overflow-hidden border-y border-[rgba(76,141,255,0.28)] bg-gradient-to-r from-[rgba(16,17,22,0.92)] via-[rgba(24,26,36,0.96)] to-[rgba(16,17,22,0.92)] backdrop-blur-2xl py-7 md:py-10 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(76,141,255,0.15)] cursor-default">
+      {/* Horizontal banner wrapper */}
+      <div className="relative w-full overflow-hidden border-y border-[rgba(76,141,255,0.28)] bg-linear-to-r from-[rgba(16,17,22,0.92)] via-[rgba(24,26,36,0.96)] to-[rgba(16,17,22,0.92)] backdrop-blur-2xl py-7 md:py-10 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(76,141,255,0.15)] cursor-default">
         {/* Subtle accent edge glow lines */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/15 via-transparent to-blue-500/15 pointer-events-none" />
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-60" />
-        <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-500/15 via-transparent to-blue-500/15 pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-60" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-(--accent) to-transparent opacity-60" />
 
         {/* Marquee Continuous Animated Track */}
-        <div className="flex w-max animate-hero-marquee-scroll text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black font-[var(--font-display)] uppercase">
+        <div className="flex w-max animate-hero-marquee-scroll text-xl sm:text-2xl md:text-3xl lg:text-4xl font-(--font-display) uppercase">
           {renderTrack()}
           {renderTrack()}
         </div>

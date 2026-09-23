@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
-/* ============================================================
-   THEME : Custom tokens → Tailwind v4
-   ============================================================ */
+/* THEME */
+
 @theme {
   /* Surfaces */
   --color-bg-base: #0b0b0c;
@@ -53,9 +52,7 @@
   --animate-pulse-green: pulseGreen 2s infinite;
 }
 
-/* ============================================================
-   CSS VARIABLES (pour les valeurs non couvertes par @theme)
-   ============================================================ */
+/* CSS VARIABLES */
 :root {
   /* Surfaces */
   --bg-base: #0b0b0c;
@@ -100,9 +97,7 @@
   --font-mono: "JetBrains Mono", monospace;
 }
 
-/* ============================================================
-   GLOBAL RESET
-   ============================================================ */
+/* GLOBAL RESET */
 @layer base {
   * {
     box-sizing: border-box;
@@ -143,9 +138,7 @@
   }
 }
 
-/* ============================================================
-   KEYFRAMES
-   ============================================================ */
+/* KEYFRAMES */
 @keyframes float-orb {
   0%,
   100% {
@@ -193,12 +186,7 @@
   }
 }
 
-/* ============================================================
-   COMPLEX PSEUDO-ELEMENTS & INTERACTIVE STYLES
-   (Cannot be expressed with Tailwind alone)
-   ============================================================ */
-
-/* ---- Nav link underline ---- */
+/* Nav link underline */
 @layer components {
   .nav-link-underline {
     position: relative;
@@ -220,7 +208,7 @@
     transform: scaleX(1);
   }
 
-  /* ---- Cool Nav Link with Floating Glass Glow & Pill Indicator ---- */
+  /* Cool Nav Link */
   .nav-link-cool {
     position: relative;
     color: var(--text-primary);
@@ -279,7 +267,7 @@
     transform: translateX(-50%) scaleX(1);
   }
 
-  /* ---- CTA button with slide-up bg (Navbar & Hero) ---- */
+  /* CTA button with slide-up bg (Navbar & Hero) */
   .btn-slide-up {
     position: relative;
     overflow: hidden;
@@ -301,7 +289,7 @@
     transform: translateY(0);
   }
 
-  /* ---- Ghost scroll button (slide-up light) ---- */
+  /* Ghost scroll button (slide-up light) */
   .btn-slide-up-ghost {
     position: relative;
     overflow: hidden;
@@ -323,7 +311,7 @@
     transform: translateY(0);
   }
 
-  /* ---- Magnetic button (About) ---- */
+  /* Magnetic button (About) */
   .btn-magnetic {
     position: relative;
     overflow: hidden;
@@ -358,7 +346,7 @@
     transform: translateX(4px);
   }
 
-  /* ---- Smooth Spinning Star Sparkle ---- */
+  /* Smooth Spinning Star Sparkle */
   @keyframes spin-slow {
     from {
       transform: rotate(0deg);
@@ -373,7 +361,7 @@
     will-change: transform;
   }
 
-  /* ---- Hero Watermark Kinetic Marquee (Option 1) ---- */
+  /* Hero Watermark Kinetic Marquee */
   @keyframes hero-watermark-scroll {
     from {
       transform: translateX(0);
@@ -406,7 +394,7 @@
     white-space: nowrap;
   }
 
-  /* ---- Mobile nav link gradient hover ---- */
+  /* Mobile nav link gradient hover */
   .mobile-nav-link span {
     display: inline-block;
     padding-bottom: 8px;
@@ -431,7 +419,7 @@
     background-clip: text;
   }
 
-  /* ---- Logo DEV gradient text ---- */
+  /* Logo DEV gradient text */
   .logo-dev-text {
     display: inline-block;
     color: transparent;
@@ -440,7 +428,7 @@
     background-clip: text;
   }
 
-  /* ---- Tech card shimmer border ---- */
+  /* Tech card shimmer border */
   .tech-card-shimmer::before {
     content: "";
     position: absolute;
@@ -463,7 +451,7 @@
     pointer-events: none;
   }
 
-  /* ---- Contact card spotlight border ---- */
+  /* Contact card spotlight border */
   .contact-card-spotlight {
     position: relative;
   }
@@ -494,7 +482,7 @@
     opacity: 1;
   }
 
-  /* ---- Floating label form input ---- */
+  /* Floating label form input */
   .form-floating-label {
     position: relative;
   }
@@ -533,7 +521,7 @@
     letter-spacing: 0.1em;
   }
 
-  /* ---- Footer-style glowing white text ---- */
+  /* Footer-style glowing white text */
   .title-glow,
   .footer-text-glow {
     background: linear-gradient(
@@ -547,21 +535,21 @@
     filter: drop-shadow(0px 0px 25px rgba(76, 141, 255, 0.25));
   }
 
-  /* ---- Signature Hero stroke style (Highlight) ---- */
+  /* Signature Hero stroke style (Highlight) */
   .highlight,
   .title-outline {
     color: transparent !important;
     background: none !important;
     -webkit-text-fill-color: transparent !important;
     -webkit-text-stroke: 1.5px rgba(242, 241, 237, 0.55);
-    text-stroke: 1.5px rgba(242, 241, 237, 0.55);
+    text-shadow: 1.5px rgba(242, 241, 237, 0.55);
     filter: none !important;
   }
   @media (max-width: 768px) {
     .highlight,
     .title-outline {
       -webkit-text-stroke-width: 1px;
-      text-stroke-width: 1px;
+      stroke-miterlimit: 1px;
     }
   }
 
@@ -573,7 +561,7 @@
     -webkit-text-fill-color: transparent;
   }
 
-  /* ---- Footer text & text fill gradient ---- */
+  /* Footer text & text fill gradient */
   .footer__text {
     font-family: "Space Grotesk", system-ui, sans-serif !important;
     font-size: 15vw;
@@ -609,18 +597,16 @@
     }
   }
 
-  /* ---- About glow orb ---- */
+  /* About glow orb */
   .about-glow-orb {
     animation: rotateGlow 15s linear infinite;
   }
 
-  /* Paused (via IntersectionObserver in About.tsx) once the section is
-     scrolled out of view — see .hero--offscreen for the same pattern. */
   .about--offscreen .about-glow-orb {
     animation-play-state: paused;
   }
 
-  /* ---- Hero grid mask ---- */
+  /* Hero grid mask */
   .hero-grid {
     background-image:
       linear-gradient(rgba(76, 141, 255, 0.04) 1px, transparent 1px),
@@ -638,7 +624,7 @@
     );
   }
 
-  /* ---- Hero Background & Aurora ---- */
+  /* Hero Background & Aurora */
   .hero__aurora {
     position: fixed;
     inset: 0;
@@ -686,12 +672,6 @@
     opacity: 0.12;
   }
 
-  /* Pause the blurred, transform-animating aurora orbs (and the hero
-     scene's glow pseudo-element) once the Hero section is scrolled out of
-     view. They loop forever with no timing relationship to anything else,
-     so freezing them off-screen is visually identical to letting them run,
-     but avoids continuously re-rastering large blur(80px) layers on iOS
-     Safari for the rest of the scroll session. */
   .hero--offscreen .hero__orb,
   .hero--offscreen .hero__scene::before {
     animation-play-state: paused;
@@ -718,7 +698,7 @@
     pointer-events: none;
   }
 
-  /* ---- Custom Cursor ---- */
+  /* Custom Cursor */
   .custom-cursor-dot {
     position: fixed;
     top: 0;
@@ -752,7 +732,7 @@
     }
   }
 
-  /* ---- Preloader ---- */
+  /* Preloader */
   .preloader {
     position: fixed;
     inset: 0;
@@ -867,9 +847,7 @@
   }
 }
 
-/* ============================================================
-   FONT UTILITIES
-   ============================================================ */
+/* FONT UTILITIES */
 @utility font-display {
   font-family: "Space Grotesk", sans-serif;
 }
@@ -927,9 +905,7 @@
   color: #ffffff;
 }
 
-/* ============================================================
-   CANOPY MARQUEE ANIMATIONS (Logo Cloud Marquee)
-   ============================================================ */
+/* Canopy Marquee Animations */
 @keyframes canopy-x {
   from {
     transform: translateX(0);
@@ -972,11 +948,6 @@
   animation-play-state: paused;
 }
 
-/* ============================================================
-   OFF-SCREEN AMBIENT ANIMATION GATING (WhatIDo card stack)
-   Placed outside any @layer so it always wins the cascade over the
-   Tailwind utilities layer, without needing !important.
-   ============================================================ */
 .whatido--offscreen .wid-spin,
 .whatido--offscreen .wid-ping,
 .whatido--offscreen .wid-pulse {

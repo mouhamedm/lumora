@@ -59,7 +59,7 @@
     "p2_title": "Stride",
     "p2_desc": "Interactive 3D sneaker experience built with Next.js, Three.js, and GSAP for an immersive product showcase. Users can freely manipulate the model in full 360 degrees and inspect every technical detail in real time.",
     "p3_title": "Ghost",
-    "p3_desc": "Streetwear drop showcase, built with Next.js, TypeScript and GSAP ScrollTrigger, featuring glitch UI, a custom cursor and a full multi-page architecture.",
+    "p3_desc": "Streetwear drop showcase, combining glitch UI effects, a custom cursor, and fluid animations with GSAP. An immersive urban experience designed to captivate visitors and highlight each new collection.",
     "p5_title": "Pulse",
     "p5_desc": "Smartwatch product page combining an immersive carousel, custom cursor, and GSAP-driven storytelling. A futuristic presentation engineered to captivate visitors and highlight advanced connected features."
   },

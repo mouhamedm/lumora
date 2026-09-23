@@ -59,7 +59,7 @@
     "p2_title": "Stride",
     "p2_desc": "Expérience 3D interactive de sneaker, développée avec Next.js, Three.js et GSAP pour une présentation produit immersive. L'utilisateur peut manipuler le modèle sous tous les angles et explorer chaque détail technique en temps réel.",
     "p3_title": "Ghost",
-    "p3_desc": "Vitrine de drops streetwear conçue avec Next.js, TypeScript et GSAP ScrollTrigger, intégrant des effets glitch UI, un curseur personnalisé et une architecture multi-pages complète.",
+    "p3_desc": "Vitrine de drops streetwear, combinant des effets glitch UI, un curseur personnalisé et des animations avec GSAP. Une expérience urbaine et immersive conçue pour captiver le visiteur et sublimer chaque nouvelle collection.",
     "p5_title": "Pulse",
     "p5_desc": "Page produit de smartwatch, combinant un carousel immersif, un curseur personnalisé et une narration animée avec GSAP. Une mise en scène futuriste conçue pour captiver le visiteur et révéler toute la puissance des fonctionnalités connectées."
   },

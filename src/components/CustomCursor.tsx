@@ -6,14 +6,12 @@ export default function CustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Désactiver sur les téléphones et tablettes
     if (window.matchMedia("(max-width: 768px)").matches) return;
 
     const cursor = cursorRef.current;
     const follower = followerRef.current;
     if (!cursor || !follower) return;
 
-    // Positionner initialement en dehors de l'écran
     gsap.set(cursor, { xPercent: -50, yPercent: -50, opacity: 0 });
     gsap.set(follower, { xPercent: -50, yPercent: -50, opacity: 0 });
 
@@ -31,7 +29,6 @@ export default function CustomCursor() {
         isVisible = true;
       }
       
-      // Le petit point suit instantanément
       gsap.to(cursor, {
         x: mouse.x,
         y: mouse.y,

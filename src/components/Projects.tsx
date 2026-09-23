@@ -14,15 +14,12 @@ import pulseImg from "../assets/images/pulse.webp";
 import inadiaImg from "../assets/images/inadia.webp";
 import TextReveal from "./TextReveal";
 
-// Register ScrollTrigger safely
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
 }
 
-// -------------------------------------------------------------------------
-// 1. INLINE STYLES FOR FOOTER-STYLE GLASS PILL BUTTONS
-// -------------------------------------------------------------------------
+// INLINE STYLES
 const PROJECTS_STYLES = `
 .project-glass-pill {
   background: rgba(255, 255, 255, 0.03);
@@ -41,9 +38,7 @@ const PROJECTS_STYLES = `
 }
 `;
 
-// -------------------------------------------------------------------------
-// 2. TYPES & INTERFACES
-// -------------------------------------------------------------------------
+// TYPES & INTERFACES
 export type ProjectItem = {
   quote: string;
   name: string;
@@ -53,9 +48,7 @@ export type ProjectItem = {
   link?: string;
 };
 
-// -------------------------------------------------------------------------
-// 3. MAGNETIC BUTTON PRIMITIVE (identical to Footer)
-// -------------------------------------------------------------------------
+// MAGNETIC BUTTON
 export type MagneticButtonProps =
   React.ButtonHTMLAttributes<HTMLButtonElement> &
     React.AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -139,9 +132,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
   },
 );
 
-// -------------------------------------------------------------------------
-// 4. IMAGE CONTAINER WITH CLEAN HOVER (no blue flash)
-// -------------------------------------------------------------------------
+// IMAGE CONTAINER
 type ImageContainerProps = {
   src: string;
   alt: string;
@@ -183,9 +174,7 @@ const ImageContainer = ({
   </div>
 );
 
-// -------------------------------------------------------------------------
-// 5. PROJECT SHOWCASE CORE COMPONENT
-// -------------------------------------------------------------------------
+// PROJECT SHOWCASE
 export type ProjectShowcaseProps = {
   testimonials: ProjectItem[];
   active?: number;
@@ -388,7 +377,7 @@ export const ProjectShowcase = ({
             )}
 
             {/* Project Description */}
-            <p className="font-body text-sm sm:text-base leading-relaxed text-[var(--text-secondary)] mb-3 sm:mb-8 md:mb-10 max-w-xl line-clamp-2 sm:line-clamp-none">
+            <p className="font-body text-sm sm:text-base leading-relaxed text-(--text-secondary) mb-3 sm:mb-8 md:mb-10 max-w-xl line-clamp-2 sm:line-clamp-none">
               {currentProject.quote}
             </p>
           </motion.div>
@@ -398,7 +387,7 @@ export const ProjectShowcase = ({
             <MagneticButton
               type="button"
               onClick={handlePrev}
-              className="project-glass-pill px-4 sm:px-5 py-2.5 rounded-full text-[var(--text-secondary)] font-medium text-xs md:text-sm hover:text-white flex items-center justify-center gap-2 transition-all group shrink-0 md:min-w-[125px]"
+              className="project-glass-pill px-4 sm:px-5 py-2.5 rounded-full text-(--text-secondary) font-medium text-xs md:text-sm hover:text-white flex items-center justify-center gap-2 transition-all group shrink-0 md:min-w-31.25"
             >
               <svg
                 className="w-4 h-4 transition-transform group-hover:-translate-x-0.5"
@@ -417,7 +406,7 @@ export const ProjectShowcase = ({
             <MagneticButton
               type="button"
               onClick={handleNext}
-              className="project-glass-pill px-4 sm:px-5 py-2.5 rounded-full text-[var(--text-secondary)] font-medium text-xs md:text-sm hover:text-white flex items-center justify-center gap-2 transition-all group shrink-0 md:min-w-[125px]"
+              className="project-glass-pill px-4 sm:px-5 py-2.5 rounded-full text-(--text-secondary) font-medium text-xs md:text-sm hover:text-white flex items-center justify-center gap-2 transition-all group shrink-0 md:min-w-31.25"
             >
               <span>{buttonInscriptions.nextButton}</span>
               <svg
@@ -441,7 +430,7 @@ export const ProjectShowcase = ({
               onClick={() =>
                 onItemClick && onItemClick(currentProject.link || "")
               }
-              className="bg-white text-[#0B0B0C] font-semibold text-xs md:text-sm px-5 md:px-6 py-2.5 rounded-full shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.3)] hover:bg-[#FAF9F5] transition-all flex items-center justify-center gap-2 group shrink-0 min-w-fit md:min-w-[130px]"
+              className="bg-white text-[#0B0B0C] font-semibold text-xs md:text-sm px-5 md:px-6 py-2.5 rounded-full shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.3)] hover:bg-[#FAF9F5] transition-all flex items-center justify-center gap-2 group shrink-0 min-w-fit md:min-w-32.5"
             >
               <span>{buttonInscriptions.openWebAppButton}</span>
               <svg
@@ -465,9 +454,7 @@ export const ProjectShowcase = ({
   );
 };
 
-// -------------------------------------------------------------------------
-// 5. MAIN PINNED SCROLL-DRIVEN PROJECTS SECTION
-// -------------------------------------------------------------------------
+// MAIN PINNED SCROLL-DRIVEN PROJECTS SECTION
 export default function Projects() {
   const { t, i18n } = useTranslation();
   const isFr = i18n.language === "fr";
@@ -523,23 +510,6 @@ export default function Projects() {
 
   const totalProjects = projectsData.length;
 
-  // Warm the browser's image cache for all 5 project images well before the
-  // user scrolls anywhere near this section. All 5 are mounted at once in
-  // the AnimatePresence stack (the "peeking behind" cards are part of the
-  // design), but each <img> is loading="lazy" so none of them actually
-  // starts fetching/decoding until the section first scrolls into view —
-  // which means, on a first visit, up to 5 images can start decoding
-  // simultaneously at the exact moment this section (and its GSAP
-  // scroll-triggered entrance fade) becomes active. On a slower mobile CPU
-  // that simultaneous decode is enough to stall the main thread for a
-  // fraction of a second, which delays the `once: true` entrance
-  // ScrollTrigger from firing on time — the content stays invisible until
-  // it catches up, then pops in all at once. Since it only ever fires once,
-  // revisiting the section afterwards looks completely normal. Pre-warming
-  // the cache during idle time (well after the Hero's own entrance
-  // animation has priority) means the images are already decoded by the
-  // time the lazy <img> tags actually need them, removing that burst
-  // entirely without changing what's loaded or how it's displayed.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
@@ -568,7 +538,7 @@ export default function Projects() {
     return () => window.clearTimeout(id);
   }, []);
 
-  // Track scroll progress with native Framer Motion / Motion useScroll (buttery smooth with Lenis, zero pinning glitches)
+  // Track scroll progress
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -583,19 +553,6 @@ export default function Projects() {
     setActive(index);
   });
 
-  // Entrance animations for eyebrow & deck wrapper.
-  //
-  // Triggered via IntersectionObserver rather than GSAP ScrollTrigger's
-  // `scrollTrigger` config. ScrollTrigger caches each trigger's pixel
-  // position on the page and only recomputes it on an explicit
-  // `.refresh()`; if that cached position ends up stale on a given device,
-  // a `once: true` reveal can simply never fire at the point the user
-  // actually scrolls past — the eyebrow and the whole project deck stay
-  // invisible (only the plain, unanimated subtitle text shows) until
-  // something else happens to force a refresh. IntersectionObserver reads
-  // the browser's live layout directly, so it can't go stale the same way.
-  // The tweens themselves (duration, easing, offsets) are unchanged — only
-  // the trigger mechanism is.
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -634,8 +591,6 @@ export default function Projects() {
         },
       );
 
-      // rootMargin's negative bottom value shrinks the effective viewport
-      // from the bottom by 12%, approximating the previous "top 88%" start.
       observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -655,7 +610,6 @@ export default function Projects() {
     };
   }, []);
 
-  // Synchronize manual button clicks with page scroll position
   const handleNext = useCallback(() => {
     const nextIdx = Math.min(active + 1, totalProjects - 1);
     setActive(nextIdx);
@@ -689,55 +643,22 @@ export default function Projects() {
   return (
     <section
       ref={sectionRef}
-      // Explicit opaque background, matching the WhatIDo/Experience
-      // convention. Without it this section (and its tall scroll spacer
-      // below) are fully transparent, which is invisible in normal
-      // operation since the sticky content always fills the viewport —
-      // but it means the fixed, page-wide Hero aurora orbs are only ever
-      // one dropped repaint away from showing through underneath.
-      className="relative w-full z-10 bg-[var(--color-bg-base)]"
+      className="relative w-full z-10 bg-(--color-bg-base)"
       id="projects"
     >
       <style>{PROJECTS_STYLES}</style>
-
-      {/* Multi-viewport scroll container for smooth, native CSS sticky scroll on all devices.
-          svh (small viewport height, fixed) instead of vh/dvh: this drives the
-          scroll-linked progress for a sticky element pinned the whole way
-          through, so a dynamic unit here would keep resizing the scrollable
-          range itself as Safari's toolbar hides/shows mid-scroll. */}
       <div className="relative w-full h-[320svh] sm:h-[340svh] lg:h-[360svh]">
-        {/* Pinned Viewport Container via CSS Sticky */}
         <div
           ref={containerRef}
-          // translate-z-0 forces this sticky element onto its own GPU
-          // compositing layer. Without it, WebKit sometimes fails to repaint
-          // a `position: sticky` element promptly on a fast first scroll
-          // into view (it keeps showing stale/background content until a
-          // forced repaint catches up), which shows up as a blank gap that
-          // suddenly "pops in" — exactly what happens between Experience
-          // and Projects on iOS Safari, and only on the very first scroll
-          // down since the layer isn't established yet.
-          //
-          // h-[100svh] instead of dvh: this element is pinned via `sticky`
-          // for the entire ~320-360svh scroll range, so with dvh its height
-          // keeps being recomputed every time Safari's address bar hides or
-          // reappears mid-scroll — a synchronous layout recalculation on a
-          // large, shadow- and blur-heavy element, right where the user is
-          // actively scrolling. svh is fixed, so it never re-triggers layout
-          // for that reason. If the toolbar hides mid-scroll, this container
-          // stays at the (slightly smaller) svh size instead of growing to
-          // fill the freed space — but the Projects section now has an
-          // explicit solid background behind it, so any such gap is an
-          // invisible continuation of the same color, not a visible seam.
-          className="sticky top-0 w-full h-[100svh] max-h-[100svh] flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-[1380px] mx-auto box-border overflow-hidden translate-z-0"
+          className="sticky top-0 w-full h-svh max-h-svh flex flex-col justify-center py-4 sm:py-6 md:py-10 px-4 sm:px-6 md:px-12 max-w-345 mx-auto box-border overflow-hidden translate-z-0"
         >
           {/* Header */}
           <div className="mb-2 sm:mb-6 md:mb-8 max-w-2xl">
-            <div className="projects-eyebrow inline-flex items-center font-[var(--font-mono)] text-xs font-medium tracking-[0.1em] uppercase text-[var(--accent)] mb-3 px-4 py-1.5 bg-[var(--accent-soft)] border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
-              <Sparkles className="w-3.5 h-3.5 mr-2 text-[var(--accent)]" />
+            <div className="projects-eyebrow inline-flex items-center text-xs font-medium tracking-widest uppercase text-(--accent) mb-3 px-4 py-1.5 bg-(--accent-soft) border border-[rgba(76,141,255,0.2)] rounded-full shadow-[0_0_20px_rgba(76,141,255,0.15)]">
+              <Sparkles className="w-3.5 h-3.5 mr-2 text-(--accent)" />
               {t("projects.eyebrow")}
             </div>
-            <h2 className="font-[var(--font-display)] text-[clamp(38px,4.5vw,64px)] lg:text-[64px] font-bold leading-[1.1] m-0">
+            <h2 className="font-(--font-display) text-[clamp(38px,4.5vw,64px)] lg:text-[64px] leading-[1.1] m-0">
               <TextReveal
                 text={t("projects.title_start")}
                 type="chars"
@@ -752,23 +673,11 @@ export default function Projects() {
                 triggerRef={sectionRef}
               />
             </h2>
-            <p className="font-[var(--font-body)] text-sm sm:text-base text-[var(--text-secondary)] mt-2.5 sm:mt-3 leading-relaxed max-w-xl">
+            <p className="font-(--font-body) text-sm sm:text-base text-(--text-secondary) mt-2.5 sm:mt-3 leading-relaxed max-w-xl">
               {t("projects.subtitle")}
             </p>
           </div>
 
-          {/* 3D Showcase Deck Driven by Scroll.
-              translate-z-0 keeps this wrapper on its own GPU compositing
-              layer for its whole lifetime (not just during the entrance).
-              It wraps several backdrop-blur elements (the tag pills and the
-              glass-pill nav buttons), and animating opacity/scale/y on an
-              ancestor of backdrop-filter content forces WebKit to resample
-              the blur every single frame of the tween unless that ancestor
-              is already its own layer — in which case the blurred content
-              is rasterized once and the compositor just cheaply
-              transforms/fades the whole layer instead. Same technique
-              already used on the Hero cards, Experience glows and the
-              Projects sticky container itself. */}
           <div className="projects-deck-wrapper w-full translate-z-0">
             <ProjectShowcase
               testimonials={projectsData}
