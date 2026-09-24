@@ -170,7 +170,7 @@ export default function Footer() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
 
-  const isFr = i18n.language === "fr";
+  const isFr = i18n.language?.startsWith("fr");
 
   useEffect(() => {
     if (typeof window === "undefined") return;

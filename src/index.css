@@ -108,6 +108,12 @@
     color-scheme: dark;
   }
 
+  @media (max-width: 768px) {
+    html {
+      overflow-x: hidden;
+    }
+  }
+
   html,
   body,
   #root {
