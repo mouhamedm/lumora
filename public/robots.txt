@@ -1,6 +1,3 @@
-# robots.txt for MMD.Dev
+# robots.txt for mmddev-react (Archived / Migrated to Next.js)
 User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://www.mmddev.app/sitemap.xml
+Disallow: /
